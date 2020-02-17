@@ -10,4 +10,7 @@ export VISUAL=$EDITOR
 export VIMINIT="source $HOME/.vimrc" # Cross platform and nvim/vim agnostic
 export GVIMINIT="source $HOME/.gvimrc"
 export SSH_ASKPASS=ssh-askpass
+
+[[ $(lsmod | rg pcspkr) ]] && sudo rmmod pcspkr
+
 startx
