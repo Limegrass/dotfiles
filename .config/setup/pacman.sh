@@ -15,12 +15,22 @@ ln -sv /usr/lib/ssh/x11-ssh-askpass ~/bin/ssh-askpass
 # Mouse accel
 # xinput set-prop 'PS/2 Synaptics TouchPad'  'Device Accel Constant Deceleration' 1
 
-docker image pull ezkrg/bitlbee-libpurple   
+docker image pull ezkrg/bitlbee-libpurple
 docker run -p 6667:6667 \
     --name bitlbee \
     -v /local/path/to/configurations:/var/lib/bitlbee \
     --restart=always \
     --detach ezkrg/bitlbee-libpurple:latest
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Share(ni)X
+mkdir -p $HOME/git/aur
+cd $HOME/git/aur
+git clone https://aur.archlinux.org/sharenix-git.git
+cd sharenix-git
+makepkg -si --noconfirm
+sudo pacman -S --noconfirm gnome-screenshot
 
 # Fix neomutt
 # Fix mpd/ncmpcpp

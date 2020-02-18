@@ -8,7 +8,7 @@ set $right l
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:Source Code Pro 6
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -60,11 +60,12 @@ bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 
+# flipped from defaults to match vim <C-W> better
 # split in horizontal orientation
-bindsym $mod+s split h
+bindsym $mod+v split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+s split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -150,8 +151,13 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar 
+# Start i3bar to display a workspace bar
 # (plus the system information i3status finds out, if available)
 bar {
     status_command i3status
 }
+
+bindsym Ctrl+Shift+2 exec sharenix -m="fs" -n -o
+bindsym Ctrl+Shift+3 exec $(which sharenix-window)
+bindsym Ctrl+Shift+4 exec $(which sharenix-section)
+bindsym Ctrl+Shift+5 exec sharenix -m="c" -n
