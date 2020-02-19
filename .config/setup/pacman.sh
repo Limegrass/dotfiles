@@ -1,3 +1,4 @@
+# TODO: Split into separate scripts/parameterize
 #  Dev
 sudo pacman -S --noconfirm base base-devel nodejs node git python python-pip git-lfs
 sudo pacman -S --noconfirm neovim ranger ripgrep
@@ -34,5 +35,5 @@ cd sharenix-git
 makepkg -si --noconfirm
 sudo pacman -S --noconfirm gnome-screenshot
 
+sudo pacman -S --noconfirm texlive-most texlive-lang # massive TeX dump because I'm lazy
 # WINE
-# LaTeX
