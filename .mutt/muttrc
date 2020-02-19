@@ -1,0 +1,27 @@
+set realname = "James Ni"
+set use_from = yes
+set imap_keepalive = 300
+set mail_check = 120
+auto_view text/html
+set sort=reverse-date   # default sorting by date
+set from = "james@niis.me"
+source $HOME/.mutt/accounts.muttrc
+
+# Add $HOME/.mutt/accounts.conf
+# set imap_user = "me%gmail.com" # me@gmail.com. Other sites would not need %40gmail.com
+# set imap_pass = "your_password"
+# set smtp_pass = "your_password"
+# set folder="imaps://$imap_user@imap.gmail.com:993/"
+# set imap_check_subscribed
+# set spoolfile=+INBOX
+# mailboxes = +INBOX
+# set header_cache = ~/.cache/mutt
+# set message_cachedir = "~/.cache/mutt"
+# # Specify where to save and/or look for postponed messages.
+# set postponed = +/Drafts
+# set record = +Sent
+# set smtp_url="smtps://me%40gmail.com@smtp.gmail.com:465/"
+# # set imap_authenticators="plain"
+# set ssl_force_tls = yes
+# set ssl_starttls = yes
+# set smtp_authenticators="login"
