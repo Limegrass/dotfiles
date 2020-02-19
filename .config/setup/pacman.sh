@@ -3,6 +3,8 @@ sudo pacman -S --noconfirm base base-devel nodejs node git python python-pip git
 sudo pacman -S --noconfirm neovim ranger ripgrep
 sudo pacman -S mpv weechat mpd ncmpcpp
 sudo pacman -S neomutt libsasl cyrus-sasl
+# Note: use %40 for @ if using gmail in muttrc, can also use aerc (aur).
+# Otherwise follow arch wiki
 
 sudo pacman -S docker
 sudo systemctl enable --now docker
@@ -32,7 +34,5 @@ cd sharenix-git
 makepkg -si --noconfirm
 sudo pacman -S --noconfirm gnome-screenshot
 
-# Fix neomutt
-# Fix mpd/ncmpcpp
 # WINE
 # LaTeX
