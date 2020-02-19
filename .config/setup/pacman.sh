@@ -1,22 +1,25 @@
 # TODO: Split into separate scripts/parameterize
 #  Dev
-sudo pacman -S --noconfirm base base-devel nodejs node git python python-pip git-lfs
+sudo pacman -S --noconfirm base base-devel nodejs node \
+    git python python-pip git-lfs
 sudo pacman -S --noconfirm neovim ranger ripgrep
 sudo pacman -S mpv weechat mpd ncmpcpp
 sudo pacman -S neomutt libsasl cyrus-sasl
-# Note: use %40 for @ if using gmail in muttrc, can also use aerc (aur).
+# Note: use %40 for @ if using gmail in muttrc, alternative: aerc (aur).
 # Otherwise follow arch wiki
 
 sudo pacman -S docker
 sudo systemctl enable --now docker
 # Not using wayland for now
 # wm/de
-sudo pacman -S i3-wm xorg-xbaclight xorg-xrandr alsa-utils light xorg-xinput
-sudo pacman -S x11-ssh-askpass
+sudo pacman -S i3-wm rofi xorg-xbaclight xorg-xrandr \
+    alsa-utils light xorg-xinput x11-ssh-askpass
 mkdir ~/bin
 ln -sv /usr/lib/ssh/x11-ssh-askpass ~/bin/ssh-askpass
+
 # Mouse accel
-# xinput set-prop 'PS/2 Synaptics TouchPad'  'Device Accel Constant Deceleration' 1
+# xinput set-prop 'PS/2 Synaptics TouchPad'  \
+#     'Device Accel Constant Deceleration' 1
 
 docker image pull ezkrg/bitlbee-libpurple
 docker run -p 6667:6667 \
@@ -35,5 +38,8 @@ cd sharenix-git
 makepkg -si --noconfirm
 sudo pacman -S --noconfirm gnome-screenshot
 
-sudo pacman -S --noconfirm texlive-most texlive-lang # massive TeX dump because I'm lazy
-# WINE
+# massive TeX dump because I'm lazy
+sudo pacman -S --noconfirm texlive-most texlive-lang
+
+# WINE - Must uncomment multilib in /etc/pacman.conf
+# sudo pacman -S wine wine-gecko wine-mono
