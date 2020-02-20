@@ -69,7 +69,7 @@ Plug 'neoclide/coc.nvim', { 'tag': '*' }
     command! CocInstallExtensions CocInstall
                 \ coc-dictionary coc-tag coc-omni coc-syntax coc-ultisnips
                 \ coc-json coc-vimtex coc-python coc-java coc-highlight coc-html coc-yank
-                \ coc-vimlsp coc-lists coc-git coc-rls
+                \ coc-vimlsp coc-lists coc-git coc-rls coc-marketplace
 
     set updatetime=300 " Smaller updatetime for CursorHold & CursorHoldI
     set shortmess+=c " don't give |ins-completion-menu| messages.
