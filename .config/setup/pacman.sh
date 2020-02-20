@@ -8,8 +8,7 @@ sudo pacman -S neomutt libsasl cyrus-sasl
 # Note: use %40 for @ if using gmail in muttrc, alternative: aerc (aur).
 # Otherwise follow arch wiki
 
-sudo pacman -S docker
-sudo systemctl enable --now docker
+sudo pacman -S docker sudo systemctl enable --now docker
 # Not using wayland for now
 # wm/de
 sudo pacman -S i3-wm rofi xorg-xbaclight xorg-xrandr \
@@ -52,3 +51,5 @@ sudo pacman -S --noconfirm texlive-most texlive-lang
 
 # WINE - Must uncomment multilib in /etc/pacman.conf
 # sudo pacman -S wine wine-gecko wine-mono
+
+sudo pacman -S ccls
