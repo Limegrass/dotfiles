@@ -62,6 +62,7 @@ set termguicolors
 set background=dark
 
 set wildmenu
+set wildmode=longest:full
 set wildignorecase                              " Ignore case
 set wildignore+=*.zip,*.tar,*.tar*,*.rar        " Ignore archive files
 set wildignore+=*.png,*.jpg,*.jpeg,*.gif        " Ignore images
