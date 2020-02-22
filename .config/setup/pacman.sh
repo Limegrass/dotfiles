@@ -1,9 +1,10 @@
+
 # TODO: Split into separate scripts/parameterize
 #  Dev
 sudo pacman -S --noconfirm base base-devel nodejs node \
     git python python-pip git-lfs
-sudo pacman -S --noconfirm neovim ranger ripgrep
-sudo pacman -S mpv weechat 
+sudo pacman -S --noconfirm neovim ranger ripgrep w3m
+sudo pacman -S mpv weechat
 sudo pacman -S neomutt libsasl cyrus-sasl
 # Note: use %40 for @ if using gmail in muttrc, alternative: aerc (aur).
 # Otherwise follow arch wiki
