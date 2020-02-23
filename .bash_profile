@@ -12,6 +12,4 @@ export GVIMINIT="source $HOME/.gvimrc"
 export SSH_ASKPASS="ssh-askpass"
 export TERMINAL="alacritty"
 
-[[ $(lsmod | rg pcspkr) ]] && sudo rmmod pcspkr
-
 startx

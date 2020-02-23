@@ -1,5 +1,10 @@
-
 # TODO: Split into separate scripts/parameterize
+# For beeps, sudo echo "blacklist pcspkr" >> /etc/modprobe.d/blacklist.conf
+# For backlight without sudo, change KERNAL to whatever is at {} in  /sys/class/backlight/{}
+# and add to /etc/udev/rules.d/backlight.rules
+# ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="acpi_video0", RUN+="/bin/chgrp video /sys/class/backlight/%k/brightness"
+# ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="acpi_video0", RUN+="/bin/chmod g+w /sys/class/backlight/%k/brightness"
+
 #  Dev
 sudo pacman -S --noconfirm base base-devel nodejs node \
     git python python-pip git-lfs
