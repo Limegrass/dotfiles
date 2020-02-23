@@ -36,7 +36,7 @@ cd $HOME/git/aur
 git clone https://aur.archlinux.org/sharenix-git.git
 cd sharenix-git
 makepkg -si --noconfirm
-sudo pacman -S --noconfirm gnome-screenshot
+sudo pacman -S flameshot
 
 # Music player daemon + client + audio scrobbler
 sudo pacman -S --noconfirm mpd ncmpcpp
