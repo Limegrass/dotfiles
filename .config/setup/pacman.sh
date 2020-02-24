@@ -59,3 +59,24 @@ sudo pacman -S --noconfirm texlive-most texlive-lang
 # sudo pacman -S wine wine-gecko wine-mono
 
 sudo pacman -S ccls
+
+cd $HOME/git/aur
+git clone https://aur.archlinux.org/auracle-git
+cd auracle-git
+makepkg -si
+sudo pacman -S --noconfirm expac
+
+cd $HOME/git/aur
+git clone https://aur.archlinux.org/pacaur
+cd pacaur
+makepkg -si
+
+# Thomas Dickey <https://invisible-island.net/> for ncurses dependency on android-emulator
+gpg --recv-keys 702353E0F7E48ED8
+pacaur -S android-studio android-sdk android-sdk-build-tools \
+    android-sdk-platform-tools android-platform android-emulator
+
+sudo pacman -S uim
+
+# For SSDs
+# sudo systemctl enable --now fstrim.timer
