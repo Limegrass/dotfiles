@@ -27,7 +27,9 @@ endif
 nnoremap <silent> <leader>v :edit $MYVIMRC<CR>
 nnoremap <silent> <leader>V :vnew $MYVIMRC<CR>
 nnoremap <silent> <leader>S :source $MYVIMRC<CR>
-nnoremap <silent> <ESC> :nohlsearch<CR><ESC>
+if has('nvim') " binding <ESC> is buggy on base vim
+    nnoremap <silent> <ESC> :nohlsearch<CR><ESC>
+endif
 
 nnoremap Q @q " Ex mode by gQ still
 

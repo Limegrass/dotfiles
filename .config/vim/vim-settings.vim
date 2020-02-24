@@ -53,10 +53,19 @@ call matchadd('ColorColumn', '\%81v.', 100)
 set iminsert=0
 set imsearch=-1
 
-" Put undo/swap/temp files user's .vim subfolder. Folders autocreated.
+" undo/swap/temp in designated folders. nvim autocreates but vim does not.
 set undodir=$VIMCONFIG/undo
+if !isdirectory($VIMCONFIG.'/undo')
+    call mkdir($VIMCONFIG.'/undo')
+endif
 set backupdir=$VIMCONFIG/backup
+if !isdirectory($VIMCONFIG.'/backup')
+    call mkdir($VIMCONFIG.'/backup')
+endif
 set directory=$VIMCONFIG/swap
+if !isdirectory($VIMCONFIG.'/swap')
+    call mkdir($VIMCONFIG.'/swap')
+endif
 
 set termguicolors
 set background=dark
