@@ -9,3 +9,7 @@ export GVIMINIT="source $XDG_CONFIG_HOME"/vim/gvimrc
 export SSH_ASKPASS="ssh-askpass"
 export TERMINAL="alacritty"
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
+
+if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  exec startx
+fi
