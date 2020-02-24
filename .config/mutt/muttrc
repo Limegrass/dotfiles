@@ -5,7 +5,7 @@ set mail_check = 120
 auto_view text/html
 set sort=reverse-date   # default sorting by date
 set from = "james@niis.me"
-source $HOME/.mutt/accounts.muttrc
+source ./accounts.muttrc
 
 # Add $HOME/.mutt/accounts.conf
 # set imap_user = "me%gmail.com" # me@gmail.com. Other sites would not need %40gmail.com

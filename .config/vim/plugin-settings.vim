@@ -1,10 +1,10 @@
-if empty(glob($VIMDIR.'/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob($VIMCONFIG.'/autoload/plug.vim'))
+    silent !curl -fLo $VIMCONFIG/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin($VIMDIR.'/plugged')
+call plug#begin($VIMCONFIG.'/plugged')
 
 " Core
 Plug 'tpope/vim-surround'

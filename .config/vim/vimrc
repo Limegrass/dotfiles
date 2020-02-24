@@ -7,8 +7,9 @@ scriptencoding utf-8
 
 let $HOME = substitute($HOME, '\', '/', 'g') " normalizes for Windows
 
-let $VIMDIR = $HOME.'/.vim'
-set runtimepath^=$VIMDIR,$VIMDIR/after
+" sets directory path for coc-settings.json to the same directory as this file
+let $VIMCONFIG = expand('<sfile>:p:h') " exact name needed for coc-settings.json
+set runtimepath^=$VIMCONFIG,$VIMCONFIG/after
 
 " sets this file as $MYVIMRC regardless of sourcing method
 let $MYVIMRC = expand('<sfile>:p')
@@ -16,13 +17,12 @@ let $MYVIMRC = expand('<sfile>:p')
 " ==============================================================================
 " SUBCONFIGS
 " ==============================================================================
-source $VIMDIR/function-definitions.vim
-source $VIMDIR/vim-settings.vim
-source $VIMDIR/keymaps.vim
-source $VIMDIR/plugin-settings.vim
+source $VIMCONFIG/function-definitions.vim
+source $VIMCONFIG/vim-settings.vim
+source $VIMCONFIG/keymaps.vim
+source $VIMCONFIG/plugin-settings.vim
 
 let $GARBAGEDIR = $HOME.'/garbage' " default working directory in my workflow.
 if !isdirectory($GARBAGEDIR)
     silent call mkdir($GARBAGEDIR)
 endif
-

@@ -54,9 +54,9 @@ set iminsert=0
 set imsearch=-1
 
 " Put undo/swap/temp files user's .vim subfolder. Folders autocreated.
-set undodir=$VIMDIR/undo
-set backupdir=$VIMDIR/backup
-set directory=$VIMDIR/swap
+set undodir=$VIMCONFIG/undo
+set backupdir=$VIMCONFIG/backup
+set directory=$VIMCONFIG/swap
 
 set termguicolors
 set background=dark
