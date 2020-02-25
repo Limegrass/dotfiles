@@ -37,8 +37,13 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# scratchpad is a floating background window
+bindsym $mod+b scratchpad show
+bindsym $mod++Shift+b move scratchpad
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Shift+Return exec i3-sensible-terminal -e $VISUAL;
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -55,10 +60,10 @@ bindsym $mod+$up focus up
 bindsym $mod+$right focus right
 
 # move focused window
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+$left move left 20px
+bindsym $mod+Shift+$down move down 20px
+bindsym $mod+Shift+$up move up 20px
+bindsym $mod+Shift+$right move right 20px
 
 # flipped from defaults to match vim <C-W> better
 # split in horizontal orientation
