@@ -1,6 +1,8 @@
 [[ $- != *i* ]] && return # return if not running bash interactive
 
 alias ls='ls --color=auto'
+type -P rg &> /dev/null && alias grep="rg" \
+    || alias grep="grep --color=auto"
 PS1='[\u@\h \W]\$ ' # [user@host working_directory]$
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
