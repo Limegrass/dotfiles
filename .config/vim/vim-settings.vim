@@ -23,10 +23,11 @@ set scrolljump=3
 set list
 set selection=inclusive
 set undofile
+set autoread
 set history=100
 set cursorline
 set hidden
-set diffopt+=vertical,iwhite
+set diffopt+=vertical,iwhite,hiddenoff
 set fileformats=unix,dos
 set fileignorecase
 set virtualedit=all
@@ -47,6 +48,7 @@ set autoindent
 set tabstop=4
 set shiftwidth=4
 set softtabstop=-1
+set formatoptions^=j " default in nvim but not vim
 " Character limit highlight
 call matchadd('ColorColumn', '\%81v.', 100)
 " Prevent starting in Hiragana
@@ -62,7 +64,9 @@ set backupdir=$VIMCONFIG/backup
 if !isdirectory($VIMCONFIG.'/backup')
     call mkdir($VIMCONFIG.'/backup')
 endif
-set directory=$VIMCONFIG/swap
+
+set noswapfile " swap prevents opening the same file in diff instances.
+set directory=$VIMCONFIG/swap " keep files separate if turned on.
 if !isdirectory($VIMCONFIG.'/swap')
     call mkdir($VIMCONFIG.'/swap')
 endif
