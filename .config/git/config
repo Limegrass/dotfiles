@@ -1,0 +1,17 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	email = james@niis.me
+	name = James Ni
+	signingkey = 9134F3CAE87EC815
+[core]
+	quotepath = false
+	commitGraph = true
+	autocrlf = input
+[gc]
+	writeCommitGraph = true
+[commit]
+	gpgsign = true
