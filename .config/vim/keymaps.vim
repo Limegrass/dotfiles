@@ -111,7 +111,7 @@ if IsWindows()
 endif
 " Navigate out of terminal mode
 if has('nvim') || has('terminal')
-    tnoremap <ESC><ESC> <C-\><C-N>
+    tnoremap <C-Z> <C-\><C-N>
 endif
 
 " :new
