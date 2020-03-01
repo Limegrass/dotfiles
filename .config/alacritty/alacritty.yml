@@ -1,14 +1,11 @@
 font:
-  size: 6.0
+  size: 7.0
   normal:
     family: Source Code Pro
     style: Regular
-  # The bold font face
   bold:
     family: Source Code Pro
     style: Bold
-
-  # The italic font face
   italic:
     family: Source Code Pro
     style: Italic
