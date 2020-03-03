@@ -46,7 +46,7 @@ set expandtab
 set smartindent
 set autoindent
 set tabstop=4
-set shiftwidth=4
+set shiftwidth=0
 set softtabstop=-1
 set formatoptions^=j " default in nvim but not vim
 " Character limit highlight

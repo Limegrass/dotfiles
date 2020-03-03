@@ -143,6 +143,7 @@ endif
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish'
 Plug 'sheerun/vim-polyglot'
+    let g:rust_recommended_style = 0 " don't want ts=8
 Plug 'lambdalisue/suda.vim'
     if has('nvim')
         command! -nargs=0 SW w suda://%
@@ -152,7 +153,6 @@ Plug 'tpope/vim-dispatch'
 Plug 'francoiscabrol/ranger.vim'
     command! -bang Bclose BD! " BD from vim-bufkill. working around rbgrouleff/bclose.vim
     let g:ranger_map_keys = 0
-    let g:ranger_replace_netrw = 1 " open ranger when vim open a directory
     let g:ranger_choice_file = '/tmp/ranger_choice_file'
 
 " Appearances

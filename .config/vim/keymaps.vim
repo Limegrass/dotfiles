@@ -134,7 +134,7 @@ function! s:JoinSpaceless()
         execute 'normal dw'
     endif
 endfunction
-nnoremap <silent> <leader><C-W> :call <SID>GoToFloatingWindow()<CR>
+nnoremap <silent> <C-W><space> :call <SID>GoToFloatingWindow()<CR>
 function! s:GoToFloatingWindow()
     let l:floatingWindowNumber = GetFloatingWindowNumber()
     if (l:floatingWindowNumber == v:null)
