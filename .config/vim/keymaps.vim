@@ -104,7 +104,6 @@ endfunction
 " Reciprocal of {count}gT
 nnoremap <silent> <leader>gt :<C-U>execute 'normal '.repeat("gt", v:count1)<CR>
 " Change working directory to current file
-nnoremap <silent> <leader>cd :lcd %:p:h<CR>
 " Open file explorer on current file location
 if IsWindows()
     nnoremap <leader>ee :silent !explorer.exe %:p:h<CR>
@@ -259,3 +258,4 @@ call CommandAbbreviations('vb', 'vert sb')
 call CommandAbbreviations('vsb', 'vert sb')
 call CommandAbbreviations('H', 'helpgrep')
 call CommandAbbreviations('bdall', '%bd\|e#')
+call CommandAbbreviations('lcdf', 'lcd %:p:h') " lcd to file

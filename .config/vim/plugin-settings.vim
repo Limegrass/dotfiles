@@ -19,6 +19,9 @@ Plug 'tpope/vim-commentary'
     xnoremap <silent> <leader><Tab> :Commentary<CR>
 
 Plug 'tpope/vim-unimpaired'
+Plug 'Valloric/ListToggle'
+    let g:lt_location_list_toggle_map = '<SPACE>l'
+    let g:lt_quickfix_list_toggle_map = '<SPACE>c'
 Plug 'wellle/targets.vim'
 Plug 'andymass/vim-matchup'
 Plug 'michaeljsmith/vim-indent-object'
