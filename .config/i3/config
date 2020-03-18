@@ -1,29 +1,11 @@
 # https://i3wm.org/docs/userguide.html
-
 set $mod Mod4
 set $left h
 set $down j
 set $up k
 set $right l
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:Source Code Pro 6
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+font pango:Source Code Pro 6  # Window/Bar Font
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -162,6 +144,7 @@ bar {
     status_command i3status
 }
 
+exec flameshot # Start the daemon
 bindsym Ctrl+Shift+2 exec sharenix -m="fs" -n -o
 bindsym Ctrl+Shift+3 exec flameshot screen -r > /tmp/flameshot.png \
             && (file /tmp/flameshot.png | grep -q PNG) \
