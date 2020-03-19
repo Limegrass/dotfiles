@@ -10,8 +10,9 @@ PS1='[\u@\h \W]\$ ' # [user@host working_directory]$
 set -o vi # vi mode
 
 [[ $DISPLAY != '' ]] \
-    && alias "float_internal_keyboard=xinput float $(xinput | rg "AT Translated Set 2 keyboard" | rg -o "(id=)\d+" | rg -o "\d+")"
+    && alias "float_internal_keyboard=xinput float $(xinput | grep "AT Translated Set 2 keyboard" | grep -o "(id=)\d+" | grep -o "\d+")"
 alias dotfiles="git --git-dir='/$HOME/.dotfiles/' --work-tree='$HOME'"
 alias xclipboard="xclip -selection clipboard"
+alias iw_power_save_off="sudo iw wlan0 set power_save off"
 
 export TERM=xterm # compatibility with ssh'd machines
