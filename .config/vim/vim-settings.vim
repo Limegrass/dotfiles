@@ -73,6 +73,7 @@ endif
 
 set termguicolors
 set background=dark
+colorscheme desert
 
 set wildmenu
 set wildmode=longest:full
@@ -88,7 +89,6 @@ set wildignore+=.git,.hg,*/.git/*,**/.git/**
 " ==============================================================================
 " AUTOCOMMANDS
 " ==============================================================================
-" QuickFix window on vimgrep
 if has('autocmd')
     augroup QuickFix
         autocmd!
@@ -96,13 +96,7 @@ if has('autocmd')
         autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
     augroup END
 
-    " Autocompletion for HTML tags
-    augroup Html
-        autocmd!
-        autocmd Filetype html,xml,markdown inoremap <buffer> </ </<C-X><C-O>
-    augroup END
-
-    augroup PrevimSettings
+    augroup MarkdownFileType
         autocmd!
         autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
     augroup END
