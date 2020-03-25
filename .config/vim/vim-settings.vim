@@ -1,61 +1,48 @@
-"   Sections:
-"       BASIC_SETTINGS
-"       AUTOCOMMANDS
-"       VARIABLE_DEFINITIONS
-" ==============================================================================
-" BASIC_SETTINGS
-" ==============================================================================
+if $VIMCONFIG == '' " set config directory to current file directory if unset.
+    let $VIMCONFIG = expand('<sfile>:p:h')
+endif
 if has('nvim')
     set inccommand=split
 endif
 
 filetype plugin on
+runtime macros/matchit.vim
+let g:omni_sql_no_default_maps = 1
+
 set lazyredraw
 set ruler
-set incsearch
-set ignorecase
-set smartcase
+set cursorline
 set number
 set nowrap
-set listchars=tab:▸\ ,trail:·,precedes:←,extends:→,nbsp:·
+set incsearch
+set ignorecase smartcase
+set list listchars=tab:▸\ ,trail:·,precedes:←,extends:→,nbsp:·
 set backspace=indent,eol,start
-set scrolljump=3
-set list
 set selection=inclusive
-set undofile
 set autoread
 set history=100
-set cursorline
 set hidden
 set diffopt+=vertical,iwhite,hiddenoff
 set fileformats=unix,dos
 set fileignorecase
 set virtualedit=all
-set nostartofline
 set spelllang=en
+set nostartofline
 set mouse=nicr
-set splitright
-set splitbelow
-set foldmethod=indent
-set foldlevel=99
+set scrolljump=3
+set splitright splitbelow
+set foldmethod=indent foldlevel=99
 set completeopt=noinsert,menuone,noselect
-runtime macros/matchit.vim
-let g:omni_sql_no_default_maps = 1
-" INDENT SETTINGS
-set expandtab
-set smartindent
-set autoindent
-set tabstop=4
-set shiftwidth=0
-set softtabstop=-1
 set formatoptions^=j " default in nvim but not vim
-" Character limit highlight
-call matchadd('ColorColumn', '\%81v.', 100)
-" Prevent starting in Hiragana
-set iminsert=0
-set imsearch=-1
 
-" undo/swap/temp in designated folders. nvim autocreates but vim does not.
+set autoindent smartindent
+set expandtab tabstop=4 shiftwidth=0 softtabstop=-1
+
+call matchadd('ColorColumn', '\%101v.', 100) " Character limit highlight
+set iminsert=0 imsearch=-1 " Prevent starting in Kana
+
+" undo/swap/temp in designated folders. nvim autocreates directories but vim does not.
+set undofile
 set undodir=$VIMCONFIG/undo
 if !isdirectory($VIMCONFIG.'/undo')
     call mkdir($VIMCONFIG.'/undo')
@@ -64,51 +51,27 @@ set backupdir=$VIMCONFIG/backup
 if !isdirectory($VIMCONFIG.'/backup')
     call mkdir($VIMCONFIG.'/backup')
 endif
-
 set noswapfile " swap prevents opening the same file in diff instances.
 set directory=$VIMCONFIG/swap " keep files separate if turned on.
 if !isdirectory($VIMCONFIG.'/swap')
     call mkdir($VIMCONFIG.'/swap')
 endif
 
+set wildmenu wildignorecase wildmode=longest:full
+set wildignore+=*.zip,*.tar,*.tar*,*.rar        " archive
+set wildignore+=*.png,*.jpg,*.jpeg,*.gif        " images
+set wildignore+=*.pdf,*.gem,*.obj,*.out,*.swp
+
+let g:guid_regex = '[a-fA-F0-9]\{8,8}\(-[a-fA-F0-9]\{4,4}\)\{3,3}-[a-fA-F0-9]\{12,12}'
+
 set termguicolors
 set background=dark
+augroup colorscheme-modification
+    autocmd!
+    autocmd ColorScheme * highlight EndOfBuffer guifg=bg " Hides ~ from EOB
+    " change pup to be not the default no matter the colorscheme
+    autocmd ColorScheme * highlight Pmenu guifg=#CCCCCC guibg=#222222
+    autocmd ColorScheme * highlight PmenuSel guifg=#222222 guibg=#CCCCCC
+    autocmd ColorScheme * highlight MatchParen guifg=fg
+augroup END
 colorscheme desert
-
-set wildmenu
-set wildmode=longest:full
-set wildignorecase                              " Ignore case
-set wildignore+=*.zip,*.tar,*.tar*,*.rar        " Ignore archive files
-set wildignore+=*.png,*.jpg,*.jpeg,*.gif        " Ignore images
-set wildignore+=*.pdf
-set wildignore+=*.DS_Store
-set wildignore+=*yarn.lock*
-set wildignore+=*.gem,*.obj,*.out,*.swp
-set wildignore+=.git,.hg,*/.git/*,**/.git/**
-
-" ==============================================================================
-" AUTOCOMMANDS
-" ==============================================================================
-if has('autocmd')
-    augroup QuickFix
-        autocmd!
-        autocmd CmdwinEnter * nnoremap <CR> <CR>
-        autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
-    augroup END
-
-    augroup MarkdownFileType
-        autocmd!
-        autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-    augroup END
-
-    augroup CSharp
-        autocmd!
-        autocmd BufReadPost *.{cs} silent call TFCheckout()
-    augroup END
-endif
-
-" ==============================================================================
-" VARIABLE_DEFINITIONS
-" ==============================================================================
-let g:guid_regex = '[a-zA-Z0-9]\{8,8}-[a-zA-Z0-9]\{4,4}-'
-            \ .'[a-zA-Z0-9]\{4,4}-[a-zA-Z0-9]\{4,4}-[a-zA-Z0-9]\{12,12}'

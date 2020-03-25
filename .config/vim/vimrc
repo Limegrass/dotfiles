@@ -1,28 +1,14 @@
-" ==============================================================================
-" Author: James Ni (Limegrass) - @Multipoke
-" ==============================================================================
+" Author: James Ni (@Limegrass)
 set fileformat=unix
 set encoding=utf-8
 scriptencoding utf-8
 
-let $HOME = substitute($HOME, '\', '/', 'g') " normalizes for Windows
-
-" sets directory path for coc-settings.json to the same directory as this file
-let $VIMCONFIG = expand('<sfile>:p:h') " exact name needed for coc-settings.json
+let $HOME = substitute($HOME, '\', '/', 'g')    " normalizes for Windows
+let $VIMCONFIG = expand('<sfile>:p:h')
 set runtimepath^=$VIMCONFIG,$VIMCONFIG/after
+let $MYVIMRC = expand('<sfile>:p')              " ensure this file is $MYVIMRC
 
-" sets this file as $MYVIMRC regardless of sourcing method
-let $MYVIMRC = expand('<sfile>:p')
-
-" ==============================================================================
-" SUBCONFIGS
-" ==============================================================================
-source $VIMCONFIG/function-definitions.vim
-source $VIMCONFIG/vim-settings.vim
-source $VIMCONFIG/keymaps.vim
-source $VIMCONFIG/plugin-settings.vim
-
-let $GARBAGEDIR = $HOME.'/garbage' " default working directory in my workflow.
-if !isdirectory($GARBAGEDIR)
-    silent call mkdir($GARBAGEDIR)
-endif
+source $VIMCONFIG/function-definitions.vim      " additional functions
+source $VIMCONFIG/vim-settings.vim              " minimal settings
+source $VIMCONFIG/keymaps.vim                   " must come after function-definitions
+source $VIMCONFIG/plugin-settings.vim           " plugins and plugin settings/mappings
