@@ -113,10 +113,10 @@ if executable('npm') && executable('node') " node dependency
           autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
         augroup end
         " quickfix/code actions
-        vmap <silent> <leader>a  <Plug>(coc-codeaction-selected)
-        nmap <silent> <leader>a  <Plug>(coc-codeaction-selected)
+        vmap <silent> <leader>aa <Plug>(coc-codeaction-selected)
+        nmap <silent> <leader>aa <Plug>(coc-codeaction-selected)
         nmap <silent> <leader>ac <Plug>(coc-codeaction)
-        nmap <silent> <leader>cl <Plug>(coc-codelens-action)
+        nmap <silent> <leader>al <Plug>(coc-codelens-action)
         nmap <silent> <leader>qf <Plug>(coc-fix-current)
         command! -nargs=0 Format :call CocAction('format')
         command! -nargs=? Fold :call   CocAction('fold', <f-args>)

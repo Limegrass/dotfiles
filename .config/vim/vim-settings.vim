@@ -70,8 +70,8 @@ augroup colorscheme-modification
     autocmd!
     autocmd ColorScheme * highlight EndOfBuffer guifg=bg " Hides ~ from EOB
     " change pup to be not the default no matter the colorscheme
-    autocmd ColorScheme * highlight Pmenu guifg=#CCCCCC guibg=#222222
-    autocmd ColorScheme * highlight PmenuSel guifg=#222222 guibg=#CCCCCC
+    autocmd ColorScheme * highlight Pmenu guifg=#CCCCCC guibg=#000022
+    autocmd ColorScheme * highlight PmenuSel guifg=#000022 guibg=#CCCCCC
     autocmd ColorScheme * highlight MatchParen guifg=fg
 augroup END
 colorscheme desert
