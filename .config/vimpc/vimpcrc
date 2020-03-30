@@ -1,0 +1,60 @@
+" On/Off Settings:
+set albumartist
+set noautolyrics
+set autoscroll
+set autoscrolllyrics
+set noautoupdate
+set nobrowsenumbers
+set colour
+set noexpand-artists
+set groupignorethe
+set hlsearch
+set ignorecase
+set incsearch
+" required for browse window
+set listallmeta
+" set local-music-dir
+" set lyricstrip
+set mouse
+set nopolling
+set noplaylistnumbers
+set playonadd
+set progressbar
+set reconnect
+set noscrollonadd
+set noscrollondelete
+set scrollstatus
+set seekbar
+set searchwrap
+set showlists
+set showpath
+set showpercent
+set singlequit
+set smartcase
+set nosongnumbers
+set sortignorecase
+set sortignorethe
+set nostoponquit
+set tabbar
+set notimeremaining
+set windownumbers
+
+" Value Settings:
+set window playlist
+set windows playlist,directory,library,browse
+" song - [album - albumartist] [duration]
+set songformat {%t}|{%f} $A50[%b - %a] $R%l 
+" add libraryformat playlists sort timeout
+
+" Colors
+" partial full pager
+" black blue green yellow cyan white magenta red
+hi song default blue
+hi id default blue
+hi dir default green
+hi current default green
+hi tab default green
+hi progress default green
+hi match default magenta
+hi status default cyan
+hi error default red
