@@ -23,7 +23,7 @@ floating_modifier $mod
 
 # scratchpad is a floating background window
 bindsym $mod+b scratchpad show
-bindsym $mod++Shift+b move scratchpad
+bindsym $mod+Shift+b move scratchpad
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -52,7 +52,7 @@ bindsym $mod+Shift+$right move right 20px
 # flipped from defaults to match vim <C-W> better
 # split in horizontal orientation
 bindsym $mod+v split h
-
+bindsym $mod+shift+s split h
 # split in vertical orientation
 bindsym $mod+s split v
 
