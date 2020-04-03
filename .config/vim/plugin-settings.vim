@@ -70,7 +70,7 @@ Plug 'haya14busa/incsearch.vim'
 
 if has('python3') && executable('python3') " python dependency
     Plug 'SirVer/ultisnips'
-        let g:UltiSnipsExpandTrigger  = "<NUL>"
+        let g:UltiSnipsExpandTrigger  = "<C-S>"
         let g:UltiSnipsJumpForwardTrigger  = "<C-J>"
         let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
         let g:UltiSnipsRemoveSelectModeMappings = 0

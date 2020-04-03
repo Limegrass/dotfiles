@@ -169,7 +169,7 @@ inoremap jj <ESC>
 inoremap <C-BS> <C-W>
 cnoremap <C-BS> <C-W>
 inoremap <C-DEL> <C-O>dw
-" cnoremap <C-DEL> <C-O>dw Fix this
+cnoremap <C-DEL> <C-F>dw<C-C>
 inoremap <C-L> <C-G>u<ESC>[s1z=`]a<C-G>u
 
 inoremap <C-R><C-S> <C-R>+
