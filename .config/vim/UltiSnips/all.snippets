@@ -34,8 +34,11 @@ snippet datetime "YYYY-MM-DD hh:mm" w
 `!v strftime("%Y-%m-%d %H:%M")`
 endsnippet
 
-snippet uuid "Random UUID" w
-`!p if not snip.c: import uuid; snip.rv = uuid.uuid4()`
+snippet guid "Random UUID"
+`!p
+if not snip.c:
+	import uuid;
+	snip.rv = uuid.uuid4()`
 endsnippet
 
 snippet todo "TODO comment" bw
