@@ -9,7 +9,6 @@
 sudo pacman -S --noconfirm base base-devel nodejs node \
     git python python-pip git-lfs
 sudo pacman -S --noconfirm neovim ranger w3m
-sudo pacman -S --noconfirm ripgrep fd bat exa jq watchexec
 sudo pacman -S mpv weechat
 sudo pacman -S neomutt libsasl cyrus-sasl
 # Note: use %40 for @ if using gmail in muttrc, alternative: aerc (aur).
@@ -79,10 +78,9 @@ pacaur -S android-studio android-sdk android-sdk-build-tools \
 
 sudo pacman -S uim
 
-cd $HOME/git
-git clone https://github.com/whitfin/runiq
-cd runiq
-cargo install runiq
+# alias to corresponding commands as desired.
+cargo install runiq du-dust
+sudo pacman -S --noconfirm ripgrep fd bat exa jq watchexec
 
 # For SSDs
 # sudo systemctl enable --now fstrim.timer
