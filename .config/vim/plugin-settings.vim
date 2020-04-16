@@ -23,8 +23,9 @@ Plug 'sjl/gundo.vim', {'on': ['GundoToggle', 'GundoShow']}
 Plug 'Valloric/ListToggle'
     let g:lt_location_list_toggle_map = '<SPACE>l'
     let g:lt_quickfix_list_toggle_map = '<SPACE>c'
-Plug 'qpkorr/vim-bufkill'
-    let g:BufKillCreateMappings = 0
+Plug 'moll/vim-bbye'
+    command! -bang -complete=buffer -nargs=? Bclose Bdelete<bang> <args>
+    nnoremap <silent> ZD :Bdelete<CR>
 Plug 'tpope/vim-commentary'
     augroup commentary
         autocmd!
@@ -36,6 +37,9 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'voldikss/vim-floaterm'
     nnoremap <space>t :FloatermToggle<CR>
+    nnoremap <space>rs :FloatermSend<CR>
+    xnoremap <space>rs :FloatermSend<CR>
+    command! PythonRepl FloatermNew name=python_repl width=0.3 position=bottomright python
     let g:floaterm_gitcommit = 'floaterm'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -137,7 +141,6 @@ Plug 'lambdalisue/suda.vim'
         command! -nargs=0 Sw w suda://%
     endif
 Plug 'francoiscabrol/ranger.vim'
-    command! -bang Bclose BD! " BD from vim-bufkill. working around rbgrouleff/bclose.vim
     let g:ranger_map_keys = 0
     let g:ranger_choice_file = '/tmp/ranger_choice_file'
 

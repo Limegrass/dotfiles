@@ -52,7 +52,6 @@ nnoremap <silent> <leader>ss :set spell!<CR>
 nnoremap <silent> ZW :w<CR>
 nnoremap <silent> ZB :buffers<CR>:
 nnoremap <silent> ZX :bd<CR>
-nnoremap <silent> ZD :BD<CR>
 
 nnoremap <silent> cx :call StripExtraneousWhiteSpace()<CR>
 
