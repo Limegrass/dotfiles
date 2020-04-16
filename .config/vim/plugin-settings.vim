@@ -13,6 +13,8 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'wellle/targets.vim'
+Plug 'kana/vim-textobj-user'
+Plug 'Julian/vim-textobj-variable-segment'
 Plug 'andymass/vim-matchup'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'godlygeek/tabular'
@@ -32,6 +34,9 @@ Plug 'tpope/vim-commentary'
     nnoremap <silent> <leader><Tab> :Commentary<CR>
     xnoremap <silent> <leader><Tab> :Commentary<CR>
 Plug 'tpope/vim-dispatch'
+Plug 'voldikss/vim-floaterm'
+    nnoremap <space>t :FloatermToggle<CR>
+    let g:floaterm_gitcommit = 'floaterm'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
