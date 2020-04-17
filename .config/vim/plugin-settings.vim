@@ -40,6 +40,10 @@ Plug 'voldikss/vim-floaterm'
     nnoremap <space>rs :FloatermSend<CR>
     xnoremap <space>rs :FloatermSend<CR>
     command! PythonRepl FloatermNew name=python_repl width=0.3 position=bottomright python
+    augroup floaterm
+        autocmd!
+        autocmd FileType floaterm tnoremap <buffer> <C-C> <C-\><C-N>:FloatermToggle<CR>
+    augroup END
     let g:floaterm_gitcommit = 'floaterm'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -48,6 +52,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     nnoremap <silent> <C-SPACE>  :FZF<CR>
     nnoremap <silent> g<C-SPACE> :Tags<CR>
     nnoremap <silent> z<C-SPACE> :Rg<CR>
+    " Searches plugin folder with Rg
+    command! -bang -nargs=* HelpgrepPlugin
+                \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case "
+                \                   .shellescape(<q-args>)." ".expand('$VIMCONFIG/plugged'),
+                \                   1, {}, <bang>0)
 
 Plug 'haya14busa/incsearch.vim'
     Plug 'haya14busa/incsearch-fuzzy.vim'
