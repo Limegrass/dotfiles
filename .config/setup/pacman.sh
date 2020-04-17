@@ -1,6 +1,6 @@
 # TODO: Split into separate scripts/parameterize
 # For beeps, sudo echo "blacklist pcspkr" >> /etc/modprobe.d/blacklist.conf
-# For backlight without sudo, change KERNAL to whatever is at {} in  /sys/class/backlight/{}
+# For backlight without sudo, change KERNEL to whatever is at {} in  /sys/class/backlight/{}
 # and add to /etc/udev/rules.d/backlight.rules
 # ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="acpi_video0", RUN+="/bin/chgrp video /sys/class/backlight/%k/brightness"
 # ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="acpi_video0", RUN+="/bin/chmod g+w /sys/class/backlight/%k/brightness"
@@ -8,15 +8,19 @@
 #  Dev
 sudo pacman -S --noconfirm base base-devel nodejs node \
     git python python-pip git-lfs
-sudo pacman -S --noconfirm neovim ranger w3m
+# also probably need iwd or NetworkManager.
+# Make sure to turn off WiFi power saving.
+sudo pacman -S --noconfirm neovim ranger w3m zathura zathura-pdf-poppler
+sudo pip install neovim-remote
 sudo pacman -S mpv weechat
 sudo pacman -S neomutt libsasl cyrus-sasl
 # Note: use %40 for @ if using gmail in muttrc, alternative: aerc (aur).
 # Otherwise follow arch wiki
 
-sudo pacman -S docker sudo systemctl enable --now docker
+sudo pacman -S docker
+sudo systemctl enable --now docker
+
 # Not using wayland for now
-# wm/de
 sudo pacman -S i3-wm rofi xorg-xbaclight xorg-xrandr \
     alsa-utils light xorg-xinput x11-ssh-askpass
 mkdir ~/bin
@@ -71,7 +75,8 @@ git clone https://aur.archlinux.org/pacaur
 cd pacaur
 makepkg -si
 
-# Thomas Dickey <https://invisible-island.net/> for ncurses dependency on android-emulator
+# gpg key of Thomas Dickey <https://invisible-island.net/>
+# for ncurses dependency on android-emulator
 gpg --recv-keys 702353E0F7E48ED8
 pacaur -S android-studio android-sdk android-sdk-build-tools \
     android-sdk-platform-tools android-platform android-emulator

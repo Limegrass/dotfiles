@@ -155,12 +155,9 @@ Plug 'flazz/vim-colorschemes'
 " Specialized
 Plug 'sheerun/vim-polyglot'
     let g:rust_recommended_style = 0 " don't want ts=8
+    let g:polyglot_disabled = ['latex']
 Plug 'OrangeT/vim-csharp' " Needed for cshtml
 Plug 'lervag/vimtex', {'for': ['tex']}
-    let g:vimtex_view_general_viewer  = 'SumatraPDF'
-    let g:vimtex_view_general_options =
-                \'-reuse-instance -forward-search @tex @line @pdf'
-    let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 Plug 'previm/previm', {'for': ['markdown'], 'on': ['PrevimOpen']}
     Plug 'tyru/open-browser.vim'
     let g:previm_enable_realtime = 0
