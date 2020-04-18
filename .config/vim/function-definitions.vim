@@ -256,3 +256,31 @@ function! CSharpCompile(file_path, target_type)
         echoerr 'Assign g:csc_file_path or add csc to your $PATH'
     endif
 endfunction
+
+function! GetHighlight(group)
+    " gets the RGB value associated with a highlight group in a dictionary
+    let l:highlight_string = execute('highlight ' . a:group)
+    let l:regex = '\(\w*\)=\(\S*\)'
+    let l:term_colors = {}
+    let l:start = match(l:highlight_string, l:regex, 0)
+    while match(l:highlight_string, l:regex, l:start) >= 0
+        let l:assigments = matchlist(l:highlight_string, l:regex, l:start)
+        let l:term = l:assigments[1]
+        let l:color = l:assigments[2]
+        execute 'let l:term_colors["'.l:term.'"] = "'.l:color.'"'
+        let l:start += strlen(l:assigments[0])
+    endwhile
+    return l:term_colors
+endfunction
+
+function! GetSyntax()
+    let l:syn_id = synID(line('.'), col('.'), 1)
+    return  { 'syntax_item': synIDattr(l:syn_id, 'name'),
+                \   'highlight_group': synIDattr(synIDtrans(l:syn_id), 'name'), }
+endfunction
+
+function! AddAsDecimal(addend, number, base)
+    let l:decimal = str2nr(a:number, a:base) + a:addend
+    let l:formatters = { 2: '%b', 8: '%o', 16: '%x'}
+    return printf(get(l:formatters, a:base), l:decimal)
+endfunction

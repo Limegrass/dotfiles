@@ -173,3 +173,4 @@ Plug 'previm/previm', {'for': ['markdown'], 'on': ['PrevimOpen']}
     let g:previm_disable_vimproc = 1
 call plug#end()
 colorscheme angr
+highlight Comment guifg=#808080
