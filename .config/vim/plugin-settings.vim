@@ -36,9 +36,9 @@ Plug 'tpope/vim-commentary'
     xnoremap <silent> <leader><Tab> :Commentary<CR>
 Plug 'tpope/vim-dispatch'
 Plug 'voldikss/vim-floaterm'
-    nnoremap <space>t :FloatermToggle<CR>
-    nnoremap <space>rs :FloatermSend<CR>
-    xnoremap <space>rs :FloatermSend<CR>
+    nnoremap <silent> <space>t :FloatermToggle<CR>
+    nnoremap <silent> <space>rs :FloatermSend<CR>
+    xnoremap <silent> <space>rs :FloatermSend<CR>
     command! PythonRepl FloatermNew name=python_repl width=0.3 position=bottomright python
     augroup floaterm
         autocmd!

@@ -260,12 +260,6 @@ call CommandAbbreviations('bdall', '%bd\|e#')
 call CommandAbbreviations('lcdf', 'lcd %:p:h') " lcd to file
 
 if has('autocmd')
-    augroup QuickFix
-        autocmd!
-        autocmd CmdwinEnter * nnoremap <CR> <CR>
-        autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
-    augroup END
-
     augroup MarkdownFileType
         autocmd!
         autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
