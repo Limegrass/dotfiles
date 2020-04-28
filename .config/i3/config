@@ -159,3 +159,6 @@ bindsym Ctrl+Shift+4 exec flameshot gui -r > /tmp/flameshot.png \
             && sharenix -n -c /tmp/flameshot.png \
             && rm /tmp/flameshot.png;
 bindsym Ctrl+Shift+5 exec sharenix -m="c" -n
+
+# float certain windows
+for_window [class="Pcmanfm"] floating enable
