@@ -51,7 +51,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     let g:fzf_layout = { 'down' : '20%'}
     nnoremap <silent> <C-SPACE>  :FZF<CR>
     nnoremap <silent> g<C-SPACE> :Tags<CR>
-    nnoremap <silent> z<C-SPACE> :Rg<CR>
+    nnoremap <silent> r<C-SPACE> :Rg<CR>
+    nnoremap <silent> z<C-SPACE> :History<CR>
     " Searches plugin folder with Rg
     command! -bang -nargs=* HelpgrepPlugin
                 \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case "
