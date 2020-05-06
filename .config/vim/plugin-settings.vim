@@ -42,7 +42,7 @@ Plug 'voldikss/vim-floaterm'
     command! PythonRepl FloatermNew name=python_repl width=0.3 position=bottomright python
     augroup floaterm
         autocmd!
-        autocmd FileType floaterm tnoremap <buffer> <C-C> <C-\><C-N>:FloatermToggle<CR>
+        autocmd FileType floaterm tnoremap <silent> <buffer> <C-J> <C-\><C-N>:FloatermToggle<CR>
     augroup END
     let g:floaterm_gitcommit = 'floaterm'
 
