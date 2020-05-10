@@ -98,10 +98,12 @@ endif
 
 if executable('npm') && executable('node') " node dependency
     Plug 'neoclide/coc.nvim', { 'tag': '*' }
-        command! CocInstallExtensions CocInstall
-                    \ coc-dictionary coc-tag coc-omni coc-syntax coc-ultisnips
-                    \ coc-json coc-vimtex coc-python coc-java coc-highlight coc-html coc-yank
-                    \ coc-vimlsp coc-lists coc-git coc-rls coc-marketplace
+        let g:coc_global_extensions=[
+                 \ 'coc-dictionary', 'coc-tag', 'coc-omni', 'coc-syntax', 'coc-ultisnips',
+                 \ 'coc-json', 'coc-vimtex', 'coc-python', 'coc-java', 'coc-highlight',
+                 \ 'coc-html', 'coc-yank', 'coc-vimlsp', 'coc-lists', 'coc-git',
+                 \ 'coc-rls', 'coc-marketplace']
+
         set updatetime=300 " Smaller updatetime for CursorHold & CursorHoldI
         set shortmess+=c " don't give |ins-completion-menu| messages.
         inoremap <silent> <expr> <c-space> coc#refresh() " completion refresh
