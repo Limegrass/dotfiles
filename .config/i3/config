@@ -6,7 +6,8 @@ set $up k
 set $right l
 
 # title bars
-new_window pixel 0
+new_window none
+new_float none
 font pango:Source Code Pro 10
 
 # Use pactl to adjust volume in PulseAudio.
