@@ -44,7 +44,6 @@ Plug 'voldikss/vim-floaterm'
         autocmd!
         autocmd FileType floaterm tnoremap <silent> <buffer> <C-J> <C-\><C-N>:FloatermToggle<CR>
     augroup END
-    let g:floaterm_gitcommit = 'floaterm'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
@@ -168,6 +167,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'sheerun/vim-polyglot'
     let g:rust_recommended_style = 0 " don't want ts=8
     let g:polyglot_disabled = ['latex']
+Plug 'ron-rs/ron.vim'
 Plug 'OrangeT/vim-csharp' " Needed for cshtml
 Plug 'lervag/vimtex', {'for': ['tex']}
 Plug 'previm/previm', {'for': ['markdown'], 'on': ['PrevimOpen']}
