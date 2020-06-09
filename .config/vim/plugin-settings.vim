@@ -20,9 +20,6 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'godlygeek/tabular'
 Plug 'sjl/gundo.vim', {'on': ['GundoToggle', 'GundoShow']}
     let g:gundo_prefer_python3 = 1
-Plug 'Valloric/ListToggle'
-    let g:lt_location_list_toggle_map = '<SPACE>l'
-    let g:lt_quickfix_list_toggle_map = '<SPACE>c'
 Plug 'moll/vim-bbye'
     command! -bang -complete=buffer -nargs=? Bclose Bdelete<bang> <args>
     nnoremap <silent> ZD :Bdelete<CR>
