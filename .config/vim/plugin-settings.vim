@@ -86,19 +86,10 @@ Plug 'haya14busa/incsearch.vim'
         IncSearchNoreMap <M-/> <CR>gv<C-]>
     endfunction
 
-if has('python3') && executable('python3') " python dependency
-    Plug 'SirVer/ultisnips'
-        let g:UltiSnipsExpandTrigger  = "<C-S>"
-        let g:UltiSnipsJumpForwardTrigger  = "<C-J>"
-        let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
-        let g:UltiSnipsRemoveSelectModeMappings = 0
-        xnoremap <TAB> :call UltiSnips#SaveLastVisualSelection()<CR>gvs
-endif
-
 if executable('npm') && executable('node') " node dependency
     Plug 'neoclide/coc.nvim', { 'tag': '*' }
         let g:coc_global_extensions=[
-                 \ 'coc-dictionary', 'coc-tag', 'coc-omni', 'coc-syntax', 'coc-ultisnips',
+                 \ 'coc-dictionary', 'coc-tag', 'coc-omni', 'coc-syntax', 'coc-snippets',
                  \ 'coc-json', 'coc-vimtex', 'coc-python', 'coc-java', 'coc-highlight',
                  \ 'coc-html', 'coc-yank', 'coc-vimlsp', 'coc-lists', 'coc-git',
                  \ 'coc-rls', 'coc-marketplace']
