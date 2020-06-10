@@ -134,7 +134,6 @@ if executable('npm') && executable('node') " node dependency
         omap af <Plug>(coc-funcobj-a)
 endif
 
-
 Plug 'lambdalisue/suda.vim'
     if has('nvim')
         command! -nargs=0 Sw w suda://%
@@ -149,19 +148,21 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'gcmt/taboo.vim'
     let g:taboo_tab_format=' %N [%f%m] '
-Plug 'flazz/vim-colorschemes'
+Plug 'w0ng/vim-hybrid'
 
 " Specialized
-Plug 'sheerun/vim-polyglot'
-    let g:rust_recommended_style = 0 " don't want ts=8
-    let g:polyglot_disabled = ['latex']
+" TODO: Figure out a solution for cloning just https://trac.nginx.org/nginx/browser/nginx/contrib/vim
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'mboughaba/i3config.vim'
+Plug 'udalov/kotlin-vim'
 Plug 'ron-rs/ron.vim'
+Plug 'PProvost/vim-ps1'
 Plug 'OrangeT/vim-csharp' " Needed for cshtml
 Plug 'lervag/vimtex', {'for': ['tex']}
 Plug 'previm/previm', {'for': ['markdown'], 'on': ['PrevimOpen']}
     Plug 'tyru/open-browser.vim'
     let g:previm_enable_realtime = 0
     let g:previm_disable_vimproc = 1
+
 call plug#end()
-colorscheme angr
-highlight Comment guifg=#808080
+colorscheme hybrid
