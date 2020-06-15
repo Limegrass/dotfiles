@@ -65,14 +65,12 @@ set wildignore+=*.pdf,*.gem,*.obj,*.out,*.swp
 
 let g:guid_regex = '[a-fA-F0-9]\{8,8}\(-[a-fA-F0-9]\{4,4}\)\{3,3}-[a-fA-F0-9]\{12,12}'
 
+syntax on
 set termguicolors
-set background=dark
-augroup colorscheme-modification
-    autocmd!
-    autocmd ColorScheme * highlight EndOfBuffer guifg=bg " Hides ~ from EOB
-    " change pup to be not the default no matter the colorscheme
-    autocmd ColorScheme * highlight Pmenu guifg=#CCCCCC guibg=#000022
-    autocmd ColorScheme * highlight PmenuSel guifg=#000022 guibg=#CCCCCC
-    autocmd ColorScheme * highlight MatchParen guifg=fg
-augroup END
 colorscheme desert
+
+set background=dark
+highlight EndOfBuffer guifg=bg
+highlight Pmenu guifg=#CCCCCC guibg=#000022
+highlight PmenuSel guifg=#000022 guibg=#CCCCCC
+highlight MatchParen guifg=fg
