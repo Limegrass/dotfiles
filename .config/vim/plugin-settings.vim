@@ -8,6 +8,8 @@ if empty(glob($VIMCONFIG.'/autoload/plug.vim'))
 endif
 
 call plug#begin($VIMCONFIG.'/plugged')
+Plug 'tpope/vim-fugitive'
+Plug 'rhysd/git-messenger.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
@@ -46,7 +48,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     let g:fzf_layout = { 'down' : '20%'}
     nnoremap <silent> <C-SPACE>  :FZF<CR>
-    nnoremap <silent> g<C-SPACE> :Tags<CR>
+    nnoremap <silent> t<C-SPACE> :Tags<CR>
     nnoremap <silent> r<C-SPACE> :Rg<CR>
     nnoremap <silent> z<C-SPACE> :History<CR>
     " Searches plugin folder with Rg
@@ -132,6 +134,7 @@ if executable('npm') && executable('node') " node dependency
         xmap af <Plug>(coc-funcobj-a)
         omap if <Plug>(coc-funcobj-i)
         omap af <Plug>(coc-funcobj-a)
+        nnoremap <silent> g<C-SPACE> :<C-u>CocList -I symbols<cr>
 endif
 
 Plug 'lambdalisue/suda.vim'
