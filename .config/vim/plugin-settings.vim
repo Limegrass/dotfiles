@@ -89,9 +89,13 @@ if executable('npm') && executable('node') " node dependency
     Plug 'neoclide/coc.nvim', { 'tag': '*' }
         let g:coc_global_extensions=[
                  \ 'coc-dictionary', 'coc-tag', 'coc-omni', 'coc-syntax', 'coc-snippets',
-                 \ 'coc-json', 'coc-vimtex', 'coc-python', 'coc-java', 'coc-highlight',
-                 \ 'coc-html', 'coc-yank', 'coc-vimlsp', 'coc-lists', 'coc-git',
-                 \ 'coc-rls', 'coc-marketplace', 'coc-tsserver']
+                 \ 'coc-highlight', 'coc-yank', 'coc-vimlsp', 'coc-lists', 'coc-git',
+                 \ 'coc-html', 'coc-json', 'coc-marketplace' ]
+        command! CocInstallJavaScript coc-tsserver coc-prettier coc-eslint
+        command! CocInstallRust CocInstall coc-rls
+        command! CocInstallJava coc-java
+        command! CocInstallPython coc-python
+        command! CocInstallLatex coc-vimtex
 
         set updatetime=300 " Smaller updatetime for CursorHold & CursorHoldI
         set shortmess+=c " don't give |ins-completion-menu| messages.
