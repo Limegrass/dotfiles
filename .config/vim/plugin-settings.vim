@@ -48,6 +48,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     let g:fzf_layout = { 'down' : '20%'}
     nnoremap <silent> <C-SPACE>  :FZF<CR>
+    nnoremap <silent> f<C-SPACE>  :Buffers<CR>
     nnoremap <silent> t<C-SPACE> :Tags<CR>
     nnoremap <silent> r<C-SPACE> :Rg<CR>
     nnoremap <silent> z<C-SPACE> :History<CR>
