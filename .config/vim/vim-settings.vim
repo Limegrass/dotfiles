@@ -58,10 +58,13 @@ if !isdirectory($VIMCONFIG.'/swap')
     call mkdir($VIMCONFIG.'/swap')
 endif
 
-set wildmenu wildignorecase wildmode=longest:full
+set wildmenu
+set wildignorecase
+set wildmode=longest:full
 set wildignore+=*.zip,*.tar,*.tar*,*.rar        " archive
 set wildignore+=*.png,*.jpg,*.jpeg,*.gif        " images
 set wildignore+=*.pdf,*.gem,*.obj,*.out,*.swp
+let &wildcharm=&wildchar
 
 let g:guid_regex = '[a-fA-F0-9]\{8,8}\(-[a-fA-F0-9]\{4,4}\)\{3,3}-[a-fA-F0-9]\{12,12}'
 

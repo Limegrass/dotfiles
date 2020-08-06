@@ -178,6 +178,8 @@ cnoremap <C-R><C-S> <C-R>+
 cnoremap <C-R><C-E> <C-R>0
 cnoremap <C-R><C-T> <C-R>"
 
+cnoremap <c-y> <down>
+
 inoremap <silent> <TAB> <C-R>=<SID>TabOrComplete()<CR>
 function! s:TabOrComplete()
     if pumvisible()
