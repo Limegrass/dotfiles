@@ -92,11 +92,11 @@ if executable('npm') && executable('node') " node dependency
                  \ 'coc-dictionary', 'coc-tag', 'coc-omni', 'coc-syntax', 'coc-snippets',
                  \ 'coc-highlight', 'coc-yank', 'coc-vimlsp', 'coc-lists', 'coc-git',
                  \ 'coc-html', 'coc-json', 'coc-marketplace' ]
-        command! CocInstallJavaScript coc-tsserver coc-prettier coc-eslint
+        command! CocInstallJavaScript CocInstall coc-tsserver coc-prettier coc-eslint
         command! CocInstallRust CocInstall coc-rls
-        command! CocInstallJava coc-java
-        command! CocInstallPython coc-python
-        command! CocInstallLatex coc-vimtex
+        command! CocInstallJava CocInstall coc-java
+        command! CocInstallPython CocInstall coc-python
+        command! CocInstallLatex CocInstall coc-vimtex
 
         set updatetime=300 " Smaller updatetime for CursorHold & CursorHoldI
         set shortmess+=c " don't give |ins-completion-menu| messages.
