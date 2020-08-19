@@ -1,0 +1,47 @@
+snippet import "ES6 import"
+import ${1} from '${2}';$0
+endsnippet
+
+snippet import_module "ES6 import with brackets"
+import \{${1}\} from '${2}';$0
+endsnippet
+
+snippet lambda "Lambda/Closure"
+(${1}) => {${2}}${0}
+endsnippet
+
+snippet lambda_react "Lambda/Closure for React components"
+(${1}) => (${2})${0}
+endsnippet
+
+snippet tag "Html/JSX tag" i
+<${1}>${2}</$1>$0
+endsnippet
+
+snippet tag_closed "Self-closing Html/JSX tag" i
+<${1}/>$0
+endsnippet
+
+snippet return "return"
+return ${1};${0}
+endsnippet
+
+snippet return_react "return React components"
+return (${1});$0
+endsnippet
+
+snippet default_props "PropTypes defaultProps"
+${1}.defaultProps = {
+	${2}
+};$0
+endsnippet
+
+snippet prop_types "PropTypes"
+${1}.propTypes = {
+	${2}
+};$0
+endsnippet
+
+snippet pt "PropTypes"
+PropTypes.
+endsnippet
