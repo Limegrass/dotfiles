@@ -175,3 +175,4 @@ Plug 'previm/previm', {'for': ['markdown'], 'on': ['PrevimOpen']}
 call plug#end()
 colorscheme hybrid
 highlight EndOfBuffer guifg=bg
+highlight MatchParen guifg=NONE
