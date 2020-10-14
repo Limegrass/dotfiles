@@ -9,6 +9,7 @@
 sudo pacman -S --noconfirm base base-devel nodejs node \
     git python python-pip git-lfs
 # also probably need iwd or NetworkManager.
+# sudo pacman -S --noconfirm networkmanager network-manager-applet
 # Make sure to turn off WiFi power saving.
 sudo pacman -S --noconfirm neovim ranger w3m zathura zathura-pdf-poppler
 sudo pip install neovim-remote
