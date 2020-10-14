@@ -46,7 +46,6 @@ cd $HOME/git/aur
 git clone https://aur.archlinux.org/sharenix-git.git
 cd sharenix-git
 makepkg -si --noconfirm
-sudo pacman -S flameshot
 
 # Music player daemon + client + audio scrobbler
 sudo pacman -S --noconfirm mpd ncmpcpp
@@ -75,6 +74,8 @@ cd $HOME/git/aur
 git clone https://aur.archlinux.org/pacaur
 cd pacaur
 makepkg -si
+
+pacaur -S ksnip
 
 # gpg key of Thomas Dickey <https://invisible-island.net/>
 # for ncurses dependency on android-emulator

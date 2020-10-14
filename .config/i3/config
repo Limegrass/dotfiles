@@ -149,16 +149,9 @@ bar {
     position top
 }
 
-exec flameshot # Start the daemon
 bindsym Ctrl+Shift+2 exec sharenix -m="fs" -n -o
-bindsym Ctrl+Shift+3 exec flameshot screen -r > /tmp/flameshot.png \
-            && (file /tmp/flameshot.png | grep -q PNG) \
-            && sharenix -n -c /tmp/flameshot.png \
-            && rm /tmp/flameshot.png;
-bindsym Ctrl+Shift+4 exec flameshot gui -r > /tmp/flameshot.png \
-            && (file /tmp/flameshot.png | grep -q PNG) \
-            && sharenix -n -c /tmp/flameshot.png \
-            && rm /tmp/flameshot.png;
+bindsym Ctrl+Shift+3 exec ksnip -a
+bindsym Ctrl+Shift+4 exec ksnip -r
 bindsym Ctrl+Shift+5 exec sharenix -m="c" -n
 
 # float certain windows
@@ -168,3 +161,4 @@ for_window [class="Pavucontrol"] floating enable
 for_window [title="Dolphin"] floating enable
 for_window [class="Cinelerra"] floating enable
 for_window [class="Steam"] floating enable
+for_window [class="ksnip"] floating enable
