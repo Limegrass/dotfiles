@@ -1,17 +1,29 @@
+priority 0
+
+snippet clog "console.log()" Ai
+console.log(${1});$0
+endsnippet
+
 snippet import "ES6 import"
 import ${1} from '${2}';$0
 endsnippet
 
-snippet import_module "ES6 import with brackets"
+snippet dimport "ES6 import" Ai
+import ${1:test} from '${2}';$0
+endsnippet
+
+snippet bimport "ES6 import with brackets" Ai
 import \{${1}\} from '${2}';$0
 endsnippet
 
 snippet lambda "Lambda/Closure"
-(${1}) => {${2}}${0}
+(${1}) => {
+	${2}
+}$0
 endsnippet
 
 snippet lambda_react "Lambda/Closure for React components"
-(${1}) => (${2})${0}
+(${1}) => (${2})$0
 endsnippet
 
 snippet tag "Html/JSX tag" i
@@ -42,6 +54,47 @@ ${1}.propTypes = {
 };$0
 endsnippet
 
-snippet pt "PropTypes"
+snippet pt. "PropTypes" Ai
 PropTypes.
+endsnippet
+
+snippet comment_react "React JSX inline comment"
+{/* ${1} */}$0
+endsnippet
+
+snippet mock() "Jest mock" Ai
+jest.mock('${1}');$0
+endsnippet
+
+snippet mock_actual "Jest mock actual" Ai
+jest.mock('${1}', () => ({
+	...jest.requireActual('$1'),
+	${2}
+}));$0
+endsnippet
+
+snippet beforeEach "Jest beforeEach" Ai
+beforeEach(() => {
+${1}
+});$0
+endsnippet
+
+snippet describe "Jest describe" Ai
+describe('${1}', () => {
+	${2}
+})$0
+endsnippet
+
+snippet it() "Jest it" Ai
+it('${1}', () => {
+${2}
+})$0
+endsnippet
+
+snippet expect "Jest expect" Ai
+expect(${1})$0
+endsnippet
+
+snippet jsdoc "JS documentation comments" Ai
+/** ${1} */$0
 endsnippet
