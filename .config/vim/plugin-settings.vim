@@ -87,7 +87,7 @@ Plug 'haya14busa/incsearch.vim'
     endfunction
 
 if executable('npm') && executable('node') " node dependency
-    Plug 'neoclide/coc.nvim', { 'tag': '*' }
+    Plug 'neoclide/coc.nvim', { 'branch': 'release' }
         let g:coc_global_extensions=[
                  \ 'coc-dictionary', 'coc-tag', 'coc-omni', 'coc-syntax', 'coc-snippets',
                  \ 'coc-highlight', 'coc-yank', 'coc-vimlsp', 'coc-lists', 'coc-git',
@@ -160,6 +160,9 @@ Plug 'w0ng/vim-hybrid'
 
 " Specialized
 " TODO: Figure out a solution for cloning just https://trac.nginx.org/nginx/browser/nginx/contrib/vim
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'mboughaba/i3config.vim'
 Plug 'udalov/kotlin-vim'
