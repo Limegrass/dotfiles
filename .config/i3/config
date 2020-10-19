@@ -35,8 +35,8 @@ bindsym $mod+Shift+q kill
 
 # dmenu replaced with rofi
 # bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec --no-startup-id "rofi -show-icons -combi-modi window,drun,run -modi combi -show combi"
-bindsym $mod+Tab exec --no-startup-id "rofi -show-icons -modi window,ssh -show window"
+bindsym $mod+d exec --no-startup-id "rofi -show-icons -combi-modi window,drun,ssh,run -modi combi -show combi"
+bindsym $mod+Tab exec --no-startup-id "rofi -show-icons -modi window -show window"
 
 # change focus
 bindsym $mod+$left focus left
@@ -162,3 +162,5 @@ for_window [title="Dolphin"] floating enable
 for_window [class="Cinelerra"] floating enable
 for_window [class="Steam"] floating enable
 for_window [class="ksnip"] floating enable
+
+exec nm-applet
