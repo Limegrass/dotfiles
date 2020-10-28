@@ -27,6 +27,12 @@ sudo pacman -S i3-wm rofi xorg-xbaclight xorg-xrandr \
 mkdir ~/bin
 ln -sv /usr/lib/ssh/x11-ssh-askpass ~/bin/ssh-askpass
 
+# fonts
+pacman -S adobe-source-code-pro-fonts ttf-font-awesome
+
+# dynamic workspace names
+sudo pip3 install i3-workspace-names-daemon
+
 # Mouse accel
 # xinput set-prop 'PS/2 Synaptics TouchPad'  \
 #     'Device Accel Constant Deceleration' 1
