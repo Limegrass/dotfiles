@@ -34,6 +34,7 @@ Plug 'tpope/vim-commentary'
     nnoremap <silent> <leader><Tab> :Commentary<CR>
     xnoremap <silent> <leader><Tab> :Commentary<CR>
 Plug 'tpope/vim-dispatch'
+Plug 'roxma/vim-tmux-clipboard'
 Plug 'voldikss/vim-floaterm'
     nnoremap <silent> <space>t :FloatermToggle<CR>
     nnoremap <silent> <space>rs :FloatermSend<CR>
