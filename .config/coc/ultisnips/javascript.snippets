@@ -1,18 +1,18 @@
 priority 0
 
-snippet clog "console.log()" Ai
+snippet clog "console.log()" Ab
 console.log(${1});$0
 endsnippet
 
-snippet import "ES6 import"
+snippet import "ES6 import" Ab
 import ${1} from '${2}';$0
 endsnippet
 
-snippet dimport "ES6 import" Ai
+snippet dimport "ES6 import" Ab
 import ${1:test} from '${2}';$0
 endsnippet
 
-snippet bimport "ES6 import with brackets" Ai
+snippet bimport "ES6 import with brackets" Ab
 import \{${1}\} from '${2}';$0
 endsnippet
 
@@ -42,13 +42,13 @@ snippet return_react "return React components"
 return (${1});$0
 endsnippet
 
-snippet default_props "PropTypes defaultProps"
+snippet default_props "PropTypes defaultProps" Ab
 ${1}.defaultProps = {
 	${2}
 };$0
 endsnippet
 
-snippet prop_types "PropTypes"
+snippet prop_types "PropTypes" Ab
 ${1}.propTypes = {
 	${2}
 };$0
@@ -62,39 +62,39 @@ snippet comment_react "React JSX inline comment"
 {/* ${1} */}$0
 endsnippet
 
-snippet mock() "Jest mock" Ai
+snippet mock() "Jest mock" Ab
 jest.mock('${1}');$0
 endsnippet
 
-snippet mock_actual "Jest mock actual" Ai
+snippet mock_actual "Jest mock actual" Ab
 jest.mock('${1}', () => ({
 	...jest.requireActual('$1'),
 	${2}
 }));$0
 endsnippet
 
-snippet beforeEach "Jest beforeEach" Ai
+snippet beforeEach "Jest beforeEach" Ab
 beforeEach(() => {
-${1}
+	${1}
 });$0
 endsnippet
 
-snippet describe "Jest describe" Ai
+snippet describe() "Jest describe" Ab
 describe('${1}', () => {
 	${2}
 })$0
 endsnippet
 
-snippet it() "Jest it" Ai
+snippet it() "Jest it" Ab
 it('${1}', () => {
-${2}
+	${2}
 })$0
 endsnippet
 
-snippet expect "Jest expect" Ai
+snippet expect() "Jest expect" Ab
 expect(${1})$0
 endsnippet
 
-snippet jsdoc "JS documentation comments" Ai
+snippet jsdoc "JS documentation comments" Ab
 /** ${1} */$0
 endsnippet
