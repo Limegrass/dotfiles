@@ -1,17 +1,32 @@
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[user]
-	email = james@niis.me
-	name = James Ni
-	signingkey = 9134F3CAE87EC815
+[alias]
+    b = branch
+    bs = bisect
+    c = commit
+    co = checkout
+    d = diff
+    dir = rev-parse --git-dir
+    f = fetch
+    rc = !git recommit
+    recommit = commit --amend --reuse-message=HEAD
+    root = rev-parse --show-toplevel
+    s = status
+    sp = stash pop
+    spp = !git stash && git pull && git stash pop
+    st = stash
+    u = !git unstage
+    unstage = reset HEAD --
 [core]
-	quotepath = false
-	commitGraph = true
-	autocrlf = input
+    autocrlf = input
+    commitGraph = true
+    quotepath = false
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    process = git-lfs filter-process
+    required = true
+    smudge = git-lfs smudge -- %f
 [gc]
-	writeCommitGraph = true
-[commit]
-	gpgsign = true
+    writeCommitGraph = true
+[pull]
+    rebase = true
+[rerere]
+    enabled = true

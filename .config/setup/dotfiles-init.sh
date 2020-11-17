@@ -21,5 +21,8 @@ if [ $? != 0 ]; then
 fi;
 
 dotfiles config status.showUntrackedFiles no
+dotfiles config user.name "James Ni"
+dotfiles config user.email "james@niis.me"
+dotfiles update-index --skip-worktree $HOME/.config/alacritty/alacritty.yml
 . $HOME/.config/sh/aliases.sh
 . $HOME/.config/sh/profile.sh
