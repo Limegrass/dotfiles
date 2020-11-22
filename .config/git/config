@@ -30,3 +30,7 @@
     rebase = true
 [rerere]
     enabled = true
+[diff "image"]
+    command = $HOME/.config/git/git-imgdiff
+[diff "psd"]
+    command = $HOME/.config/git/git-psddiff

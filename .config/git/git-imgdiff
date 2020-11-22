@@ -1,0 +1,6 @@
+#!/bin/sh
+mkdir -p .git/diff/$(dirname $1)
+# depends on imagemagick
+compare -fuzz 4000 $2 $1 png:- \
+    | montage -geometry +4+4 $2 - $1 png:- \
+    > .git/diff/$1

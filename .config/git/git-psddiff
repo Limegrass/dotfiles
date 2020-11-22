@@ -1,0 +1,12 @@
+#!/bin/sh
+DIFF_ROOT=$(git rev-parse --git-dir)/diff
+mkdir -p $DIFF_ROOT/$(dirname $1)
+# depends on imagemagick
+PSD_COMPILED=/tmp/git/psd/
+BASENAME=$(basename $1)
+mkdir -p $PSD_COMPILED
+convert $1[0] $PSD_COMPILED/$BASENAME-new.png
+convert $2[0] $PSD_COMPILED/$BASENAME-old.png
+compare -fuzz 4000 $PSD_COMPILED/$BASENAME-old.png $PSD_COMPILED/$BASENAME-new.png png:- \
+    | montage -geometry +4+4 $PSD_COMPILED/$BASENAME-old.png - $PSD_COMPILED/$BASENAME-new.png png:- \
+    > $DIFF_ROOT/$BASENAME.png
