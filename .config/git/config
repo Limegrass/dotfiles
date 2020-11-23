@@ -4,8 +4,11 @@
     c = commit
     co = checkout
     d = diff
+    dt = difftool
     dir = rev-parse --git-dir
     f = fetch
+    m = merge
+    mt = mergetool
     rc = !git recommit
     recommit = commit --amend --reuse-message=HEAD
     root = rev-parse --show-toplevel
@@ -19,6 +22,16 @@
     autocrlf = input
     commitGraph = true
     quotepath = false
+[diff]
+    tool = nvimdiff
+[difftool]
+    prompt = false
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[diff "image"]
+    command = $HOME/.config/git/git-imgdiff
+[diff "psd"]
+    command = $HOME/.config/git/git-psddiff
 [filter "lfs"]
     clean = git-lfs clean -- %f
     process = git-lfs filter-process
@@ -26,11 +39,13 @@
     smudge = git-lfs smudge -- %f
 [gc]
     writeCommitGraph = true
+[merge]
+    tool = nvimmerge
+[mergetool]
+    prompt = false
+[mergetool "nvimmerge"]
+    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c '$wincmd J'
 [pull]
     rebase = true
 [rerere]
     enabled = true
-[diff "image"]
-    command = $HOME/.config/git/git-imgdiff
-[diff "psd"]
-    command = $HOME/.config/git/git-psddiff
