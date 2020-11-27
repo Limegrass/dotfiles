@@ -6,6 +6,7 @@ export VIMINIT="source $XDG_CONFIG_HOME/vim/vimrc" # Cross platform and nvim/vim
 export GVIMINIT="source $XDG_CONFIG_HOME"/vim/gvimrc
 export SSH_ASKPASS="ssh-askpass"
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
+export WINIT_X11_SCALE_FACTOR=1 # no scaling by screen dpi
 
 export FZF_DEFAULT_OPTS="
     --layout=reverse
