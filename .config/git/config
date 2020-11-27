@@ -29,9 +29,9 @@
 [difftool "nvimdiff"]
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [diff "image"]
-    command = $HOME/.config/git/git-imgdiff
+    command = $XDG_CONFIG_HOME/bin/git-imgdiff
 [diff "psd"]
-    command = $HOME/.config/git/git-psddiff
+    command = $XDG_CONFIG_HOME/bin/git-psddiff
 [filter "lfs"]
     clean = git-lfs clean -- %f
     process = git-lfs filter-process

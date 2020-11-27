@@ -1,5 +1,5 @@
 export XDG_CONFIG_HOME=$HOME/.config # default
-export PATH="$HOME/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.cargo/bin:$PATH:$XDG_CONFIG_HOME/bin"
 export EDITOR="$(which nvim)"
 export VISUAL="$EDITOR"
 export VIMINIT="source $XDG_CONFIG_HOME/vim/vimrc" # Cross platform and nvim/vim agnostic
@@ -13,7 +13,7 @@ export FZF_DEFAULT_OPTS="
     --info=inline
     --height=80%
     --multi
-    --preview '$XDG_CONFIG_HOME/sh/fzf-preview {}'
+    --preview '$XDG_CONFIG_HOME/bin/fzf-preview {}'
     --color='hl:148,hl+:154,pointer:032,marker:010,bg+:237,gutter:008'
     --prompt='∼ ' --pointer='▶' --marker='✓'
     --bind '?:toggle-preview'
