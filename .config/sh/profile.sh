@@ -8,6 +8,8 @@ export SSH_ASKPASS="ssh-askpass"
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 export WINIT_X11_SCALE_FACTOR=1 # no scaling by screen dpi
 
+export FZF_DEFAULT_COMMAND=" $([ -e `which rg` ] \
+    && echo `which rg` --smart-case --hidden --no-ignore-vcs)"
 export FZF_DEFAULT_OPTS="
     --layout=reverse
     --info=inline
