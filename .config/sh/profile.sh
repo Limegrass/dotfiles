@@ -12,9 +12,7 @@ export FZF_DEFAULT_OPTS="
     --info=inline
     --height=80%
     --multi
-    --preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {}))
-                || ([[ -d {} ]] && (tree -C {} | less))
-                || echo {} 2> /dev/null | head -200'
+    --preview '$XDG_CONFIG_HOME/sh/fzf-preview {}'
     --color='hl:148,hl+:154,pointer:032,marker:010,bg+:237,gutter:008'
     --prompt='∼ ' --pointer='▶' --marker='✓'
     --bind '?:toggle-preview'
