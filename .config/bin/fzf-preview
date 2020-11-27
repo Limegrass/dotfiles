@@ -3,14 +3,16 @@
 INPUT=$1
 
 if [ -f "$INPUT" ] # Files
-    then if [ -e `which bat` ] # use bat, else cat
-        then bat --number --color=always $1
-        else cat $1
+then
+    if [ $(command -v bat) ] # use bat, else cat
+    then bat --number --color=always $1
+    else cat $1
     fi
 elif [ -d "$INPUT" ] # Directories
-    then if [ -e `which exa` ] # use exa, else tree with color
-        then exa --color=always --tree $1
-        else tree -C $1
+then 
+    if [ $(command -v exa) ] # use exa, else tree with color
+    then exa --color=always --tree $1
+    else tree -C $1
     fi
 else
     echo $1 2> /dev/null | head -n 200
