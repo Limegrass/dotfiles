@@ -9,7 +9,7 @@ export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 export WINIT_X11_SCALE_FACTOR=1 # no scaling by screen dpi
 
 export FZF_DEFAULT_COMMAND="$([ $(command -v rg) ] \
-    && echo `command -v rg` --smart-case --hidden --no-ignore-vcs)"
+    && echo `command -v rg` --files --hidden)"
 export FZF_DEFAULT_OPTS="
     --layout=reverse
     --info=inline
