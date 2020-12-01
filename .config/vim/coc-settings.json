@@ -26,5 +26,6 @@
     "git.addGBlameToVirtualText": true,
     "git.virtualTextPrefix": "    |->",
     "rust.clippy_preference": "on",
+    "javascript.suggestionActions.enabled": false,
     "coc.preferences.formatOnSaveFiletypes": ["rust", "javascript", "json"]
 }
