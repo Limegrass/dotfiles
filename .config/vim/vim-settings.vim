@@ -77,3 +77,28 @@ highlight EndOfBuffer guifg=bg
 highlight Pmenu guifg=#CCCCCC guibg=#000022
 highlight PmenuSel guifg=#000022 guibg=#CCCCCC
 highlight MatchParen guifg=fg
+
+if has('autocmd')
+    augroup MarkdownFileType
+        autocmd!
+        autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+    augroup END
+
+    augroup CSharp
+        autocmd!
+        autocmd BufReadPost *.{cs} silent call TFCheckout()
+    augroup END
+
+    if has('nvim')
+        augroup Term
+            autocmd!
+            autocmd TermOpen * silent setlocal nonumber
+        augroup END
+    endif
+    if has('terminal')
+        augroup Term
+            autocmd!
+            autocmd TerminalOpen * silent setlocal nonumber
+        augroup END
+    endif
+endif

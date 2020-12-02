@@ -260,15 +260,3 @@ call CommandAbbreviations('vsb', 'vert sb')
 call CommandAbbreviations('H', 'helpgrep')
 call CommandAbbreviations('bdall', '%bd\|e#')
 call CommandAbbreviations('lcdf', 'lcd %:p:h') " lcd to file
-
-if has('autocmd')
-    augroup MarkdownFileType
-        autocmd!
-        autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-    augroup END
-
-    augroup CSharp
-        autocmd!
-        autocmd BufReadPost *.{cs} silent call TFCheckout()
-    augroup END
-endif
