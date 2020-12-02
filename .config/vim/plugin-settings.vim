@@ -94,7 +94,7 @@ if executable('npm') && executable('node') " node dependency
                  \ 'coc-highlight', 'coc-yank', 'coc-vimlsp', 'coc-lists', 'coc-git',
                  \ 'coc-html', 'coc-json', 'coc-marketplace' ]
         command! CocInstallJavaScript CocInstall coc-tsserver coc-prettier coc-eslint
-        command! CocInstallRust CocInstall coc-rls
+        command! CocInstallRust CocInstall coc-rust-analyzer
         command! CocInstallJava CocInstall coc-java
         command! CocInstallPython CocInstall coc-python
         command! CocInstallLatex CocInstall coc-vimtex
@@ -129,8 +129,8 @@ if executable('npm') && executable('node') " node dependency
           autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
         augroup end
         " quickfix/code actions
-        vmap <silent> <leader>aa <Plug>(coc-codeaction-selected)
-        nmap <silent> <leader>aa <Plug>(coc-codeaction-selected)
+        xmap <silent> <leader>aa <Plug>(coc-codeaction-selected)
+        nmap <silent> <leader>aa v<Plug>(coc-codeaction-selected)
         nmap <silent> <leader>ac <Plug>(coc-codeaction)
         nmap <silent> <leader>al <Plug>(coc-codelens-action)
         nmap <silent> <leader>qf <Plug>(coc-fix-current)
@@ -167,6 +167,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'mboughaba/i3config.vim'
 Plug 'udalov/kotlin-vim'
+Plug 'cespare/vim-toml'
 Plug 'ron-rs/ron.vim'
 Plug 'PProvost/vim-ps1'
 Plug 'OrangeT/vim-csharp' " Needed for cshtml
