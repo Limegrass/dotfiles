@@ -1,22 +1,27 @@
 [alias]
+    amend = commit --amend
     b = branch
     bs = bisect
     c = commit
     co = checkout
     d = diff
-    dt = difftool
     dir = rev-parse --git-dir
+    df = diff --name-only
+    diff-staged = diff --cached
+    ds = diff --cached
+    dt = difftool
     f = fetch
     m = merge
     mt = mergetool
     rc = !git recommit
     recommit = commit --amend --reuse-message=HEAD
     root = rev-parse --show-toplevel
+    rs = reset
     s = status
     sp = stash pop
     spp = !git stash && git pull && git stash pop
     st = stash
-    u = !git unstage
+    u = reset HEAD --
     unstage = reset HEAD --
 [core]
     autocrlf = input
