@@ -6,4 +6,4 @@ def get_dbo_abbreviation(string):
     if len(dboName) is 0:
         return ''
     capitals = get_capitals(dboName)
-    return capitals.lower() if len(capitals) is not 0 else dboName[0]
+    return capitals.lower() if len(capitals) == 0 else dboName[0]
