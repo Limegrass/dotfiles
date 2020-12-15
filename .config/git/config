@@ -13,6 +13,8 @@
     f = fetch
     m = merge
     mt = mergetool
+    pa = add --patch
+    patch = add --patch
     rc = !git recommit
     recommit = commit --amend --reuse-message=HEAD
     root = rev-parse --show-toplevel
