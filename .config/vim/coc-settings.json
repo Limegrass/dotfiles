@@ -1,31 +1,32 @@
 {
-    "suggest.enablePreselect": false,
-    "suggest.snippetIndicator": "+",
-    "suggest.enablePreview": true,
-    "codeLens.enable": true,
-    "codeLens.separator": "|->",
-    "languageserver": {
-        "golang": {
-            "command": "gopls",
-            "rootPatterns": ["go.mod"],
-            "filetypes": ["go"]
-        },
-        "ccls": {
-            "command": "ccls",
-            "filetypes": ["c", "cpp", "objc", "objcpp"],
-            "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/ccls"
-                }
-            }
-        }
+  "coc.preferences.formatOnSaveFiletypes": ["rust", "javascript", "json"],
+  "codeLens.enable": true,
+  "codeLens.separator": "|->",
+  "git.addGBlameToVirtualText": true,
+  "git.enableGutters": true,
+  "git.virtualTextPrefix": "    |->",
+  "javascript.suggestionActions.enabled": false,
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "filetypes": ["go"]
     },
-    "python.jediEnabled": false,
-    "git.enableGutters": true,
-    "git.addGBlameToVirtualText": true,
-    "git.virtualTextPrefix": "    |->",
-    "rust.clippy_preference": "on",
-    "javascript.suggestionActions.enabled": false,
-    "coc.preferences.formatOnSaveFiletypes": ["rust", "javascript", "json"]
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
+      "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
+      }
+    }
+  },
+  "python.jediEnabled": false,
+  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+  "rust-analyzer.procMacro.enable": true,
+  "suggest.enablePreselect": false,
+  "suggest.enablePreview": true,
+  "suggest.snippetIndicator": "+"
 }
