@@ -5,9 +5,6 @@
 # ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="acpi_video0", RUN+="/bin/chgrp video /sys/class/backlight/%k/brightness"
 # ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="acpi_video0", RUN+="/bin/chmod g+w /sys/class/backlight/%k/brightness"
 
-#  Dev
-sudo pacman -S --noconfirm base base-devel nodejs node \
-    git python python-pip git-lfs
 # also probably need iwd or NetworkManager.
 # sudo pacman -S --noconfirm networkmanager network-manager-applet
 # Make sure to turn off WiFi power saving.
@@ -17,9 +14,6 @@ sudo pacman -S mpv weechat
 sudo pacman -S neomutt libsasl cyrus-sasl
 # Note: use %40 for @ if using gmail in muttrc, alternative: aerc (aur).
 # Otherwise follow arch wiki
-
-sudo pacman -S docker
-sudo systemctl enable --now docker
 
 # Not using wayland for now
 sudo pacman -S i3-wm rofi xorg-xbaclight xorg-xrandr \
