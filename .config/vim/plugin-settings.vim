@@ -141,6 +141,7 @@ if executable('npm') && executable('node') " node dependency
         omap if <Plug>(coc-funcobj-i)
         omap af <Plug>(coc-funcobj-a)
         nnoremap <silent> g<C-SPACE> :<C-u>CocList -I symbols<cr>
+        nnoremap <silent> <space>rr :silent CocRestart<cr>
 endif
 
 Plug 'lambdalisue/suda.vim'
