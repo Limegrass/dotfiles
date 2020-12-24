@@ -1,4 +1,5 @@
 [alias]
+    a = add
     amend = commit --amend
     b = branch
     bs = bisect
@@ -11,6 +12,9 @@
     ds = diff --cached
     dt = difftool
     f = fetch
+    fix = commit --fixup
+    fixup = commit --fixup
+    l = log
     m = merge
     mt = mergetool
     pa = add --patch
@@ -19,11 +23,11 @@
     rbc = rebase --continue
     rc = !git recommit
     recommit = commit --amend --reuse-message=HEAD
+    rl = reflog
     root = rev-parse --show-toplevel
     rs = reset
     s = status
     sp = stash pop
-    spp = !git stash && git pull && git stash pop
     st = stash
     u = reset HEAD --
     unstage = reset HEAD --
