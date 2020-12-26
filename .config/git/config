@@ -29,6 +29,7 @@
     s = status
     sp = stash pop
     st = stash
+    sw = switch
     u = reset HEAD --
     unstage = reset HEAD --
 [core]
