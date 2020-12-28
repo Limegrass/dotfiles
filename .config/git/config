@@ -3,8 +3,8 @@
     amend = commit --amend
     b = branch
     bs = bisect
-    c = commit
-    co = checkout
+    cmt = commit
+    chk = checkout
     d = diff
     dir = rev-parse --git-dir
     df = diff --name-only
@@ -28,6 +28,7 @@
     rs = reset
     s = status
     sp = stash pop
+    squash = git rebase -i --autosquash
     st = stash
     sw = switch
     u = reset HEAD --
