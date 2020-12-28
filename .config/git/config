@@ -6,8 +6,9 @@
     cmt = commit
     chk = checkout
     d = diff
-    dir = rev-parse --git-dir
+    dc = "!dc() { git diff --name-only \"$1^\" \"$1\"; }; dc"
     df = diff --name-only
+    dir = rev-parse --git-dir
     diff-staged = diff --cached
     ds = diff --cached
     dt = difftool
