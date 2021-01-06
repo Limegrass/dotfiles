@@ -5,6 +5,7 @@
     bs = bisect
     cmt = commit
     chk = checkout
+    chp = cherry-pick
     d = diff
     dc = "!dc() { git diff --name-only \"$1^\" \"$1\"; }; dc"
     df = diff --name-only
@@ -22,14 +23,14 @@
     patch = add --patch
     rb = rebase
     rbc = rebase --continue
-    rc = !git recommit
+    rc = commit --amend --reuse-message=HEAD
     recommit = commit --amend --reuse-message=HEAD
     rl = reflog
     root = rev-parse --show-toplevel
     rs = reset
     s = status
     sp = stash pop
-    squash = git rebase -i --autosquash
+    squash = rebase -i --autosquash
     st = stash
     sw = switch
     u = reset HEAD --
