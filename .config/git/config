@@ -7,7 +7,6 @@
     chk = checkout
     chp = cherry-pick
     d = diff
-    dc = "!dc() { git diff --name-only \"$1^\" \"$1\"; }; dc"
     df = diff --name-only
     dir = rev-parse --git-dir
     diff-staged = diff --cached
@@ -17,6 +16,8 @@
     fix = commit --fixup
     fixup = commit --fixup
     l = log
+    ls = diff --name-only
+    lsb = branch --list
     m = merge
     mt = mergetool
     pa = add --patch
