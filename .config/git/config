@@ -19,6 +19,7 @@
     ls = diff --name-only
     lsb = branch --list
     m = merge
+    mc = merge --no-ff
     mt = mergetool
     pa = add --patch
     patch = add --patch
