@@ -178,6 +178,11 @@ Plug 'previm/previm', {'for': ['markdown'], 'on': ['PrevimOpen']}
     let g:previm_enable_realtime = 0
     let g:previm_disable_vimproc = 1
 
+" additional local plugins
+for plugin_config_path in split(glob("$VIMLOCAL/plug/*"), '\n')
+    execute 'source '.plugin_config_path
+endfor
+
 call plug#end()
 colorscheme hybrid
 highlight EndOfBuffer guifg=bg
