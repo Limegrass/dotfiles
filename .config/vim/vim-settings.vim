@@ -1,5 +1,5 @@
-if $VIMCONFIG == '' " set config directory to current file directory if unset.
-    let $VIMCONFIG = expand('<sfile>:p:h')
+if $VIMLOCAL == '' " set config directory to current file directory if unset.
+    let $VIMLOCAL = expand('<sfile>:p:h').'/local'
 endif
 if has('nvim')
     set inccommand=split
@@ -44,18 +44,18 @@ set iminsert=0 imsearch=-1 " Prevent starting in Kana
 
 " undo/swap/temp in designated folders. nvim autocreates directories but vim does not.
 set undofile
-set undodir=$VIMCONFIG/undo
-if !isdirectory($VIMCONFIG.'/undo')
-    call mkdir($VIMCONFIG.'/undo')
+set undodir=$VIMLOCAL/undo
+if !isdirectory($VIMLOCAL.'/undo')
+    call mkdir($VIMLOCAL.'/undo')
 endif
-set backupdir=$VIMCONFIG/backup
-if !isdirectory($VIMCONFIG.'/backup')
-    call mkdir($VIMCONFIG.'/backup')
+set backupdir=$VIMLOCAL/backup
+if !isdirectory($VIMLOCAL.'/backup')
+    call mkdir($VIMLOCAL.'/backup')
 endif
 set noswapfile " swap prevents opening the same file in diff instances.
-set directory=$VIMCONFIG/swap " keep files separate if turned on.
-if !isdirectory($VIMCONFIG.'/swap')
-    call mkdir($VIMCONFIG.'/swap')
+set directory=$VIMLOCAL/swap " keep files separate if turned on.
+if !isdirectory($VIMLOCAL.'/swap')
+    call mkdir($VIMLOCAL.'/swap')
 endif
 
 set wildmenu

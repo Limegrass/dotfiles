@@ -1,13 +1,13 @@
-if $VIMCONFIG == '' " name is sensitive for coc-settings.json
-    let $VIMCONFIG = expand('<sfile>:p:h')
+if $VIMLOCAL == '' " set config directory to current file directory if unset.
+    let $VIMLOCAL = expand('<sfile>:p:h').'/local'
 endif
-if empty(glob($VIMCONFIG.'/autoload/plug.vim'))
-    silent !curl -fLo $VIMCONFIG/autoload/plug.vim --create-dirs
+if empty(glob($VIMLOCAL.'/autoload/plug.vim'))
+    silent !curl -fLo $VIMLOCAL/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin($VIMCONFIG.'/plugged')
+call plug#begin($VIMLOCAL.'/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
 Plug 'tpope/vim-surround'
@@ -56,7 +56,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     " Searches plugin folder with Rg
     command! -bang -nargs=* HelpgrepPlugin
                 \ call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case "
-                \                   .shellescape(<q-args>)." ".expand('$VIMCONFIG/plugged'),
+                \                   .shellescape(<q-args>)." ".expand('$VIMLOCAL/plugged'),
                 \                   1, {}, <bang>0)
 
 Plug 'haya14busa/incsearch.vim'

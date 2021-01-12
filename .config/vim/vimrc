@@ -6,6 +6,9 @@ scriptencoding utf-8
 let $HOME = substitute($HOME, '\', '/', 'g')    " normalizes for Windows
 let $VIMCONFIG = expand('<sfile>:p:h')
 set runtimepath^=$VIMCONFIG,$VIMCONFIG/after
+
+let $VIMLOCAL = $VIMCONFIG.'/local'             " machine-locals that shouldn't be committed
+set runtimepath^=$VIMLOCAL,$VIMLOCAL/after      " for vim-plug and maybe anything
 let $MYVIMRC = expand('<sfile>:p')              " ensure this file is $MYVIMRC
 
 source $VIMCONFIG/function-definitions.vim      " additional functions
