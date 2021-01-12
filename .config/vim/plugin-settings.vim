@@ -142,6 +142,9 @@ if executable('npm') && executable('node') " node dependency
         omap af <Plug>(coc-funcobj-a)
         nnoremap <silent> g<C-SPACE> :<C-u>CocList -I symbols<cr>
         nnoremap <silent> <space>rr :silent CocRestart<cr>
+        nnoremap <silent> <space>el :CocList diagnostics<cr>
+        nnoremap <silent> <space>en :CocNext<cr>
+        nnoremap <silent> <space>ep :CocPrev<cr>
 endif
 
 Plug 'lambdalisue/suda.vim'
@@ -177,6 +180,8 @@ Plug 'previm/previm', {'for': ['markdown'], 'on': ['PrevimOpen']}
     Plug 'tyru/open-browser.vim'
     let g:previm_enable_realtime = 0
     let g:previm_disable_vimproc = 1
+Plug 'leafOfTree/vim-svelte-plugin'
+
 
 " additional local plugins
 for plugin_config_path in split(glob("$VIMLOCAL/plug/*"), '\n')
