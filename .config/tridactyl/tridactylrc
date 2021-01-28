@@ -4,3 +4,5 @@ bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
 bind <C-h> nohlsearch
+bind <c-space> fillcmdline tab
+unbind --mode=ex <space>
