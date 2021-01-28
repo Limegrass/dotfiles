@@ -6,3 +6,7 @@ bind N findnext -1
 bind <C-h> nohlsearch
 bind <c-space> fillcmdline tab
 unbind --mode=ex <space>
+bind --mode=ex <c-j> ex.next_completion
+bind --mode=ex <c-k> ex.prev_completion
+bind --mode=ex <Tab> ex.insert_space_or_completion
+unbind --mode=ex <s-Tab>
