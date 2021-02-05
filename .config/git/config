@@ -25,6 +25,9 @@
     rs = reset
     s = status
     sp = stash pop
+    skip = update-index --skip-worktree
+    skip-rm = update-index --no-skip-worktree
+    skip-ls = !git ls-files -v | grep ^S
     squash = rebase -i --autosquash
     st = stash
     sw = switch
