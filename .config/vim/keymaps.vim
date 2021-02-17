@@ -246,7 +246,7 @@ if !IsWindows()
     command! -nargs=0 Sw w !sudo tee % > /dev/null
 endif
 
-command! -nargs=1 -complete=dir Mkdir call mkdir(<q-args>)
+command! -nargs=1 -complete=dir Mkdir call mkdir(<q-args>, "p")
 
 " =============================== ABBREVIATIONS ================================
 " Force vertical splits for help files and expand gui window for help
