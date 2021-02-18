@@ -17,6 +17,7 @@
     mt = mergetool
     patch = add --patch
     rb = rebase
+    rb-root = rebase --root
     rbc = rebase --continue
     rc = commit --amend --reuse-message=HEAD
     recommit = commit --amend --reuse-message=HEAD
