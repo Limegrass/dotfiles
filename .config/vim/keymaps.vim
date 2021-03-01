@@ -40,8 +40,6 @@ nnoremap <leader>y "+y
 nnoremap <leader>Y "+y$
 nnoremap <silent> y+ :silent %y +<CR>
 nnoremap yp :1,$d\|0 put +<CR>
-nnoremap "" "+
-nnoremap """ "_
 nnoremap <silent> <leader>w :w<CR>
 nnoremap <silent> <leader>bd :bd<CR>
 nnoremap <silent> <leader>bn :bn<CR>
@@ -170,13 +168,6 @@ cnoremap <C-BS> <C-W>
 inoremap <C-DEL> <C-O>dw
 cnoremap <C-DEL> <C-F>dw<C-C>
 inoremap <C-L> <C-G>u<ESC>[s1z=`]a<C-G>u
-
-inoremap <C-R><C-S> <C-R>+
-inoremap <C-R><C-E> <C-R>0
-inoremap <C-R><C-T> <C-R>"
-cnoremap <C-R><C-S> <C-R>+
-cnoremap <C-R><C-E> <C-R>0
-cnoremap <C-R><C-T> <C-R>"
 
 cnoremap <c-y> <down>
 
