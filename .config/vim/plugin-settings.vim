@@ -94,7 +94,7 @@ if executable('npm') && executable('node') " node dependency
         let g:coc_global_extensions=[
                  \ 'coc-dictionary', 'coc-tag', 'coc-omni', 'coc-syntax', 'coc-snippets',
                  \ 'coc-highlight', 'coc-yank', 'coc-vimlsp', 'coc-lists', 'coc-git',
-                 \ 'coc-html', 'coc-json', 'coc-marketplace', 'coc-emoji']
+                 \ 'coc-html', 'coc-css', 'coc-json', 'coc-marketplace', 'coc-emoji']
         command! CocInstallJavaScript CocInstall coc-tsserver coc-prettier coc-eslint
         command! CocInstallRust CocInstall coc-rust-analyzer
         command! CocInstallJava CocInstall coc-java
