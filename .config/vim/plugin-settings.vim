@@ -10,6 +10,7 @@ endif
 call plug#begin($VIMLOCAL.'/plugged')
 Plug 'chrisbra/unicode.vim'
 Plug 'junegunn/vim-peekaboo'
+    let g:peekaboo_delay = 400
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
 Plug 'tpope/vim-surround'
