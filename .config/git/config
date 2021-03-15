@@ -4,6 +4,7 @@
     branches = branch --list
     cm = commit
     co = checkout
+    cp = cherry-pick
     d = diff
     diff-files = diff --name-only
     diff-staged = diff --cached
