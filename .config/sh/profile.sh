@@ -7,6 +7,9 @@ export GVIMINIT="source $XDG_CONFIG_HOME"/vim/gvimrc
 export SSH_ASKPASS="$(command -v ssh-askpass)"
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 export WINIT_X11_SCALE_FACTOR=1 # no scaling by screen dpi
+export HISTSIZE=
+export HISTFILESIZE=
+export HISTCONTROL=erasedups
 
 export FZF_DEFAULT_COMMAND="$([ $(command -v rg) ] \
     && echo `command -v rg` --files --hidden --glob '!.git')"
