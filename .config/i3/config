@@ -136,6 +136,7 @@ bar {
     status_command i3status
     position top
     mode hide
+    tray_output primary
 }
 bindsym $mod+a bar mode toggle
 
@@ -154,3 +155,4 @@ for_window [class="Steam"] floating enable
 for_window [class="ksnip"] floating enable
 
 exec nm-applet
+exec pasystray
