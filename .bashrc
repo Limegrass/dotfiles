@@ -5,6 +5,7 @@ PS1='[\u@\h \W]\$ ' # [user@host working_directory]$
 [ -f ~/.fzf.bash ] && . ~/.fzf.bash
 
 set -o vi # vi mode
+shopt -s histappend
 
 export TERM=xterm # compatibility with ssh'd machines
 
