@@ -2,6 +2,7 @@
   "coc.preferences.formatOnSaveFiletypes": ["rust", "javascript", "json"],
   "codeLens.enable": true,
   "codeLens.separator": "|->",
+  "diagnostic.checkCurrentLine": true,
   "git.addGBlameToVirtualText": true,
   "git.enableGutters": true,
   "git.virtualTextPrefix": "    |->",
@@ -24,8 +25,7 @@
     }
   },
   "python.jediEnabled": false,
-  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
-  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.cargo.autoreload": true,
   "suggest.enablePreselect": false,
   "suggest.enablePreview": true,
   "suggest.snippetIndicator": "+"

@@ -148,6 +148,7 @@ if executable('npm') && executable('node') " node dependency
         nnoremap <silent> <space>el :CocList diagnostics<cr>
         nnoremap <silent> <space>en :CocNext<cr>
         nnoremap <silent> <space>ep :CocPrev<cr>
+        nnoremap <silent> <space>cc  :CocCommand<cr>
 endif
 
 Plug 'lambdalisue/suda.vim'
