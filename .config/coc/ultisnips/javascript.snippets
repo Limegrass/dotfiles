@@ -4,8 +4,8 @@ snippet clog "console.log()" Ab
 console.log(${1});$0
 endsnippet
 
-snippet import "ES6 import" Ab
-import ${1} from '${2}';$0
+snippet import "ES6 import" b
+import ${2:*} from '${1}';$0
 endsnippet
 
 snippet bimport "ES6 import with brackets" Ab
@@ -124,3 +124,16 @@ endsnippet
 snippet anything() "expect.anything()" i
 expect.anything()
 endsnippet
+
+# Would really benefit from being UltiSnips
+snippet mkptcomp "" Ab
+const ${1:Component} = (${2:prop}) => {
+}
+
+$1.propTypes = {
+}
+
+$1.defaultProps = {
+}
+endsnippet
+
