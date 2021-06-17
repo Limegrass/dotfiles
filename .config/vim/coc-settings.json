@@ -1,8 +1,16 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["rust", "javascript", "json"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "rust",
+    "javascript",
+    "json",
+    "typescript"
+  ],
   "codeLens.enable": true,
   "codeLens.separator": "|->",
   "diagnostic.checkCurrentLine": true,
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck"
+  },
   "git.addGBlameToVirtualText": true,
   "git.enableGutters": true,
   "git.virtualTextPrefix": "    |->",

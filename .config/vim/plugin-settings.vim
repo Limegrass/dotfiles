@@ -93,9 +93,23 @@ Plug 'haya14busa/incsearch.vim'
 if executable('npm') && executable('node') " node dependency
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }
         let g:coc_global_extensions=[
-                 \ 'coc-dictionary', 'coc-tag', 'coc-omni', 'coc-syntax', 'coc-snippets',
-                 \ 'coc-highlight', 'coc-yank', 'coc-vimlsp', 'coc-lists', 'coc-git',
-                 \ 'coc-html', 'coc-css', 'coc-json', 'coc-marketplace', 'coc-emoji']
+                    \ 'coc-css',
+                    \ 'coc-diagnostic',
+                    \ 'coc-dictionary',
+                    \ 'coc-emoji',
+                    \ 'coc-git',
+                    \ 'coc-highlight',
+                    \ 'coc-html',
+                    \ 'coc-json',
+                    \ 'coc-lists',
+                    \ 'coc-marketplace',
+                    \ 'coc-omni',
+                    \ 'coc-snippets',
+                    \ 'coc-syntax',
+                    \ 'coc-tag',
+                    \ 'coc-vimlsp',
+                    \ 'coc-yank'
+                    \ ]
         command! CocInstallJavaScript CocInstall coc-tsserver coc-prettier coc-eslint
         command! CocInstallRust CocInstall coc-rust-analyzer
         command! CocInstallJava CocInstall coc-java
