@@ -17,6 +17,7 @@
     mc = merge --no-ff
     mt = mergetool
     patch = add --patch
+    pick = cherry-pick
     rb = rebase
     rb-root = rebase --root
     rbc = rebase --continue
