@@ -39,6 +39,9 @@
   },
   "python.jediEnabled": false,
   "rust-analyzer.cargo.autoreload": true,
+  "snippets.extends": {
+    "typescript": ["javascript"]
+  },
   "suggest.enablePreselect": false,
   "suggest.enablePreview": true,
   "suggest.snippetIndicator": "+"
