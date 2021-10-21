@@ -1,6 +1,7 @@
 #! /bin/sh
 
-alias ls='ls --color=auto'
+# shellcheck disable=2139
+alias ls="$( ([ "$(command -v exa)" ] && echo "$(command -v exa)" -al) || echo ls -al --color=auto )"
 alias xclipboard="xclip -selection clipboard"
 # shellcheck disable=2139
 alias dotfiles="git --git-dir='$HOME/.dotfiles/' --work-tree='$HOME'"
