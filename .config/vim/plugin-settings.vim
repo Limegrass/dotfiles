@@ -113,7 +113,7 @@ if executable('npm') && executable('node') " node dependency
         command! CocInstallJavaScript CocInstall coc-tsserver coc-prettier coc-eslint
         command! CocInstallRust CocInstall coc-rust-analyzer
         command! CocInstallJava CocInstall coc-java
-        command! CocInstallPython CocInstall coc-python
+        command! CocInstallPython CocInstall coc-pyright
         command! CocInstallLatex CocInstall coc-vimtex
 
         set updatetime=300 " Smaller updatetime for CursorHold & CursorHoldI

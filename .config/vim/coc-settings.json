@@ -37,7 +37,6 @@
       "filetypes": ["graphql"]
     }
   },
-  "python.jediEnabled": false,
   "rust-analyzer.cargo.autoreload": true,
   "snippets.extends": {
     "typescript": ["javascript"]
