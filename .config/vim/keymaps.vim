@@ -33,11 +33,16 @@ nnoremap <silent> <C-H> :nohlsearch<CR>
 nnoremap Q @q " Ex mode by gQ still
 
 nnoremap Y y$
-nnoremap <leader>" "+
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
-nnoremap <leader>y "+y
-nnoremap <leader>Y "+y$
+nnoremap <space>" "+
+nnoremap <space>p "+p
+nnoremap <space>P "+P
+nnoremap <space>y "+y
+nnoremap <space>Y "+y$
+nnoremap <space><space>" "*
+nnoremap <space><space>p "*p
+nnoremap <space><space>P "*P
+nnoremap <space><space>y "*y
+nnoremap <space><space>Y "*y$
 nnoremap <silent> y+ :silent %y +<CR>
 nnoremap yp :1,$d\|0 put +<CR>
 nnoremap <silent> <leader>w :w<CR>
@@ -143,11 +148,16 @@ endfunction
 " Retain selection when indenting in visual mode
 xnoremap > >gv
 xnoremap < <gv
-xnoremap <leader>= "+
-xnoremap <leader>p "+p
-xnoremap <leader>P "+P
-xnoremap <leader>y "+y
-xnoremap <leader>d "+d
+xnoremap <space>= "+
+xnoremap <space>p "+p
+xnoremap <space>P "+P
+xnoremap <space>y "+y
+xnoremap <space>d "+d
+xnoremap <space><space>= "*
+xnoremap <space><space>p "*p
+xnoremap <space><space>P "*P
+xnoremap <space><space>y "*y
+xnoremap <space><space>d "*d
 xnoremap . :normal .<CR>
 xnoremap <leader>m c<C-R>=<C-R>"<CR>
 
