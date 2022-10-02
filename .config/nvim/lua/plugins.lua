@@ -234,13 +234,18 @@ return require("packer").startup(function(use)
     })
 
     use({
-        "w0ng/vim-hybrid",
+        "navarasu/onedark.nvim",
         config = function()
-            vim.cmd([[
-                colorscheme hybrid
-                highlight EndOfBuffer guifg=bg
-                highlight MatchParen guifg=NONE
-            ]])
+            require('onedark').setup({
+                style = 'dark',
+                code_style = {
+                    comments = 'none',
+                },
+                colors = {
+                    bg0 = "#1d1f21"
+                },
+            })
+            require('onedark').load()
         end
     })
 
