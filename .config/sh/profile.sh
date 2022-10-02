@@ -2,7 +2,10 @@ export XDG_CONFIG_HOME=$HOME/.config # default
 export PATH="$HOME/bin:$HOME/.cargo/bin:$PATH:$XDG_CONFIG_HOME/bin"
 export EDITOR="$(command -v nvim || command -v vim)"
 export VISUAL="$EDITOR"
-export VIMINIT="source $XDG_CONFIG_HOME/vim/vimrc" # Cross platform and nvim/vim agnostic
+if [ -z "$(command -v nvim)" ]; then
+    # define cross platform VIMINIT when nvim is not installed
+    export VIMINIT="source $XDG_CONFIG_HOME/vim/vimrc"
+fi
 export GVIMINIT="source $XDG_CONFIG_HOME"/vim/gvimrc
 export SSH_ASKPASS="$(command -v ssh-askpass)"
 export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
