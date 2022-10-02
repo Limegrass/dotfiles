@@ -1,7 +1,6 @@
-require("plugins")
-
 -- avoid plug before sourcing base vimrc
-vim.g.use_plug = 0
+require("plugins")
+vim.g.plugin_system = "packer"
 vim.cmd([[
     source $HOME/.config/vim/vimrc
 ]])

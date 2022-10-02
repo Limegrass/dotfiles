@@ -15,6 +15,6 @@ source $VIMCONFIG/function-definitions.vim      " additional functions
 source $VIMCONFIG/vim-settings.vim              " minimal settings
 source $VIMCONFIG/keymaps.vim                   " must come after function-definitions
 
-if get(g:, "use_plug", 1)
+if get(g:, "plugin_system", "plug") == "plug"
     source $VIMCONFIG/plugin-settings.vim           " plugins and plugin settings/mappings
 end
