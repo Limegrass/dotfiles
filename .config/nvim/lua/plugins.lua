@@ -153,6 +153,26 @@ return require("packer").startup(function(use)
             })
         end
     })
+    use({
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.code_actions.eslint,
+                    null_ls.builtins.code_actions.gitsigns,
+                    null_ls.builtins.code_actions.shellcheck,
+                    null_ls.builtins.diagnostics.cfn_lint,
+                    null_ls.builtins.diagnostics.commitlint,
+                    null_ls.builtins.diagnostics.eslint,
+                    null_ls.builtins.diagnostics.shellcheck,
+                    null_ls.builtins.formatting.eslint,
+                    null_ls.builtins.formatting.prettier,
+                }
+            })
+        end,
+        requires = { "nvim-lua/plenary.nvim" },
+    })
     use({ "neovim/nvim-lspconfig" })
 
     use({ "hrsh7th/cmp-nvim-lsp" })
