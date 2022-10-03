@@ -280,7 +280,7 @@ return require("packer").startup(function(use)
             lualine.setup({
                 options = {
                     theme = "dracula",
-                    separator = { left = "", right = ""}
+                    separator = { left = "", right = "" }
                 },
                 sections = {
                     lualine_a = { "mode" },
@@ -297,7 +297,7 @@ return require("packer").startup(function(use)
     use({
         "gcmt/taboo.vim",
         setup = function()
-            vim.g.taboo_tab_format=" %N [%f%m] "
+            vim.g.taboo_tab_format = " %N [%f%m] "
         end
     })
 
