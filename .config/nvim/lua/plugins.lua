@@ -148,11 +148,11 @@ return require("packer").startup(function(use)
         end
     })
     use({
-        'saecki/crates.nvim',
+        "saecki/crates.nvim",
         event = { "BufRead Cargo.toml" },
-        requires = { { 'nvim-lua/plenary.nvim' } },
+        requires = { { "nvim-lua/plenary.nvim" } },
         config = function()
-            require('crates').setup()
+            require("crates").setup()
         end,
     })
 
@@ -194,7 +194,7 @@ return require("packer").startup(function(use)
                 }
             })
 
-            -- Use cmdline & path source for ':'
+            -- Use cmdline & path source for ":"
             cmp.setup.cmdline(":", {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = cmp.config.sources({
@@ -304,23 +304,22 @@ return require("packer").startup(function(use)
     use({
         "navarasu/onedark.nvim",
         config = function()
-            require('onedark').setup({
-                style = 'dark',
+            require("onedark").setup({
+                style = "dark",
                 code_style = {
-                    comments = 'none',
+                    comments = "none",
                 },
                 colors = {
                     bg0 = "#1d1f21"
                 },
             })
-            require('onedark').load()
+            require("onedark").load()
         end
     })
 
     -- Languages
-    use({ 'nvim-treesitter/nvim-treesitter-textobjects' })
+    use({ "nvim-treesitter/nvim-treesitter-textobjects" })
     use({
-
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
         config = function()
@@ -343,9 +342,9 @@ return require("packer").startup(function(use)
                         ["ac"] = { query = "@class.outer" },
                     },
                     selection_modes = {
-                        ['@parameter.outer'] = 'v', -- charwise
-                        ['@function.outer'] = 'V', -- linewise
-                        ['@class.outer'] = '<c-v>', -- blockwise
+                        ["@parameter.outer"] = "v", -- charwise
+                        ["@function.outer"] = "V", -- linewise
+                        ["@class.outer"] = "<c-v>", -- blockwise
                     }
                 }
             })
