@@ -131,6 +131,28 @@ return require("packer").startup(function(use)
             require("mason").setup()
         end
     })
+    use({
+        "williamboman/mason-lspconfig.nvim",
+        config = function()
+            require("mason-lspconfig").setup({
+                ensure_installed = {
+                    "bash-language-server",
+                    "css-lsp",
+                    "html-lsp",
+                    "jdtls",
+                    "json-lsp",
+                    "kotlin-language-server",
+                    "lua-language-server",
+                    "omnisharp",
+                    "pyright",
+                    "rust-analyzer",
+                    "typescript-language-server",
+                    "vim-language-server",
+                    "yaml-language-server",
+                },
+            })
+        end
+    })
     use({ "neovim/nvim-lspconfig" })
 
     use({ "hrsh7th/cmp-nvim-lsp" })
