@@ -23,6 +23,17 @@ return require("packer").startup(function(use)
     })
 
     use({ "tpope/vim-fugitive" })
+    use({
+        "lewis6991/gitsigns.nvim",
+        config = function()
+            require("gitsigns").setup({
+                current_line_blame = true,
+                current_line_blame_opts = {
+                    delay = 500,
+                },
+            })
+        end
+    })
     use({ "rhysd/git-messenger.vim" })
     use({ "tpope/vim-surround" })
     use({ "tpope/vim-abolish" })
@@ -115,83 +126,140 @@ return require("packer").startup(function(use)
     })
 
     use({
-        "neoclide/coc.nvim",
-        branch = "release",
+        "williamboman/mason.nvim",
         config = function()
-            vim.g.coc_global_extensions = {
-                "coc-css",
-                "coc-diagnostic",
-                "coc-dictionary",
-                "coc-emoji",
-                "coc-git",
-                "coc-highlight",
-                "coc-html",
-                "coc-json",
-                "coc-lists",
-                "coc-marketplace",
-                "coc-omni",
-                "coc-snippets",
-                "coc-syntax",
-                "coc-tag",
-                "coc-vimlsp",
-                "coc-yank"
-            }
-            vim.cmd([[
-                command! CocInstallJavaScript CocInstall coc-tsserver coc-prettier coc-eslint
-                command! CocInstallRust CocInstall coc-rust-analyzer
-                command! CocInstallJava CocInstall coc-java
-                command! CocInstallPython CocInstall coc-pyright
-                command! CocInstallLatex CocInstall coc-vimtex
+            require("mason").setup()
+        end
+    })
+    use({ "neovim/nvim-lspconfig" })
 
-                set updatetime=300 " Smaller updatetime for CursorHold & CursorHoldI
-                set shortmess+=c " don't give |ins-completion-menu| messages.
-                inoremap <silent> <expr> <c-space> coc#refresh() " completion refresh
-                " errors
-                nnoremap <silent> [c :call CocActionAsyncOrDefault("diagnosticPrevious", "[c")<CR>
-                nnoremap <silent> ]c :call CocActionAsyncOrDefault("diagnosticNext", "]c")<CR>
-                nnoremap <silent> gd :call CocActionAsyncOrDefault("jumpDefinition", "gd")<CR>
-                nnoremap <silent> gD :call CocActionAsyncOrDefault("jumpImplementation", "gD")<CR>
-                nnoremap <silent> K :call CallCocActionAsyncOrDefaultAndReturnNull("doHover", "K")<CR>
-                nmap <silent> <leader>gd <Plug>(coc-type-definition)
-                nmap <silent> <leader>fr <Plug>(coc-references)
-                function! CocActionAsyncOrDefault(coc_action, default_action)
-                let Callback = { _, response ->
-                \ execute(response ? "" : "normal! ".a:default_action) }
-                call CocActionAsync(a:coc_action, Callback)
-                endfunction
-                function! CallCocActionAsyncOrDefaultAndReturnNull(coc_action, default_action)
-                call CocActionAsyncOrDefault(a:coc_action, a:default_action)
-                return '\<NUL>'
-                endfunction
-                nmap <silent> <leader>rn <Plug>(coc-rename)
-                vmap <silent> <leader>=  <Plug>(coc-format-selected)
-                nmap <silent> <leader>=  <Plug>(coc-format-selected)
-                augroup coc
-                autocmd!
-                autocmd CursorHold * silent call CocActionAsync("highlight")
-                autocmd FileType typescript,json setl formatexpr=CocAction("formatSelected")
-                autocmd User CocJumpPlaceholder call CocActionAsync("showSignatureHelp")
-                augroup end
-                " quickfix/code actions
-                xmap <silent> <leader>aa <Plug>(coc-codeaction-selected)
-                nmap <silent> <leader>aa v<Plug>(coc-codeaction-selected)
-                nmap <silent> <leader>ac <Plug>(coc-codeaction)
-                nmap <silent> <leader>al <Plug>(coc-codelens-action)
-                nmap <silent> <leader>qf <Plug>(coc-fix-current)
-                command! -nargs=0 Format :call CocAction("format")
-                command! -nargs=? Fold :call   CocAction("fold", <f-args>)
-                xmap if <Plug>(coc-funcobj-i)
-                xmap af <Plug>(coc-funcobj-a)
-                omap if <Plug>(coc-funcobj-i)
-                omap af <Plug>(coc-funcobj-a)
-                nnoremap <silent> g<C-SPACE> :<C-u>CocList -I symbols<cr>
-                nnoremap <silent> <space>rr :silent CocRestart<cr>
-                nnoremap <silent> <space>el :CocList diagnostics<cr>
-                nnoremap <silent> <space>en :CocNext<cr>
-                nnoremap <silent> <space>ep :CocPrev<cr>
-                nnoremap <silent> <space>cc  :CocCommand<cr>
-            ]])
+    use({ "hrsh7th/cmp-nvim-lsp" })
+    use({ "hrsh7th/cmp-nvim-lua" })
+    use({ "hrsh7th/cmp-buffer" })
+    use({ "hrsh7th/cmp-path" })
+    use({ "hrsh7th/cmp-cmdline" })
+    use({ "L3MON4D3/LuaSnip" })
+    use({ "saadparwaiz1/cmp_luasnip" })
+    use({
+        "David-Kunz/cmp-npm",
+        requires = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("cmp-npm").setup({})
+        end
+    })
+    use({
+        'saecki/crates.nvim',
+        event = { "BufRead Cargo.toml" },
+        requires = { { 'nvim-lua/plenary.nvim' } },
+        config = function()
+            require('crates').setup()
         end,
+    })
+
+
+    use({
+        "hrsh7th/nvim-cmp",
+        config = function()
+            local cmp = require("cmp")
+
+            cmp.setup({
+                snippet = {
+                    expand = function(args)
+                        require("luasnip").lsp_expand(args.body)
+                    end,
+                },
+                mapping = cmp.mapping.preset.insert({
+                    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+                    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+                    ["<C-Space>"] = cmp.mapping.complete(),
+                    ["<C-e>"] = cmp.mapping.abort(),
+                    ["<Tab>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                }),
+                sources = cmp.config.sources({
+                    { name = "crates", keyword_length = 4 },
+                    { name = "luasnip" },
+                    { name = "npm", keyword_length = 4 },
+                    { name = "nvim_lsp" },
+                    { name = "nvim_lua" },
+                }, {
+                    { name = "buffer" },
+                })
+            })
+
+            -- Use buffer source for `/` and `?`
+            cmp.setup.cmdline({ "/", "?" }, {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = {
+                    { name = "buffer" }
+                }
+            })
+
+            -- Use cmdline & path source for ':'
+            cmp.setup.cmdline(":", {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = cmp.config.sources({
+                    { name = "path" }
+                }, {
+                    { name = "cmdline" }
+                })
+            })
+
+            local opts = { noremap = true, silent = true }
+            vim.keymap.set("n", "[k", vim.diagnostic.goto_prev, opts)
+            vim.keymap.set("n", "]k", vim.diagnostic.goto_next, opts)
+            vim.keymap.set("n", "<space>k", vim.diagnostic.open_float, opts)
+            vim.keymap.set("n", "<space>K", vim.diagnostic.setloclist, opts)
+
+            local on_attach = function(client, bufnr)
+                local bufopts = { noremap = true, silent = true, buffer = bufnr }
+                vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+                vim.keymap.set("n", "<space>gd", vim.lsp.buf.type_definition, bufopts)
+                vim.keymap.set("n", "<space>gi", vim.lsp.buf.implementation, bufopts)
+
+                vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+                vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+                vim.keymap.set("n", "<space>fr", vim.lsp.buf.references, bufopts)
+
+                vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
+                vim.keymap.set("n", "<space>aa", vim.lsp.buf.code_action, bufopts)
+                vim.keymap.set("n", "<space>=", function() vim.lsp.buf.format { async = true } end, bufopts)
+
+                vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+                vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr(#{timeout_ms:250})")
+            end
+
+            local capabilities = require("cmp_nvim_lsp").update_capabilities(
+                vim.lsp.protocol.make_client_capabilities()
+            )
+
+            local languageServers = {
+                bashls = {},
+                cssls = {},
+                html = {},
+                jdtls = {},
+                jsonls = {},
+                kotlin_language_server = {},
+                omnisharp = {},
+                powershell_es = {},
+                pyright = {},
+                rust_analyzer = {},
+                sumneko_lua = {
+                    diagnostics = {
+                        globals = { "vim" }
+                    }
+                },
+                tsserver = {},
+                vimls = {},
+                yamlls = {},
+            }
+
+            for lsp, options in pairs(languageServers) do
+                options.capabilities = capabilities
+                options.on_attach = on_attach
+                require("lspconfig")[lsp].setup(options)
+            end
+        end
     })
 
     use({
@@ -250,7 +318,9 @@ return require("packer").startup(function(use)
     })
 
     -- Languages
+    use({ 'nvim-treesitter/nvim-treesitter-textobjects' })
     use({
+
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
         config = function()
@@ -263,6 +333,21 @@ return require("packer").startup(function(use)
                 indent = {
                     enable = true,
                 },
+                textobjects = {
+                    keymaps = {
+                        ["ia"] = { query = "@parameter.inner" },
+                        ["aa"] = { query = "@parameter.outer" },
+                        ["if"] = { query = "@function.inner" },
+                        ["af"] = { query = "@function.outer" },
+                        ["ic"] = { query = "@class.inner" },
+                        ["ac"] = { query = "@class.outer" },
+                    },
+                    selection_modes = {
+                        ['@parameter.outer'] = 'v', -- charwise
+                        ['@function.outer'] = 'V', -- linewise
+                        ['@class.outer'] = '<c-v>', -- blockwise
+                    }
+                }
             })
 
             vim.cmd([[
