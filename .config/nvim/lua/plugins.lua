@@ -281,7 +281,14 @@ return require("packer").startup(function(use)
 
                 vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
                 vim.keymap.set("n", "<space>aa", vim.lsp.buf.code_action, bufopts)
-                vim.keymap.set("n", "<space>=", function() vim.lsp.buf.format { async = true } end, bufopts)
+                vim.keymap.set("n", "<space>=", function()
+                    local version = vim.version()
+                    if version.major < 1 and version.minor < 8 then
+                        vim.lsp.buf.formatting({ async = true })
+                    else
+                        vim.lsp.buf.format({ async = true })
+                    end
+                end, bufopts)
 
                 vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
                 vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr(#{timeout_ms:250})")
