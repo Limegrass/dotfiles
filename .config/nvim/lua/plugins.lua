@@ -109,20 +109,22 @@ return require("packer").startup(function(use)
         end,
     })
 
+    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
     use({
-        "junegunn/fzf.vim",
-        requires = { "junegunn/fzf" },
-        cmd = { "FZF", "History", "Rg", "Buffers", "Tags" },
-        setup = function()
-            vim.g.fzf_layout = { down = "50%" }
-            vim.cmd([[
-                nnoremap <silent> <C-SPACE>  :FZF<CR>
-                nnoremap <silent> f<C-SPACE> :Buffers<CR>
-                nnoremap <silent> t<C-SPACE> :Tags<CR>
-                nnoremap <silent> r<C-SPACE> :Rg<CR>
-                nnoremap <silent> z<C-SPACE> :History<CR>
-            ]])
-        end,
+        "nvim-telescope/telescope.nvim",
+        branch = "0.1.x",
+        requires = { { "nvim-lua/plenary.nvim" } },
+        config = function()
+            local builtin = require("telescope.builtin")
+            vim.keymap.set("n", "<c-space>", builtin.find_files, {})
+            vim.keymap.set("n", "r<c-space>", builtin.live_grep, {})
+            vim.keymap.set("n", "f<c-space>", builtin.buffers, {})
+            vim.keymap.set("n", "t<c-space>", builtin.tags, {})
+            vim.keymap.set("n", "z<c-space>", builtin.oldfiles, {})
+            vim.keymap.set("n", "\"<c-space>", builtin.registers, {})
+            vim.keymap.set("n", "gc<c-space>", builtin.git_bcommits, {})
+            require("telescope").load_extension("fzf")
+        end
     })
 
     use({
