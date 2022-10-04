@@ -421,19 +421,24 @@ return require("packer").startup(function(use)
                     enable = true,
                 },
                 textobjects = {
-                    keymaps = {
-                        ["ia"] = { query = "@parameter.inner" },
-                        ["aa"] = { query = "@parameter.outer" },
-                        ["if"] = { query = "@function.inner" },
-                        ["af"] = { query = "@function.outer" },
-                        ["ic"] = { query = "@class.inner" },
-                        ["ac"] = { query = "@class.outer" },
+                    select = {
+                        enable = true,
+                        include_surrounding_whitespace = true,
+                        keymaps = {
+                            ["ia"] = { query = "@parameter.inner" },
+                            ["aa"] = { query = "@parameter.outer" },
+                            ["if"] = { query = "@function.inner" },
+                            ["af"] = { query = "@function.outer" },
+                            ["ic"] = { query = "@class.inner" },
+                            ["ac"] = { query = "@class.outer" },
+                        },
+                        lookahead = true,
+                        selection_modes = {
+                            ["@parameter.outer"] = "v",
+                            ["@function.outer"] = "v",
+                            ["@class.outer"] = "v",
+                        },
                     },
-                    selection_modes = {
-                        ["@parameter.outer"] = "v", -- charwise
-                        ["@function.outer"] = "V", -- linewise
-                        ["@class.outer"] = "<c-v>", -- blockwise
-                    }
                 }
             })
 
