@@ -215,14 +215,26 @@ return require("packer").startup(function(use)
         end,
     })
 
-
     use({
         "hrsh7th/nvim-cmp",
+        requires = { "onsails/lspkind.nvim" },
         config = function()
             local cmp = require("cmp")
             local luasnip = require("luasnip")
+            local lspkind = require("lspkind")
 
             cmp.setup({
+                formatting = {
+                    format = lspkind.cmp_format({
+                        mode = "text",
+                        menu = ({
+                            buffer = "[Buf]",
+                            nvim_lsp = "[LSP]",
+                            luasnip = "[Snip]",
+                            nvim_lua = "[Lua]",
+                        })
+                    }),
+                },
                 snippet = {
                     expand = function(args)
                         require("luasnip").lsp_expand(args.body)
