@@ -15,12 +15,6 @@ return require("packer").startup(function(use)
     use({ "wbthomason/packer.nvim" })
 
     use({ "chrisbra/unicode.vim" })
-    use({
-        "junegunn/vim-peekaboo",
-        config = function()
-            vim.g.peekaboo_delay = 400
-        end,
-    })
 
     use({ "tpope/vim-fugitive" })
     use({
