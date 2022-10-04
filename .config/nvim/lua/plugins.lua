@@ -177,6 +177,21 @@ return require("packer").startup(function(use)
     })
     use({ "neovim/nvim-lspconfig" })
 
+    use({
+        "folke/lua-dev.nvim",
+        config = function()
+            require("lua-dev").setup({
+                nvim_cfg = true, -- index local nvim cfg
+                override = function(root_dir, library)
+                    local pathSeparator = package.config:sub(1, 1)
+                    if string.find(root_dir, "nvim" .. pathSeparator .. "lua") then
+                        library.enabled = true
+                        library.plugins = true
+                    end
+                end,
+            })
+        end,
+    })
     use({ "hrsh7th/cmp-nvim-lsp" })
     use({ "hrsh7th/cmp-nvim-lua" })
     use({ "hrsh7th/cmp-buffer" })
