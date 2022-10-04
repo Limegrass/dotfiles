@@ -267,9 +267,19 @@ return require("packer").startup(function(use)
                 })
             })
 
+            local cmdlineMapping = cmp.mapping.preset.cmdline({
+                ["<Tab>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.confirm({ select = true })
+                    else
+                        fallback() -- fallback sends existing mapping
+                    end
+                end, { "c" }),
+            })
+
             -- Use buffer source for `/` and `?`
             cmp.setup.cmdline({ "/", "?" }, {
-                mapping = cmp.mapping.preset.cmdline(),
+                mapping = cmdlineMapping,
                 sources = {
                     { name = "buffer" }
                 }
@@ -277,7 +287,7 @@ return require("packer").startup(function(use)
 
             -- Use cmdline & path source for ":"
             cmp.setup.cmdline(":", {
-                mapping = cmp.mapping.preset.cmdline(),
+                mapping = cmdlineMapping,
                 sources = cmp.config.sources({
                     { name = "path" }
                 }, {
