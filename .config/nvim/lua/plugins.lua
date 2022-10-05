@@ -219,13 +219,40 @@ return require("packer").startup(function(use)
             cmp.setup({
                 formatting = {
                     format = lspkind.cmp_format({
-                        mode = "text",
+                        mode = "symbol",
                         menu = ({
                             buffer = "[Buf]",
                             nvim_lsp = "[LSP]",
                             luasnip = "[Snip]",
                             nvim_lua = "[Lua]",
-                        })
+                        }),
+                        symbol_map = ({
+                            Text = "文",
+                            Method = "技",
+                            Function = "関",
+                            Constructor = "作",
+                            Field = "有",
+                            Variable = "変",
+                            Class = "ｸﾗｽ",
+                            Interface = "引",
+                            Module = "組",
+                            Property = "質",
+                            Unit = "単",
+                            Value = "値",
+                            Enum = "列挙",
+                            Keyword = "予",
+                            Snippet = "切",
+                            Color = "色",
+                            File = "ﾌｧｪﾙ",
+                            Reference = "指",
+                            Folder = "結",
+                            EnumMember = "列挙類",
+                            Constant = "定",
+                            Struct = "構造",
+                            Event = "行",
+                            Operator = "演算子",
+                            TypeParameter = "型",
+                        }),
                     }),
                 },
                 snippet = {
