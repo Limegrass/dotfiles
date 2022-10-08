@@ -14,4 +14,7 @@ let $MYVIMRC = expand('<sfile>:p')              " ensure this file is $MYVIMRC
 source $VIMCONFIG/function-definitions.vim      " additional functions
 source $VIMCONFIG/vim-settings.vim              " minimal settings
 source $VIMCONFIG/keymaps.vim                   " must come after function-definitions
-source $VIMCONFIG/plugin-settings.vim           " plugins and plugin settings/mappings
+
+if get(g:, "plugin_system", "plug") == "plug"
+    source $VIMCONFIG/plugin-settings.vim           " plugins and plugin settings/mappings
+end

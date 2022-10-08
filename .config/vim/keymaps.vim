@@ -181,7 +181,7 @@ inoremap <C-L> <C-G>u<ESC>[s1z=`]a<C-G>u
 
 cnoremap <c-y> <down>
 
-inoremap <silent> <TAB> <C-R>=<SID>TabOrComplete()<CR>
+inoremap <expr><silent> <TAB> <SID>TabOrComplete()
 function! s:TabOrComplete()
     if pumvisible()
         if empty(v:completed_item)

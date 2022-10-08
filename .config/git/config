@@ -40,6 +40,7 @@
     autocrlf = input
     commitGraph = true
     quotepath = false
+	compression = 0
 [diff]
     tool = nvimdiff
 [difftool]
@@ -72,3 +73,5 @@
     enabled = true
 [init]
     defaultBranch = main
+[color]
+	ui = true
