@@ -148,7 +148,6 @@ endfunction
 " Retain selection when indenting in visual mode
 xnoremap > >gv
 xnoremap < <gv
-xnoremap <space>= "+
 xnoremap <space>p "+p
 xnoremap <space>P "+P
 xnoremap <space>y "+y
