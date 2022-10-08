@@ -389,9 +389,11 @@ return require("packer").startup(function(use)
                 pyright = {},
                 rust_analyzer = {},
                 sumneko_lua = {
-                    diagnostics = {
-                        globals = { "vim" }
-                    }
+                    settings = {
+                        diagnostics = {
+                            globals = { "vim" }
+                        },
+                    },
                 },
                 tsserver = {},
                 vimls = {},
