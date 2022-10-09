@@ -347,7 +347,7 @@ return require("packer").startup(function(use)
             vim.keymap.set("n", "<space>k", vim.diagnostic.open_float, opts)
             vim.keymap.set("n", "<space>K", vim.diagnostic.setloclist, opts)
 
-            local on_attach = function(client, bufnr)
+            local on_attach_set_lsp_binds = function(client, bufnr)
                 local bufopts = { noremap = true, silent = true, buffer = bufnr }
                 vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
                 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
@@ -360,6 +360,7 @@ return require("packer").startup(function(use)
 
                 vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
                 vim.keymap.set("n", "<space>aa", vim.lsp.buf.code_action, bufopts)
+
                 vim.keymap.set("n", "<space>=", function()
                     local version = vim.version()
                     if version.major < 1 and version.minor < 8 then
@@ -395,14 +396,20 @@ return require("packer").startup(function(use)
                         },
                     },
                 },
-                tsserver = {},
+                tsserver = {
+                    on_attach = function(client, bufnr)
+                        on_attach_set_lsp_binds(client, bufnr)
+                        -- don't include TSServer for formatting
+                        client.resolved_capabilities.document_formatting = false
+                    end
+                },
                 vimls = {},
                 yamlls = {},
             }
 
             for lsp, options in pairs(languageServers) do
-                options.capabilities = capabilities
-                options.on_attach = on_attach
+                options.capabilities = options.capabilities or capabilities
+                options.on_attach = options.on_attach or on_attach_set_lsp_binds
                 require("lspconfig")[lsp].setup(options)
             end
         end
