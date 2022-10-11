@@ -313,15 +313,7 @@ return require("packer").startup(function(use)
                 })
             })
 
-            local cmdlineMapping = cmp.mapping.preset.cmdline({
-                ["<Tab>"] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        cmp.confirm({ select = true })
-                    else
-                        fallback() -- fallback sends existing mapping
-                    end
-                end, { "c" }),
-            })
+            local cmdlineMapping = cmp.mapping.preset.cmdline({})
 
             -- Use buffer source for `/` and `?`
             cmp.setup.cmdline({ "/", "?" }, {
