@@ -191,9 +191,9 @@ return require("packer").startup(function(use)
     use({ "neovim/nvim-lspconfig" })
 
     use({
-        "folke/lua-dev.nvim",
+        "folke/neodev.nvim",
         config = function()
-            require("lua-dev").setup({
+            require("neodev").setup({
                 nvim_cfg = true, -- index local nvim cfg
                 override = function(root_dir, library)
                     local pathSeparator = package.config:sub(1, 1)
@@ -366,7 +366,7 @@ return require("packer").startup(function(use)
                 vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr(#{timeout_ms:250})")
             end
 
-            local capabilities = require("cmp_nvim_lsp").update_capabilities(
+            local capabilities = require("cmp_nvim_lsp").default_capabilities(
                 vim.lsp.protocol.make_client_capabilities()
             )
 
