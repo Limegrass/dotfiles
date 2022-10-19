@@ -131,19 +131,19 @@ return require("packer").startup(function(use)
         config = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
-                    "bash-language-server",
-                    "css-lsp",
-                    "html-lsp",
+                    "bashls",
+                    "cssls",
+                    "html",
                     "jdtls",
-                    "json-lsp",
-                    "kotlin-language-server",
-                    "lua-language-server",
+                    "jsonls",
+                    "kotlin_language_server",
+                    "sumneko_lua",
                     "omnisharp",
                     "pyright",
-                    "rust-analyzer",
-                    "typescript-language-server",
-                    "vim-language-server",
-                    "yaml-language-server",
+                    "rust_analyzer",
+                    "tsserver",
+                    "vimls",
+                    "yamlls",
                 },
             })
         end
