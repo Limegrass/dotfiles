@@ -130,6 +130,7 @@ return require("packer").startup(function(use)
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
+                automatic_installation = true,
                 ensure_installed = {
                     "bashls",
                     "cssls",
@@ -370,6 +371,7 @@ return require("packer").startup(function(use)
                 vim.lsp.protocol.make_client_capabilities()
             )
 
+            -- condition sets whether the server is setup for the local server
             local languageServers = {
                 bashls = {},
                 cssls = {},
@@ -378,7 +380,9 @@ return require("packer").startup(function(use)
                 jsonls = {},
                 kotlin_language_server = {},
                 omnisharp = {},
-                powershell_es = {},
+                powershell_es = {
+                    condition = vim.fn.executable("pwsh") == 1
+                },
                 pyright = {},
                 rust_analyzer = {},
                 sumneko_lua = {
@@ -400,9 +404,11 @@ return require("packer").startup(function(use)
             }
 
             for lsp, options in pairs(languageServers) do
-                options.capabilities = options.capabilities or capabilities
-                options.on_attach = options.on_attach or on_attach_set_lsp_binds
-                require("lspconfig")[lsp].setup(options)
+                if options.condition == nil or options.condition then
+                    options.capabilities = options.capabilities or capabilities
+                    options.on_attach = options.on_attach or on_attach_set_lsp_binds
+                    require("lspconfig")[lsp].setup(options)
+                end
             end
         end
     })
