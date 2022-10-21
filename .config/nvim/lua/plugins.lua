@@ -469,7 +469,7 @@ return require("packer").startup(function(use)
         run = ":TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup({
-                ensure_installed = "all",
+                auto_install = true,
                 ignore_install = {},
                 highlight = {
                     enable = true, -- false will disable the whole extension
