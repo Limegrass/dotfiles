@@ -370,13 +370,27 @@ return require("packer").startup(function(use)
                 vim.lsp.protocol.make_client_capabilities()
             )
 
+            -- would prefer to rely on null-ls rather than the formatting from some ls
+            local on_attach_no_format = function(client, _)
+                if client.server_capabilities ~= nil then
+                    client.server_capabilities.documentFormattingProvider = false
+                else
+                    client.resolved_capabilities.document_formatting = false
+                end
+            end
+
             -- condition sets whether the server is setup for the local server
             local languageServers = {
                 bashls = {},
                 cssls = {},
                 html = {},
                 jdtls = {},
-                jsonls = {},
+                jsonls = {
+                    on_attach = function(client, bufnr)
+                        on_attach_set_lsp_binds(client, bufnr)
+                        on_attach_no_format(client, bufnr)
+                    end
+                },
                 kotlin_language_server = {},
                 omnisharp = {},
                 powershell_es = {
@@ -394,8 +408,7 @@ return require("packer").startup(function(use)
                 tsserver = {
                     on_attach = function(client, bufnr)
                         on_attach_set_lsp_binds(client, bufnr)
-                        -- don't include TSServer for formatting
-                        client.resolved_capabilities.document_formatting = false
+                        on_attach_no_format(client, bufnr)
                     end
                 },
                 vimls = {},
