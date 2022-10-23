@@ -163,12 +163,12 @@ return require("packer").startup(function(use)
                             group = augroup,
                             buffer = bufnr,
                             callback = function()
-                                if vim.lsp.buf.formatting_sync ~= nil then
-                                    vim.lsp.buf.formatting_sync({}, 5000)
-                                elseif vim.lsp.buf.format ~= nil then
+                                if vim.lsp.buf.format ~= nil then
                                     vim.lsp.buf.format({
                                         bufnr = bufnr,
                                     })
+                                elseif vim.lsp.buf.formatting_sync ~= nil then
+                                    vim.lsp.buf.formatting_sync({}, 5000)
                                 end
                             end,
                         })
@@ -355,10 +355,10 @@ return require("packer").startup(function(use)
                 vim.keymap.set("n", "<space>aa", vim.lsp.buf.code_action, bufopts)
 
                 vim.keymap.set("n", "<space>=", function()
-                    if vim.lsp.buf.formatting ~= nil then
-                        vim.lsp.buf.formatting({})
-                    elseif vim.lsp.buf.format ~= nil then
+                    if vim.lsp.buf.format ~= nil then
                         vim.lsp.buf.format({ async = true })
+                    elseif vim.lsp.buf.formatting ~= nil then
+                        vim.lsp.buf.formatting({})
                     end
                 end, bufopts)
 
