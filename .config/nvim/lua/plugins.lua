@@ -372,7 +372,9 @@ return require("packer").startup(function(use)
 
             -- would prefer to rely on null-ls rather than the formatting from some ls
             local on_attach_no_format = function(client, _)
-                if client.server_capabilities ~= nil then
+                local is_resolved_deprecated = vim.version().major > 0 or vim.version().minor > 7
+
+                if is_resolved_deprecated then
                     client.server_capabilities.documentFormattingProvider = false
                 else
                     client.resolved_capabilities.document_formatting = false
