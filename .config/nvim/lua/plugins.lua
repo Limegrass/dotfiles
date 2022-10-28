@@ -326,6 +326,13 @@ return require("packer").startup(function(use)
                 },
             })
 
+            -- make completion show up again after confirmation in cmdline
+            cmp.event:on("confirm_done", function(event)
+                if event.entry.source.name == "cmdline" then
+                    cmp.complete({})
+                end
+            end)
+
             -- Use buffer source for `/` and `?`
             cmp.setup.cmdline({ "/", "?" }, {
                 mapping = cmdlineMapping,
