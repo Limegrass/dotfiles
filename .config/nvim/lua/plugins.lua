@@ -314,7 +314,17 @@ return require("packer").startup(function(use)
                 })
             })
 
-            local cmdlineMapping = cmp.mapping.preset.cmdline({})
+            local cmdlineMapping = cmp.mapping.preset.cmdline({
+                ['<C-y>'] = {
+                    c = function(fallback)
+                        if cmp.visible() then
+                            cmp.confirm({ select = true })
+                        else
+                            fallback()
+                        end
+                    end,
+                },
+            })
 
             -- Use buffer source for `/` and `?`
             cmp.setup.cmdline({ "/", "?" }, {
