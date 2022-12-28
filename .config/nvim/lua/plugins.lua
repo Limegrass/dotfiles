@@ -151,6 +151,7 @@ return require("packer").startup(function(use)
     })
     use({
         "jose-elias-alvarez/null-ls.nvim",
+        commit = "bb70361580bfdfd8e95f7902762379ee2cfbafa8",
         config = function()
             local null_ls = require("null-ls")
             local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -503,6 +504,7 @@ return require("packer").startup(function(use)
     use({ "nvim-treesitter/nvim-treesitter-textobjects" })
     use({
         "nvim-treesitter/nvim-treesitter",
+        commit = "eedb7b9c69b13afe86461b0742266bb62b811ece",
         run = ":TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup({
