@@ -235,6 +235,7 @@ return require("packer").startup(function(use)
         requires = { "onsails/lspkind.nvim" },
         config = function()
             local cmp = require("cmp")
+            local lspconfig = require("lspconfig")
             local luasnip = require("luasnip")
             local lspkind = require("lspkind")
 
@@ -444,7 +445,7 @@ return require("packer").startup(function(use)
                 if options.condition == nil or options.condition then
                     options.capabilities = options.capabilities or capabilities
                     options.on_attach = options.on_attach or on_attach_set_lsp_binds
-                    require("lspconfig")[lsp].setup(options)
+                    lspconfig[lsp].setup(options)
                 end
             end
         end
