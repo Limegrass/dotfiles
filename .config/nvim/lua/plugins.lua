@@ -208,7 +208,6 @@ return require("packer").startup(function(use)
         end,
     })
     use({ "hrsh7th/cmp-nvim-lsp" })
-    use({ "hrsh7th/cmp-nvim-lua" })
     use({ "hrsh7th/cmp-buffer" })
     use({ "hrsh7th/cmp-path" })
     use({ "hrsh7th/cmp-cmdline" })
@@ -247,7 +246,6 @@ return require("packer").startup(function(use)
                             buffer = "[Buf]",
                             nvim_lsp = "[LSP]",
                             luasnip = "[Snip]",
-                            nvim_lua = "[Lua]",
                         }),
                         symbol_map = ({
                             Text = "文",
@@ -315,7 +313,6 @@ return require("packer").startup(function(use)
                     { name = "luasnip" },
                     { name = "npm", keyword_length = 4 },
                     { name = "nvim_lsp" },
-                    { name = "nvim_lua" },
                 }, {
                     { name = "buffer" },
                 })
