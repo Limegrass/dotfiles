@@ -314,6 +314,7 @@ return require("packer").startup(function(use)
                     { name = "npm", keyword_length = 4 },
                     { name = "nvim_lsp" },
                 }, {
+                    { name = "path" },
                     { name = "buffer" },
                 })
             })
