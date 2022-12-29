@@ -426,8 +426,10 @@ return require("packer").startup(function(use)
                 rust_analyzer = {},
                 sumneko_lua = {
                     settings = {
-                        diagnostics = {
-                            globals = { "vim" }
+                        Lua = {
+                            diagnostics = {
+                                globals = { "vim" }
+                            }
                         },
                     },
                 },
