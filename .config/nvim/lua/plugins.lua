@@ -181,7 +181,6 @@ return require("packer").startup(function(use)
                     null_ls.builtins.diagnostics.commitlint,
                     null_ls.builtins.diagnostics.eslint_d,
                     null_ls.builtins.diagnostics.shellcheck,
-                    null_ls.builtins.formatting.eslint_d,
                     null_ls.builtins.formatting.prettierd,
                 }
             })
