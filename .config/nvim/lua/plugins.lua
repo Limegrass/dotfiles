@@ -151,7 +151,6 @@ return require("packer").startup(function(use)
     })
     use({
         "jose-elias-alvarez/null-ls.nvim",
-        commit = "bb70361580bfdfd8e95f7902762379ee2cfbafa8",
         config = function()
             local null_ls = require("null-ls")
             local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -164,13 +163,10 @@ return require("packer").startup(function(use)
                             group = augroup,
                             buffer = bufnr,
                             callback = function()
-                                if vim.lsp.buf.format ~= nil then
-                                    vim.lsp.buf.format({
-                                        bufnr = bufnr,
-                                    })
-                                elseif vim.lsp.buf.formatting_sync ~= nil then
-                                    vim.lsp.buf.formatting_sync({}, 5000)
-                                end
+                                vim.lsp.buf.format({
+                                    bufnr = bufnr,
+                                    timeout_ms = 5000,
+                                })
                             end,
                         })
                     end
@@ -376,11 +372,7 @@ return require("packer").startup(function(use)
                 vim.keymap.set("n", "<space>aa", vim.lsp.buf.code_action, bufopts)
 
                 vim.keymap.set("n", "<space>=", function()
-                    if vim.lsp.buf.format ~= nil then
-                        vim.lsp.buf.format({ async = true })
-                    elseif vim.lsp.buf.formatting ~= nil then
-                        vim.lsp.buf.formatting({})
-                    end
+                    vim.lsp.buf.format({ async = true })
                 end, bufopts)
 
                 vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -393,13 +385,7 @@ return require("packer").startup(function(use)
 
             -- would prefer to rely on null-ls rather than the formatting from some ls
             local on_attach_no_format = function(client, _)
-                local is_resolved_deprecated = vim.version().major > 0 or vim.version().minor > 7
-
-                if is_resolved_deprecated then
-                    client.server_capabilities.documentFormattingProvider = false
-                else
-                    client.resolved_capabilities.document_formatting = false
-                end
+                client.server_capabilities.documentFormattingProvider = false
             end
 
             -- condition sets whether the server is setup for the local server
@@ -509,7 +495,6 @@ return require("packer").startup(function(use)
     use({ "nvim-treesitter/nvim-treesitter-textobjects" })
     use({
         "nvim-treesitter/nvim-treesitter",
-        commit = "eedb7b9c69b13afe86461b0742266bb62b811ece",
         run = ":TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup({
