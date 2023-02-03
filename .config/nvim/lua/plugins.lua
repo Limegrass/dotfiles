@@ -166,6 +166,9 @@ return require("packer").startup(function(use)
                                 vim.lsp.buf.format({
                                     bufnr = bufnr,
                                     timeout_ms = 5000,
+                                    filter = function(_client)
+                                        return _client.name ~= "tsserver"
+                                    end
                                 })
                             end,
                         })
@@ -383,11 +386,6 @@ return require("packer").startup(function(use)
                 vim.lsp.protocol.make_client_capabilities()
             )
 
-            -- would prefer to rely on null-ls rather than the formatting from some ls
-            local on_attach_no_format = function(client, _)
-                client.server_capabilities.documentFormattingProvider = false
-            end
-
             -- condition sets whether the server is setup for the local server
             local languageServers = {
                 bashls = {},
@@ -397,7 +395,6 @@ return require("packer").startup(function(use)
                 jsonls = {
                     on_attach = function(client, bufnr)
                         on_attach_set_lsp_binds(client, bufnr)
-                        on_attach_no_format(client, bufnr)
                     end
                 },
                 kotlin_language_server = {},
@@ -419,7 +416,6 @@ return require("packer").startup(function(use)
                 tsserver = {
                     on_attach = function(client, bufnr)
                         on_attach_set_lsp_binds(client, bufnr)
-                        on_attach_no_format(client, bufnr)
                     end
                 },
                 vimls = {},
