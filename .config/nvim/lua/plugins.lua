@@ -1,7 +1,7 @@
 local packer_install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if vim.fn.empty(vim.fn.glob(packer_install_path)) > 0 then
-    packer_bootstrap = vim.fn.system({
+    PACKER_BOOTSTRAP = vim.fn.system({
         "git",
         "clone",
         "--depth",
@@ -11,7 +11,7 @@ if vim.fn.empty(vim.fn.glob(packer_install_path)) > 0 then
     })
 end
 
-function format_filter(client)
+function FORMAT_FILTER(client)
     local null_ls = require("null-ls")
     local null_ls_formatting_sources = null_ls.get_source({
         method = null_ls.methods.FORMATTING,
@@ -188,7 +188,7 @@ return require("packer").startup(function(use)
                                 vim.lsp.buf.format({
                                     bufnr = bufnr,
                                     timeout_ms = 5000,
-                                    filter = format_filter
+                                    filter = FORMAT_FILTER
                                 })
                             end,
                         })
@@ -212,7 +212,7 @@ return require("packer").startup(function(use)
     use({
         "klen/nvim-config-local",
         config = function()
-            require('config-local').setup({
+            require("config-local").setup({
                 config_files = { ".vim/vimrc.lua", ".vim/vimrc" },
                 hashfile = vim.fn.stdpath("data") .. "/config-local",
                 autocommands_create = true,
@@ -351,7 +351,7 @@ return require("packer").startup(function(use)
             })
 
             local cmdlineMapping = cmp.mapping.preset.cmdline({
-                ['<C-y>'] = {
+                ["<C-y>"] = {
                     c = function(fallback)
                         if cmp.visible() then
                             cmp.confirm({ select = true })
@@ -410,7 +410,7 @@ return require("packer").startup(function(use)
                 vim.keymap.set("n", "<space>=", function()
                     vim.lsp.buf.format({
                         async = true,
-                        filter = format_filter
+                        filter = FORMAT_FILTER
                     })
                 end, bufopts)
 
@@ -585,7 +585,7 @@ return require("packer").startup(function(use)
         end,
     })
 
-    if packer_bootstrap then
+    if PACKER_BOOTSTRAP then
         require("packer").sync()
     end
 end)
