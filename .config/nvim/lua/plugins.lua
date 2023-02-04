@@ -210,6 +210,20 @@ return require("packer").startup(function(use)
     use({ "neovim/nvim-lspconfig" })
 
     use({
+        "klen/nvim-config-local",
+        config = function()
+            require('config-local').setup({
+                config_files = { ".vim/vimrc.lua", ".vim/vimrc" },
+                hashfile = vim.fn.stdpath("data") .. "/config-local",
+                autocommands_create = true,
+                commands_create = true,
+                silent = false,
+                lookup_parents = false,
+            })
+        end
+    })
+
+    use({
         "folke/neodev.nvim",
         config = function()
             require("neodev").setup({
