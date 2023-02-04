@@ -11,6 +11,28 @@ if vim.fn.empty(vim.fn.glob(packer_install_path)) > 0 then
     })
 end
 
+function format_filter(client)
+    local null_ls = require("null-ls")
+    local null_ls_formatting_sources = null_ls.get_source({
+        method = null_ls.methods.FORMATTING,
+    })
+
+    local buf_has_null_ls_formatter = false
+
+    for _, source in ipairs(null_ls_formatting_sources) do
+        buf_has_null_ls_formatter = buf_has_null_ls_formatter or
+            source.filetypes[vim.bo.filetype]
+    end
+
+    if buf_has_null_ls_formatter then
+        -- always use only null-ls if formatting source attached
+        return client.name == "null-ls"
+    else
+        -- fallback to allow anything
+        return true
+    end
+end
+
 return require("packer").startup(function(use)
     use({ "wbthomason/packer.nvim" })
 
@@ -166,9 +188,7 @@ return require("packer").startup(function(use)
                                 vim.lsp.buf.format({
                                     bufnr = bufnr,
                                     timeout_ms = 5000,
-                                    filter = function(_client)
-                                        return _client.name ~= "tsserver"
-                                    end
+                                    filter = format_filter
                                 })
                             end,
                         })
@@ -374,7 +394,10 @@ return require("packer").startup(function(use)
                 vim.keymap.set("n", "<space>aa", vim.lsp.buf.code_action, bufopts)
 
                 vim.keymap.set("n", "<space>=", function()
-                    vim.lsp.buf.format({ async = true })
+                    vim.lsp.buf.format({
+                        async = true,
+                        filter = format_filter
+                    })
                 end, bufopts)
 
                 vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
