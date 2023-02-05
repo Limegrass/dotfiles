@@ -131,7 +131,15 @@ return require("packer").startup(function(use)
         requires = { { "nvim-lua/plenary.nvim" } },
         config = function()
             local builtin = require("telescope.builtin")
-            vim.keymap.set("n", "<c-space>", builtin.find_files, {})
+            vim.keymap.set("n", "<c-space>", function()
+                vim.fn.system("git rev-parse --is-inside-work-tree")
+                local is_inside_git_repository = vim.v.shell_error == 0
+                if is_inside_git_repository then
+                    builtin.git_files({})
+                else
+                    builtin.find_files({})
+                end
+            end, {})
             vim.keymap.set("n", "r<c-space>", builtin.live_grep, {})
             vim.keymap.set("n", "f<c-space>", builtin.buffers, {})
             vim.keymap.set("n", "t<c-space>", builtin.tags, {})
