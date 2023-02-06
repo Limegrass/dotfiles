@@ -132,19 +132,18 @@ return require("packer").startup(function(use)
         config = function()
             local builtin = require("telescope.builtin")
             vim.keymap.set("n", "<c-space>", function()
-                vim.fn.system("git rev-parse --is-inside-work-tree")
-                local is_inside_git_repository = vim.v.shell_error == 0
-                if is_inside_git_repository then
-                    builtin.git_files({})
-                else
-                    builtin.find_files({})
-                end
+                local is_rg_available = vim.fn.executable("rg") == 1
+                local find_files_options = is_rg_available
+                    and { find_command = { "rg", "--files", "--hidden", "--glob", "!.git" } }
+                    or {}
+                builtin.find_files(find_files_options)
             end, {})
             vim.keymap.set("n", "r<c-space>", builtin.live_grep, {})
             vim.keymap.set("n", "f<c-space>", builtin.buffers, {})
             vim.keymap.set("n", "t<c-space>", builtin.tags, {})
             vim.keymap.set("n", "z<c-space>", builtin.oldfiles, {})
             vim.keymap.set("n", "\"<c-space>", builtin.registers, {})
+            vim.keymap.set("n", "g<c-space>", builtin.git_files, {})
             vim.keymap.set("n", "gc<c-space>", builtin.git_bcommits, {})
             require("telescope").load_extension("fzf")
         end
