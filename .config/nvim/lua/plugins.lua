@@ -205,7 +205,11 @@ return require("packer").startup(function(use)
                     null_ls.builtins.code_actions.eslint_d,
                     null_ls.builtins.code_actions.shellcheck,
                     null_ls.builtins.diagnostics.cfn_lint,
-                    null_ls.builtins.diagnostics.commitlint,
+                    null_ls.builtins.diagnostics.commitlint.with({
+                        condition = function (utils)
+                            return utils.root_has_file({ "commitlint.config.js" })
+                        end
+                    }),
                     null_ls.builtins.diagnostics.eslint_d,
                     null_ls.builtins.diagnostics.shellcheck,
                     null_ls.builtins.formatting.prettierd,
