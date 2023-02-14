@@ -167,7 +167,7 @@ return require("packer").startup(function(use)
                     "jdtls",
                     "jsonls",
                     "kotlin_language_server",
-                    "sumneko_lua",
+                    "lua_ls",
                     "omnisharp",
                     "pyright",
                     "rust_analyzer",
@@ -451,7 +451,7 @@ return require("packer").startup(function(use)
                 },
                 pyright = {},
                 rust_analyzer = {},
-                sumneko_lua = {
+                lua_ls = {
                     settings = {
                         Lua = {
                             diagnostics = {
