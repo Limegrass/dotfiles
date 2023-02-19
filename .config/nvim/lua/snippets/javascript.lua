@@ -15,4 +15,34 @@ return {
             insert_node(0),
         })
     ),
+    snippet(
+        "it",
+        choice_node(
+            1,
+            {
+                fmt("it(\"{}\", async () => {{\n\t{}\n}});", {
+                    insert_node(1),
+                    insert_node(2),
+                }),
+                fmt("test(\"{}\", async () => {{\n\t{}\n}});", {
+                    insert_node(1),
+                    insert_node(2),
+                }),
+            }
+        )
+    ),
+    snippet(
+        "each",
+        choice_node(
+            1,
+            {
+                fmt("beforeEach(() => {{\n\t{}\n}});", {
+                    insert_node(1),
+                }),
+                fmt("afterEach(() => {{\n\t{}\n}});", {
+                    insert_node(1),
+                }),
+            }
+        )
+    ),
 }
