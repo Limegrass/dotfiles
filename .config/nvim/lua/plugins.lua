@@ -253,7 +253,26 @@ return require("packer").startup(function(use)
     use({ "hrsh7th/cmp-buffer" })
     use({ "hrsh7th/cmp-path" })
     use({ "hrsh7th/cmp-cmdline" })
-    use({ "L3MON4D3/LuaSnip" })
+    use({
+        "L3MON4D3/LuaSnip",
+        config = function()
+            local luasnip = require("luasnip")
+            luasnip.setup({
+                snip_env = {
+                    choice_node = function(...) return luasnip.c(...) end,
+                    dynamic_node = function(...) return luasnip.d(...) end,
+                    function_node = function(...) luasnip.f(...) end,
+                    indent_snippet_node = function(...) return luasnip.is(...) end,
+                    insert_node = function(...) return luasnip.i(...) end,
+                    repeat_node = function(...) return require("luasnip.extras").rep(...) end,
+                    restore_node = function(...) return luasnip.r(...) end,
+                    snippet = function(...) return luasnip.s(...) end,
+                    snippet_node = function(...) return luasnip.sn(...) end,
+                    text_node = function(...) return luasnip.t(...) end,
+                },
+            })
+        end
+    })
     use({ "saadparwaiz1/cmp_luasnip" })
     use({
         "David-Kunz/cmp-npm",
