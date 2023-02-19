@@ -368,6 +368,13 @@ return require("packer").startup(function(use)
                             fallback()
                         end
                     end, { "i", "s" }),
+                    ["<C-l>"] = cmp.mapping(function(fallback)
+                        if luasnip.choice_active() then
+                            luasnip.change_choice(1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
                 }),
                 sources = cmp.config.sources({
                     { name = "crates", keyword_length = 4 },
