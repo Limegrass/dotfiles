@@ -271,6 +271,10 @@ return require("packer").startup(function(use)
                     text_node = function(...) return luasnip.t(...) end,
                 },
             })
+
+            require("luasnip.loaders.from_lua").lazy_load({
+                paths = { "~/.config/nvim/lua/snippets" }
+            })
         end
     })
     use({ "saadparwaiz1/cmp_luasnip" })
