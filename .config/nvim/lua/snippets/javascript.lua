@@ -1,3 +1,11 @@
+local absolute_indexer = require("luasnip.nodes.absolute_indexer")
+
+local get_module_var_name = function(import_path)
+    local import_parts = vim.split(import_path, "/", { plain = true })
+    local raw_module_name = import_parts[#import_parts]
+    return string.gsub(raw_module_name, "%W", "")
+end
+
 return {
     snippet(
         "describe",
@@ -44,5 +52,37 @@ return {
                 }),
             }
         )
+    ),
+    snippet(
+        "import",
+        fmt("import {import_name} from \"{import_path}\";", {
+            import_name = choice_node(2, {
+                fmt("{{ {} }}", {
+                    insert_node(1),
+                }),
+                dynamic_node(
+                    nil,
+                    function(args)
+                        local import_path = args[1][1]
+                        local module_name = get_module_var_name(import_path)
+                        return snippet_node(nil, insert_node(1, module_name))
+                    end,
+                    { 1 }
+                ),
+                fmt("* as {import_name}", {
+                    import_name = dynamic_node(
+                        1,
+                        function(args)
+                            local import_path = args[1][1]
+                            local module_name = get_module_var_name(import_path)
+                            return snippet_node(nil, insert_node(1, module_name))
+                        end,
+                        { absolute_indexer[1] }
+                    ),
+                }),
+            }),
+            -- req default else no cmp suggestions
+            import_path = insert_node(1, "module_name"),
+        })
     ),
 }
