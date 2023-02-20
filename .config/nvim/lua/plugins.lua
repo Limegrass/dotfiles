@@ -381,10 +381,10 @@ return require("packer").startup(function(use)
                     end, { "i", "s" }),
                 }),
                 sources = cmp.config.sources({
-                    { name = "crates", keyword_length = 4 },
-                    { name = "luasnip" },
-                    { name = "npm", keyword_length = 4 },
                     { name = "nvim_lsp" },
+                    { name = "luasnip" },
+                    { name = "crates", keyword_length = 4 },
+                    { name = "npm", keyword_length = 4 },
                 }, {
                     { name = "path" },
                     { name = "buffer" },
