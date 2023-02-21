@@ -6,6 +6,44 @@ local get_module_var_name = function(import_path)
     return string.gsub(raw_module_name, "%W", "")
 end
 
+local get_array_for_element_snippet = function(function_name)
+    return postfix("." .. function_name, {
+        dynamic_node(1,
+            function(_, parent)
+                return snippet_node(nil,
+                    fmt(parent.snippet.env.POSTFIX_MATCH ..
+                        "." .. function_name .. "(({map_args}) => {body})", {
+                        map_args = choice_node(1, {
+                            insert_node(nil, "item"),
+                            fmt("{{ {properties} }}", {
+                                properties = insert_node(1, "properties"),
+                            }),
+                            fmt("{item}, {index}", {
+                                item = insert_node(1, "item"),
+                                index = insert_node(2, "index")
+                            }),
+                            fmt("{{ {properties} }}, {index}", {
+                                properties = insert_node(1, "properties"),
+                                index = insert_node(2, "index")
+                            }),
+                        }),
+                        body = choice_node(2, {
+                            insert_node(nil, "true"),
+                            fmt("{{ {body} }}", {
+                                body = insert_node(1),
+                            }),
+                            fmt("({{ {body} }})", {
+                                body = insert_node(1),
+                            }),
+                        }),
+                    })
+                )
+            end,
+            {}
+        ),
+    })
+end
+
 return {
     snippet(
         "describe",
@@ -85,4 +123,43 @@ return {
             import_path = insert_node(1, "module_name"),
         })
     ),
+
+    postfix(".reduce", {
+        dynamic_node(1,
+            function(_, parent)
+                return snippet_node(nil,
+                    fmt(parent.snippet.env.POSTFIX_MATCH ..
+                        ".reduce(({reduce_args}) => {body}, {initial_state})", {
+                        initial_state = insert_node(1, "{}"),
+                        reduce_args = choice_node(2, {
+                            fmt("{}, {}", {
+                                insert_node(1, "accumulator"),
+                                insert_node(2, "currentValue"),
+                            }),
+                            fmt("{}, {}, {}", {
+                                insert_node(1, "accumulator"),
+                                insert_node(2, "currentValue"),
+                                insert_node(3, "index"),
+                            }),
+                        }),
+                        body = choice_node(3, {
+                            insert_node(1),
+                            fmt("{{{body}}}", {
+                                body = insert_node(1),
+                            }),
+                            fmt("({{ {body} }})", {
+                                body = insert_node(1),
+                            }),
+                        }),
+                    })
+                )
+            end,
+            {}
+        ),
+    }),
+
+    get_array_for_element_snippet("forEach"),
+    get_array_for_element_snippet("map"),
+    get_array_for_element_snippet("filter"),
+    get_array_for_element_snippet("find"),
 }
