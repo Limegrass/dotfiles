@@ -44,6 +44,40 @@ local get_array_for_element_snippet = function(function_name)
     })
 end
 
+local jsdoc_typedef_import = snippet(
+    "jsdoc_typedef_import",
+    fmta("/** @typedef {import(\"<module_name>\").<component>} <import> */", {
+        module_name = insert_node(1),
+        component = dynamic_node(2,
+            function(nodes)
+                local import_path = nodes[1][1]
+                local module_name = get_module_var_name(import_path)
+                return snippet_node(nil,
+                    choice_node(1, {
+                        insert_node(nil, module_name),
+                        insert_node(nil, "default"),
+                    })
+                )
+            end,
+            { 1 }
+        ),
+        import = dynamic_node(3,
+            function(nodes)
+                local import_name = nodes[1][1]
+                return snippet_node(nil, insert_node(1, import_name))
+            end,
+            { 2 }
+        ),
+    })
+)
+
+local jsdoc_type = snippet(
+    "jsdoc_type",
+    fmta("/** @type {<type_name>} */", {
+        type_name = insert_node(1),
+    })
+)
+
 return {
     snippet(
         "describe",
@@ -162,4 +196,7 @@ return {
     get_array_for_element_snippet("map"),
     get_array_for_element_snippet("filter"),
     get_array_for_element_snippet("find"),
+
+    jsdoc_typedef_import,
+    jsdoc_type
 }
