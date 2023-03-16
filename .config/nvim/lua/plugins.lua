@@ -222,7 +222,17 @@ return require("packer").startup(function(use)
         end,
         requires = { "nvim-lua/plenary.nvim" },
     })
+
     use({ "neovim/nvim-lspconfig" })
+
+    use({
+        "folke/trouble.nvim",
+        config = function()
+            require("trouble").setup({
+                icons = false
+            })
+        end
+    })
 
     use({
         "klen/nvim-config-local",
