@@ -151,12 +151,15 @@ return require("packer").startup(function(use)
 
     use({
         "williamboman/mason.nvim",
+        requires = { "neovim/nvim-lspconfig" },
         config = function()
             require("mason").setup()
         end
     })
+
     use({
         "williamboman/mason-lspconfig.nvim",
+        requires = { "williamboman/mason.nvim" },
         config = function()
             require("mason-lspconfig").setup({
                 automatic_installation = true,
@@ -178,6 +181,7 @@ return require("packer").startup(function(use)
             })
         end
     })
+
     use({
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
