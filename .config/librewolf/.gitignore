@@ -1,0 +1,16 @@
+# ignore all unless otherwise specified
+*
+!*/
+
+!.gitignore
+!README.md
+!policies.json
+
+# profile settings
+!profiles/*/user.js
+
+# allow some subdirectories
+!profiles/*/
+
+# styling customizations
+!profiles/*/chrome/userChrome.css
