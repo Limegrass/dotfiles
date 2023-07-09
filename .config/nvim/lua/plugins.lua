@@ -33,6 +33,24 @@ function FORMAT_FILTER(client)
     end
 end
 
+function ON_ATTACH_ENABLE_FORMAT_ON_WRITE(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+        local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = augroup,
+            buffer = bufnr,
+            callback = function()
+                vim.lsp.buf.format({
+                    bufnr = bufnr,
+                    timeout_ms = 5000,
+                    filter = FORMAT_FILTER
+                })
+            end,
+        })
+    end
+end
+
 return require("packer").startup(function(use)
     use({ "wbthomason/packer.nvim" })
 
@@ -187,25 +205,8 @@ return require("packer").startup(function(use)
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
             local null_ls = require("null-ls")
-            local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
             null_ls.setup({
-                -- you can reuse a shared lspconfig on_attach callback here
-                on_attach = function(client, bufnr)
-                    if client.supports_method("textDocument/formatting") then
-                        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-                        vim.api.nvim_create_autocmd("BufWritePre", {
-                            group = augroup,
-                            buffer = bufnr,
-                            callback = function()
-                                vim.lsp.buf.format({
-                                    bufnr = bufnr,
-                                    timeout_ms = 5000,
-                                    filter = FORMAT_FILTER
-                                })
-                            end,
-                        })
-                    end
-                end,
+                on_attach = ON_ATTACH_ENABLE_FORMAT_ON_WRITE,
                 sources = {
                     null_ls.builtins.code_actions.eslint,
                     null_ls.builtins.code_actions.shellcheck,
@@ -474,6 +475,11 @@ return require("packer").startup(function(use)
                 vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr(#{timeout_ms:250})")
             end
 
+            local on_attach_default = function(client, bufnr)
+                on_attach_set_lsp_binds(client, bufnr)
+                ON_ATTACH_ENABLE_FORMAT_ON_WRITE(client, bufnr)
+            end
+
             local capabilities = require("cmp_nvim_lsp").default_capabilities(
                 vim.lsp.protocol.make_client_capabilities()
             )
@@ -515,7 +521,7 @@ return require("packer").startup(function(use)
             for lsp, options in pairs(languageServers) do
                 if options.condition == nil or options.condition then
                     options.capabilities = options.capabilities or capabilities
-                    options.on_attach = options.on_attach or on_attach_set_lsp_binds
+                    options.on_attach = options.on_attach or on_attach_default
                     lspconfig[lsp].setup(options)
                 end
             end
