@@ -484,11 +484,7 @@ return require("packer").startup(function(use)
                 cssls = {},
                 html = {},
                 jdtls = {},
-                jsonls = {
-                    on_attach = function(client, bufnr)
-                        on_attach_set_lsp_binds(client, bufnr)
-                    end
-                },
+                jsonls = {},
                 kotlin_language_server = {},
                 omnisharp = {},
                 powershell_es = {
@@ -511,11 +507,7 @@ return require("packer").startup(function(use)
                         },
                     },
                 },
-                tsserver = {
-                    on_attach = function(client, bufnr)
-                        on_attach_set_lsp_binds(client, bufnr)
-                    end
-                },
+                tsserver = {},
                 vimls = {},
                 yamlls = {},
             }
