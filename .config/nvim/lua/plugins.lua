@@ -212,7 +212,7 @@ return require("packer").startup(function(use)
                     null_ls.builtins.code_actions.shellcheck,
                     null_ls.builtins.diagnostics.cfn_lint,
                     null_ls.builtins.diagnostics.commitlint.with({
-                        condition = function (utils)
+                        condition = function(utils)
                             return utils.root_has_file({ "commitlint.config.js" })
                         end
                     }),
@@ -399,8 +399,8 @@ return require("packer").startup(function(use)
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
                     { name = "luasnip" },
-                    { name = "crates", keyword_length = 4 },
-                    { name = "npm", keyword_length = 4 },
+                    { name = "crates",  keyword_length = 4 },
+                    { name = "npm",     keyword_length = 4 },
                 }, {
                     { name = "path" },
                     { name = "buffer" },
