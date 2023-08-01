@@ -11,3 +11,10 @@ which must be modified to `$HOME/.librewolf` when using LibreWolf.
 
 Extensions can be installed by copying the `ExtensionSettings` from
 `policies.json` to the `distribution` folder of the installation location.
+
+## Troubleshooting
+
+### Potentially breaking configuration options
+
+- webgl.disabled = true
+- privacy.resistFingerprinting = true
