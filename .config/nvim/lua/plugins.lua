@@ -497,7 +497,15 @@ return require("packer").startup(function(use)
                     condition = vim.fn.executable("pwsh") == 1
                 },
                 pyright = {},
-                rust_analyzer = {},
+                rust_analyzer = {
+                    settings = {
+                        ["rust-analyzer"] = {
+                            cargo = {
+                                allFeatures = true,
+                            },
+                        },
+                    },
+                },
                 lua_ls = {
                     settings = {
                         Lua = {
