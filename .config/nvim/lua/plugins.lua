@@ -488,6 +488,7 @@ return require("packer").startup(function(use)
             local languageServers = {
                 bashls = {},
                 cssls = {},
+                gopls = {},
                 html = {},
                 jdtls = {},
                 jsonls = {},
