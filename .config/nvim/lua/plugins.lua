@@ -503,6 +503,9 @@ return require("packer").startup(function(use)
                             cargo = {
                                 allFeatures = true,
                             },
+                            check = {
+                                command = "clippy"
+                            },
                         },
                     },
                 },
