@@ -537,6 +537,7 @@ return require("packer").startup(function(use)
                 yamlls = {
                     settings = {
                         yaml = {
+                            schemaStore = { enable = true },
                             schemas = require("ls.yamlls.schemas"),
                         }
                     }
