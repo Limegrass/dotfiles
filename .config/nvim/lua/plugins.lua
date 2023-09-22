@@ -491,7 +491,14 @@ return require("packer").startup(function(use)
                 gopls = {},
                 html = {},
                 jdtls = {},
-                jsonls = {},
+                jsonls = {
+                    filetypes = { "json", "jsonc" },
+                    settings = {
+                        json = {
+                            schemas = require("ls.jsonls.schemas"),
+                        }
+                    }
+                },
                 kotlin_language_server = {},
                 omnisharp = {},
                 powershell_es = {
@@ -527,7 +534,13 @@ return require("packer").startup(function(use)
                 },
                 tsserver = {},
                 vimls = {},
-                yamlls = {},
+                yamlls = {
+                    settings = {
+                        yaml = {
+                            schemas = require("ls.yamlls.schemas"),
+                        }
+                    }
+                }
             }
 
             for lsp, options in pairs(languageServers) do
