@@ -22,8 +22,6 @@
 
 /* Hide buttons in address bar */
 #urlbar-go-button,
-#back-button,
-#forward-button,
 #reload-button {
   display: none;
 }
