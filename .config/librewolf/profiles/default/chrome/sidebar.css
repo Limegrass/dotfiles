@@ -1,0 +1,33 @@
+#sidebar-header {
+  position: absolute;
+  visibility: collapse;
+}
+
+/* Auto-collapse sidebar. This works together with the Sidebery config (loaded manually) */
+#sidebar-box {
+  /* This corresponds to the size of one Sidebery icon */
+  --uc-sidebar-width: 38px;
+  --uc-sidebar-hover-width: 50vw;
+  --uc-autohide-sidebar-delay: 50ms;
+  min-width: var(--uc-sidebar-width) !important;
+  width: var(--uc-sidebar-width) !important;
+  /* Show on top of address bar by default */
+  z-index: 1;
+}
+
+#sidebar-splitter {
+  display: none;
+}
+
+#sidebar-header,
+#sidebar {
+  transition: min-width 69ms linear var(--uc-autohide-sidebar-delay);
+  min-width: var(--uc-sidebar-width);
+  will-change: min-width;
+}
+
+#sidebar-box:hover > #sidebar-header,
+#sidebar-box:hover > #sidebar {
+  min-width: var(--uc-sidebar-hover-width);
+  transition-delay: 69ms;
+}

@@ -1,3 +1,6 @@
+@import "colors.css";
+@import "sidebar.css";
+
 #TabsToolbar {
   visibility: collapse;
 }
@@ -6,6 +9,21 @@
   visibility: collapse;
 }
 
-#sidebar-header {
-  visibility: collapse;
+/* Auto-hide address bar until focused (Ctrl-L) */
+#navigator-toolbox-background {
+  width: 100%;
+  position: absolute;
+}
+
+#navigator-toolbox-background:hover,
+#navigator-toolbox-background:focus-within {
+  z-index: 4173;
+}
+
+/* Hide buttons in address bar */
+#urlbar-go-button,
+#back-button,
+#forward-button,
+#reload-button {
+  display: none;
 }
