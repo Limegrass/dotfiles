@@ -10,3 +10,6 @@ bind --mode=ex <c-j> ex.next_completion
 bind --mode=ex <c-k> ex.prev_completion
 bind --mode=ex <Tab> ex.insert_space_or_completion
 unbind --mode=ex <s-Tab>
+
+autocmd DocStart youtube.com mode ignore
+seturl console.aws.amazon.com/cloudwatch superignore true
