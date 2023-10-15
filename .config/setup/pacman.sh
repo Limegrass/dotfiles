@@ -16,7 +16,7 @@ sudo pacman -S neomutt libsasl cyrus-sasl
 # Otherwise follow arch wiki
 
 # Not using wayland for now
-sudo pacman -S i3-wm rofi xorg-xbaclight xorg-xrandr \
+sudo pacman -S i3-wm picom rofi xorg-xbaclight xorg-xrandr \
     alsa-utils light xorg-xinput x11-ssh-askpass
 mkdir ~/bin
 ln -sv /usr/lib/ssh/x11-ssh-askpass ~/bin/ssh-askpass

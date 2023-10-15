@@ -154,5 +154,6 @@ for_window [class="Cinelerra"] floating enable
 for_window [class="Steam"] floating enable
 for_window [class="ksnip"] floating enable
 
+exec --no-startup-id picom -b
 exec nm-applet
 exec pasystray
