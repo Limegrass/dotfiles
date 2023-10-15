@@ -1,0 +1,10 @@
+@theme "Arc-Dark"
+
+configuration {
+    font: "Source Code Pro 12";
+}
+
+window {
+    /* requires picom/compositor for transparency */
+    border-radius: 0.5em;
+}
