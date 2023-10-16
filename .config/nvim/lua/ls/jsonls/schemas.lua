@@ -70,6 +70,12 @@ local CUSTOM_SCHEMAS = {
         },
         url = "https://json.schemastore.org/commitlintrc.json"
     },
+    {
+        fileMatch = {
+            ".luarc.json",
+        },
+        url = "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json"
+    },
 }
 
 local combined_schemas = vim.tbl_deep_extend("keep", CUSTOM_SCHEMAS, schema_store_catalog["schemas"])
