@@ -29,5 +29,5 @@
 #sidebar-box:hover > #sidebar-header,
 #sidebar-box:hover > #sidebar {
   min-width: var(--uc-sidebar-hover-width);
-  transition-delay: 69ms;
+  transition-delay: 322ms;
 }
