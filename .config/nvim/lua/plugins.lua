@@ -192,7 +192,6 @@ return require("packer").startup(function(use)
                     "lua_ls",
                     "omnisharp",
                     "pyright",
-                    "rust_analyzer",
                     "tsserver",
                     "vimls",
                     "yamlls",
