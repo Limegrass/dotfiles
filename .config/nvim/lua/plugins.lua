@@ -277,7 +277,7 @@ return require("packer").startup(function(use)
                     choice_node = function(...) return luasnip.c(...) end,
                     dynamic_node = function(...) return luasnip.d(...) end,
                     function_node = function(...) return luasnip.f(...) end,
-                    indent_snippet_node = function(...) return luasnip.is(...) end,
+                    indent_snippet_node = function(...) return luasnip.indent_snippet_node(...) end,
                     insert_node = function(...) return luasnip.i(...) end,
                     repeat_node = function(...) return require("luasnip.extras").rep(...) end,
                     restore_node = function(...) return luasnip.r(...) end,
