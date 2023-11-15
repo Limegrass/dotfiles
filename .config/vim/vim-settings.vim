@@ -13,7 +13,9 @@ set title
 set lazyredraw
 set ruler
 set cursorline
-set number
+set nonumber
+set laststatus=3
+set signcolumn=number
 set nowrap
 set incsearch
 set ignorecase smartcase
