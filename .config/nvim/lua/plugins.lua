@@ -71,6 +71,7 @@ return require("packer").startup(function(use)
     use({ "tpope/vim-abolish" })
     use({ "tpope/vim-repeat" })
     use({ "tpope/vim-unimpaired" })
+    use({ "tpope/vim-scriptease" })
     use({ "wellle/targets.vim" })
     use({ "kana/vim-textobj-user" })
     use({
