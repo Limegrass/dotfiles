@@ -178,8 +178,6 @@ inoremap <C-DEL> <C-O>dw
 cnoremap <C-DEL> <C-F>dw<C-C>
 inoremap <C-L> <C-G>u<ESC>[s1z=`]a<C-G>u
 
-cnoremap <c-y> <down>
-
 inoremap <expr><silent> <TAB> <SID>TabOrComplete()
 function! s:TabOrComplete()
     if pumvisible()

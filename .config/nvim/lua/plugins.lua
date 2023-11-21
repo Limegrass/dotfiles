@@ -409,10 +409,10 @@ return require("packer").startup(function(use)
             local cmdlineMapping = cmp.mapping.preset.cmdline({
                 ["<C-y>"] = {
                     c = function(fallback)
-                        if cmp.visible() then
-                            cmp.confirm({ select = true })
-                        else
+                        if vim.fn.pumvisible() == 1 or not cmp.visible() then
                             fallback()
+                        else
+                            cmp.confirm({ select = true })
                         end
                     end,
                 },
