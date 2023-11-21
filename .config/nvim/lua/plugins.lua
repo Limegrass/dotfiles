@@ -407,6 +407,17 @@ return require("packer").startup(function(use)
             })
 
             local cmdlineMapping = cmp.mapping.preset.cmdline({
+                ["<Tab>"] = cmp.mapping(function(fallback)
+                    if vim.fn.pumvisible() == 1 then
+                        local next_key = vim.api.nvim_replace_termcodes("<C-n>", true, false, true)
+                        vim.api.nvim_feedkeys(next_key, "c", false)
+                    elseif cmp.visible() then
+                        cmp.select_next_item()
+                    else
+                        cmp.complete()
+                        fallback()
+                    end
+                end, { "c" }),
                 ["<C-y>"] = {
                     c = function(fallback)
                         if vim.fn.pumvisible() == 1 or not cmp.visible() then
