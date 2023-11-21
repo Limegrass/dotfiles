@@ -439,7 +439,7 @@ return require("packer").startup(function(use)
                 sources = cmp.config.sources({
                     { name = "path" }
                 }, {
-                    { name = "cmdline" }
+                    { name = "cmdline", option = { ignore_cmds = { "Man", "!", "edit", "write", } } }
                 })
             })
 
