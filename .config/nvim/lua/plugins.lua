@@ -163,7 +163,7 @@ return require("packer").startup(function(use)
             vim.keymap.set("n", "z<c-space>", builtin.oldfiles, {})
             vim.keymap.set("n", "\"<c-space>", builtin.registers, {})
             vim.keymap.set("n", "g<c-space>", builtin.git_files, {})
-            vim.keymap.set("n", "gc<c-space>", builtin.git_bcommits, {})
+            vim.keymap.set("n", "c<c-space>", builtin.git_bcommits, {})
             require("telescope").load_extension("fzf")
         end
     })
