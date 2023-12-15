@@ -207,7 +207,7 @@ return require("packer").startup(function(use)
             null_ls.setup({
                 on_attach = ON_ATTACH_ENABLE_FORMAT_ON_WRITE,
                 sources = {
-                    null_ls.builtins.code_actions.eslint,
+                    null_ls.builtins.code_actions.eslint_d,
                     null_ls.builtins.code_actions.shellcheck,
                     null_ls.builtins.diagnostics.cfn_lint,
                     null_ls.builtins.diagnostics.commitlint.with({
@@ -215,9 +215,9 @@ return require("packer").startup(function(use)
                             return utils.root_has_file({ "commitlint.config.js" })
                         end
                     }),
-                    null_ls.builtins.diagnostics.eslint,
+                    null_ls.builtins.diagnostics.eslint_d,
                     null_ls.builtins.diagnostics.shellcheck,
-                    null_ls.builtins.formatting.prettier,
+                    null_ls.builtins.formatting.prettierd,
                 }
             })
         end,
