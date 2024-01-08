@@ -45,7 +45,7 @@ nnoremap <space><space>y "*y
 nnoremap <space><space>Y "*y$
 nnoremap <silent> y+ :silent %y +<CR>
 nnoremap yp :1,$d\|0 put +<CR>
-nnoremap <silent> <space>w :w<CR>
+nnoremap <silent> <space>w :silent w<CR>
 nnoremap <silent> <space>bd :bd<CR>
 nnoremap <silent> <space>bn :bn<CR>
 nnoremap <silent> <space>bp :bp<CR>
