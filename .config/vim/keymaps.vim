@@ -24,9 +24,9 @@ inoremap <expr> <DOWN> pumvisible() ? "\<C-N>" : "\<C-O>gj"
 if IsWindows()
     noremap <C-Z> <NOP>
 endif
-nnoremap <silent> <leader>v :edit $MYVIMRC<CR>
-nnoremap <silent> <leader>V :vnew $MYVIMRC<CR>
-nnoremap <silent> <leader>S :source $MYVIMRC<CR>
+nnoremap <silent> <space>v :edit $MYVIMRC<CR>
+nnoremap <silent> <space>V :vnew $MYVIMRC<CR>
+nnoremap <silent> <space>S :source $MYVIMRC<CR>
 
 nnoremap <silent> <C-H> :nohlsearch<CR>
 
@@ -45,12 +45,12 @@ nnoremap <space><space>y "*y
 nnoremap <space><space>Y "*y$
 nnoremap <silent> y+ :silent %y +<CR>
 nnoremap yp :1,$d\|0 put +<CR>
-nnoremap <silent> <leader>w :w<CR>
-nnoremap <silent> <leader>bd :bd<CR>
-nnoremap <silent> <leader>bn :bn<CR>
-nnoremap <silent> <leader>bp :bp<CR>
-nnoremap <silent> <leader>bq :q<CR>
-nnoremap <silent> <leader>ss :set spell!<CR>
+nnoremap <silent> <space>w :w<CR>
+nnoremap <silent> <space>bd :bd<CR>
+nnoremap <silent> <space>bn :bn<CR>
+nnoremap <silent> <space>bp :bp<CR>
+nnoremap <silent> <space>bq :q<CR>
+nnoremap <silent> <space>ss :set spell!<CR>
 
 nnoremap <silent> ZW :w<CR>
 nnoremap <silent> ZB :buffers<CR>:
@@ -104,11 +104,11 @@ function! AlignToCharInPreviousLine(char)
 endfunction
 
 " Reciprocal of {count}gT
-nnoremap <silent> <leader>gt :<C-U>execute 'normal '.repeat("gt", v:count1)<CR>
+nnoremap <silent> <space>gt :<C-U>execute 'normal '.repeat("gt", v:count1)<CR>
 " Change working directory to current file
 " Open file explorer on current file location
 if IsWindows()
-    nnoremap <leader>ee :silent !explorer.exe %:p:h<CR>
+    nnoremap <space>ee :silent !explorer.exe %:p:h<CR>
 endif
 " Navigate out of terminal mode
 if has('nvim') || has('terminal')
@@ -127,8 +127,8 @@ nnoremap <silent> <C-W><C-E> :enew<CR>
 nnoremap <silent> <C-W>V :vnew<CR>
 nnoremap <silent> <C-W><CR> :vs \| terminal<CR>
 
-nnoremap <silent> <leader>j :call <SID>JoinSpaceless()<CR>
-nnoremap <silent> <leader>J :call <SID>JoinSpaceless()<CR>
+nnoremap <silent> <space>j :call <SID>JoinSpaceless()<CR>
+nnoremap <silent> <space>J :call <SID>JoinSpaceless()<CR>
 function! s:JoinSpaceless()
     execute 'normal gJ'
     if matchstr(getline('.'), '\%' . col('.') . 'c.') =~ '\s'
@@ -158,9 +158,9 @@ xnoremap <space><space>P "*P
 xnoremap <space><space>y "*y
 xnoremap <space><space>d "*d
 xnoremap . :normal .<CR>
-xnoremap <leader>m c<C-R>=<C-R>"<CR>
+xnoremap <space>m c<C-R>=<C-R>"<CR>
 
-xnoremap <leader>x "xy:<C-R>x<CR>
+xnoremap <space>x "xy:<C-R>x<CR>
 
 " Search for visual selected
 xnoremap // y/<C-R>"<CR>
