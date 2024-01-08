@@ -43,7 +43,7 @@ function ON_ATTACH_ENABLE_FORMAT_ON_WRITE(client, bufnr)
             callback = function()
                 vim.lsp.buf.format({
                     bufnr = bufnr,
-                    timeout_ms = 5000,
+                    timeout_ms = 200,
                     filter = FORMAT_FILTER
                 })
             end,
