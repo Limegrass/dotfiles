@@ -6,7 +6,7 @@
     co = checkout
     cp = cherry-pick
     d = diff
-    diff-files = diff --name-only
+    diff-changed-filenames = diff --name-only
     diff-staged = diff --cached
     dir = rev-parse --git-dir
     ds = diff --cached
