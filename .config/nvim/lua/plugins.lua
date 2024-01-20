@@ -41,11 +41,14 @@ function ON_ATTACH_ENABLE_FORMAT_ON_WRITE(client, bufnr)
             group = augroup,
             buffer = bufnr,
             callback = function()
-                vim.lsp.buf.format({
-                    bufnr = bufnr,
-                    timeout_ms = 200,
-                    filter = FORMAT_FILTER
-                })
+                local is_format_on_save_disabled = vim.g[client.name .. ":format_on_save"] == false
+                if not is_format_on_save_disabled then
+                    vim.lsp.buf.format({
+                        bufnr = bufnr,
+                        timeout_ms = 200,
+                        filter = FORMAT_FILTER
+                    })
+                end
             end,
         })
     end
