@@ -13,6 +13,7 @@
     dt = difftool
     fix = commit --fixup
     fixup = commit --fixup
+    l = log
     m = merge
     mc = merge --no-ff
     mt = mergetool
