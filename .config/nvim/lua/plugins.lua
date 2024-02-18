@@ -506,7 +506,9 @@ return require("packer").startup(function(use)
                     }
                 },
                 kotlin_language_server = {},
-                omnisharp = {},
+                omnisharp = {
+                    cmd = { "omnisharp" }
+                },
                 powershell_es = {
                     condition = vim.fn.executable("pwsh") == 1
                 },
