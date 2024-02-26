@@ -54,7 +54,7 @@ function ON_ATTACH_ENABLE_FORMAT_ON_WRITE(client, bufnr)
     end
 end
 
-function ON_ATTACH_SET_LSP_BINDS(client, bufnr)
+function ON_ATTACH_SET_LSP_BINDS(_, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
@@ -340,7 +340,7 @@ return require("packer").startup(function(use)
         event = { "BufRead Cargo.toml" },
         requires = { { "nvim-lua/plenary.nvim" } },
         config = function()
-            require("crates").setup()
+            require("crates").setup({})
         end,
     })
 
@@ -355,6 +355,8 @@ return require("packer").startup(function(use)
 
             cmp.setup({
                 formatting = {
+                    expandable_indicator = true,
+                    fields = { 'abbr', 'kind', 'menu' },
                     format = lspkind.cmp_format({
                         mode = "symbol",
                         menu = ({
@@ -644,12 +646,15 @@ return require("packer").startup(function(use)
             require("nvim-treesitter.configs").setup({
                 auto_install = true,
                 ignore_install = {},
+                ensure_installed = { "c", "lua", "vim", "vimdoc" },
                 highlight = {
                     enable = true, -- false will disable the whole extension
                 },
                 indent = {
                     enable = true,
                 },
+                modules = {},
+                sync_install = false,
                 textobjects = {
                     select = {
                         enable = true,
