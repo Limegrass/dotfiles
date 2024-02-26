@@ -54,6 +54,36 @@ function ON_ATTACH_ENABLE_FORMAT_ON_WRITE(client, bufnr)
     end
 end
 
+function ON_ATTACH_SET_LSP_BINDS(client, bufnr)
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set("n", "<space>gd", vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set("n", "<space>gi", vim.lsp.buf.implementation, bufopts)
+
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set("n", "<space>fr", vim.lsp.buf.references, bufopts)
+
+    vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
+    vim.keymap.set("n", "<space>aa", vim.lsp.buf.code_action, bufopts)
+
+    vim.keymap.set("n", "<space>=", function()
+        vim.lsp.buf.format({
+            async = true,
+            filter = FORMAT_FILTER
+        })
+    end, bufopts)
+
+    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr(#{timeout_ms:250})")
+end
+
+function ON_ATTACH_DEFAULT(client, bufnr)
+    ON_ATTACH_SET_LSP_BINDS(client, bufnr)
+    ON_ATTACH_ENABLE_FORMAT_ON_WRITE(client, bufnr)
+end
+
 return require("packer").startup(function(use)
     use({ "wbthomason/packer.nvim" })
 
@@ -456,36 +486,6 @@ return require("packer").startup(function(use)
             vim.keymap.set("n", "<space>k", vim.diagnostic.open_float, opts)
             vim.keymap.set("n", "<space>K", vim.diagnostic.setloclist, opts)
 
-            local on_attach_set_lsp_binds = function(client, bufnr)
-                local bufopts = { noremap = true, silent = true, buffer = bufnr }
-                vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-                vim.keymap.set("n", "<space>gd", vim.lsp.buf.type_definition, bufopts)
-                vim.keymap.set("n", "<space>gi", vim.lsp.buf.implementation, bufopts)
-
-                vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-                vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-                vim.keymap.set("n", "<space>fr", vim.lsp.buf.references, bufopts)
-
-                vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
-                vim.keymap.set("n", "<space>aa", vim.lsp.buf.code_action, bufopts)
-
-                vim.keymap.set("n", "<space>=", function()
-                    vim.lsp.buf.format({
-                        async = true,
-                        filter = FORMAT_FILTER
-                    })
-                end, bufopts)
-
-                vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-                vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr(#{timeout_ms:250})")
-            end
-
-            local on_attach_default = function(client, bufnr)
-                on_attach_set_lsp_binds(client, bufnr)
-                ON_ATTACH_ENABLE_FORMAT_ON_WRITE(client, bufnr)
-            end
-
             local capabilities = require("cmp_nvim_lsp").default_capabilities(
                 vim.lsp.protocol.make_client_capabilities()
             )
@@ -559,7 +559,7 @@ return require("packer").startup(function(use)
             for lsp, options in pairs(languageServers) do
                 if options.condition == nil or options.condition then
                     options.capabilities = options.capabilities or capabilities
-                    options.on_attach = options.on_attach or on_attach_default
+                    options.on_attach = options.on_attach or ON_ATTACH_DEFAULT
                     lspconfig[lsp].setup(options)
                 end
             end
