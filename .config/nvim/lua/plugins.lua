@@ -219,6 +219,7 @@ return require("packer").startup(function(use)
                     "bashls",
                     "cssls",
                     "html",
+                    "eslint",
                     "jdtls",
                     "jsonls",
                     "kotlin_language_server",
@@ -240,21 +241,22 @@ return require("packer").startup(function(use)
             null_ls.setup({
                 on_attach = ON_ATTACH_ENABLE_FORMAT_ON_WRITE,
                 sources = {
-                    null_ls.builtins.code_actions.eslint_d,
-                    null_ls.builtins.code_actions.shellcheck,
                     null_ls.builtins.diagnostics.cfn_lint,
                     null_ls.builtins.diagnostics.commitlint.with({
                         condition = function(utils)
                             return utils.root_has_file({ "commitlint.config.js" })
                         end
                     }),
-                    null_ls.builtins.diagnostics.eslint_d,
-                    null_ls.builtins.diagnostics.shellcheck,
                     null_ls.builtins.formatting.prettierd,
                 }
             })
+            require("null-ls").register(require("none-ls-shellcheck.diagnostics"))
+            require("null-ls").register(require("none-ls-shellcheck.code_actions"))
         end,
-        requires = { "nvim-lua/plenary.nvim" },
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "gbprod/none-ls-shellcheck.nvim",
+        },
     })
 
     use({ "neovim/nvim-lspconfig" })
@@ -494,6 +496,7 @@ return require("packer").startup(function(use)
             local languageServers = {
                 bashls = {},
                 cssls = {},
+                eslint = {},
                 gopls = {},
                 html = {},
                 jdtls = {},
