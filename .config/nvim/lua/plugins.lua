@@ -516,18 +516,6 @@ return require("packer").startup(function(use)
                     condition = vim.fn.executable("pwsh") == 1
                 },
                 pyright = {},
-                rust_analyzer = {
-                    settings = {
-                        ["rust-analyzer"] = {
-                            cargo = {
-                                allFeatures = true,
-                            },
-                            check = {
-                                command = "clippy"
-                            },
-                        },
-                    },
-                },
                 lua_ls = {
                     settings = {
                         Lua = {
@@ -568,6 +556,29 @@ return require("packer").startup(function(use)
             end
         end
     })
+
+    use({
+        "mrcjkb/rustaceanvim",
+        ft = { 'rust' },
+        config = function()
+            vim.g.rustaceanvim = {
+                server = {
+                    on_attach = ON_ATTACH_DEFAULT,
+                    default_settings = {
+                        ['rust-analyzer'] = {
+                            cargo = {
+                                allFeatures = true,
+                            },
+                            check = {
+                                command = "clippy"
+                            },
+                        },
+                    },
+                },
+            }
+        end
+    })
+
 
     use({
         "lambdalisue/suda.vim",
