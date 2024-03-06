@@ -182,6 +182,7 @@ return require("packer").startup(function(use)
         branch = "0.1.x",
         requires = { { "nvim-lua/plenary.nvim" } },
         config = function()
+            local telescope = require("telescope")
             local builtin = require("telescope.builtin")
             vim.keymap.set("n", "<c-space>", function()
                 local is_rg_available = vim.fn.executable("rg") == 1
@@ -197,6 +198,19 @@ return require("packer").startup(function(use)
             vim.keymap.set("n", "\"<c-space>", builtin.registers, {})
             vim.keymap.set("n", "g<c-space>", builtin.git_files, {})
             vim.keymap.set("n", "c<c-space>", builtin.git_bcommits, {})
+            telescope.setup({
+                defaults = {
+                    layout_strategy = "vertical",
+                    layout_config = {
+                        vertical = {
+                            height = 0.95,
+                            preview_cutoff = 40,
+                            prompt_position = "bottom",
+                            width = 0.95,
+                        },
+                    },
+                },
+            })
             require("telescope").load_extension("fzf")
         end
     })
