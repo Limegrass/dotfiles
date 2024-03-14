@@ -13,6 +13,8 @@
     dt = difftool
     fix = commit --fixup
     fixup = commit --fixup
+    hash = "!git_commit_hash() { git rev-parse \":/$1\"; }; git_commit_hash"
+    id = hash
     l = log
     m = merge
     mc = merge --no-ff
