@@ -9,6 +9,7 @@
     diff-changed-filenames = diff --name-only
     diff-staged = diff --cached
     dir = rev-parse --git-dir
+    drop = "!drop_commit() { git rebase --onto \"$1~\" \"$1\"; }; drop_commit"
     ds = diff --cached
     dt = difftool
     fix = commit --fixup
