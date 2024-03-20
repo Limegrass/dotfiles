@@ -2,6 +2,7 @@
     amend = commit --amend
     bb = branch
     branches = branch --list
+    bs = bisect
     cm = commit
     co = checkout
     cp = cherry-pick
