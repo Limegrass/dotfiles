@@ -33,7 +33,7 @@ function ON_ATTACH_ENABLE_FORMAT_ON_WRITE(client, bufnr)
                     vim.lsp.buf.format({
                         bufnr = bufnr,
                         timeout_ms = 200,
-                        filter = FORMAT_FILTER
+                        filter = FORMAT_FILTER,
                     })
                 end
             end,
@@ -58,7 +58,7 @@ function ON_ATTACH_SET_LSP_BINDS(_, bufnr)
     vim.keymap.set("n", "<space>=", function()
         vim.lsp.buf.format({
             async = true,
-            filter = FORMAT_FILTER
+            filter = FORMAT_FILTER,
         })
     end, bufopts)
 
@@ -82,7 +82,7 @@ return {
                     delay = 500,
                 },
             })
-        end
+        end,
     },
     { "rhysd/git-messenger.vim" },
     { "tpope/vim-surround" },
@@ -109,7 +109,7 @@ return {
         cmd = { "GundoToggle", "GundoShow" },
         config = function()
             vim.g.gundo_prefer_python3 = 1
-        end
+        end,
     },
 
     {
@@ -119,7 +119,7 @@ return {
                 command! -bang -complete=buffer -nargs=? Bclose Bdelete<bang> <args>
                 nnoremap <silent> ZD :Bdelete<CR>
             ]])
-        end
+        end,
     },
 
     {
@@ -134,7 +134,7 @@ return {
                 nnoremap <silent> <space><Tab> :Commentary<CR>
                 xnoremap <silent> <space><Tab> :Commentary<CR>
             ]])
-        end
+        end,
     },
 
     {
@@ -161,7 +161,10 @@ return {
         end,
     },
 
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+    },
     { "nvim-telescope/telescope-symbols.nvim" },
     {
         "nvim-telescope/telescope.nvim",
@@ -198,7 +201,7 @@ return {
                 },
             })
             require("telescope").load_extension("fzf")
-        end
+        end,
     },
 
     {
@@ -206,12 +209,15 @@ return {
         dependencies = { "neovim/nvim-lspconfig" },
         config = function()
             require("mason").setup()
-        end
+        end,
     },
 
     {
         "williamboman/mason-lspconfig.nvim",
-        dependencies = { "williamboman/mason.nvim", "mason.nvim" },
+        dependencies = {
+            "williamboman/mason.nvim",
+            "mason.nvim",
+        },
         config = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
@@ -230,7 +236,7 @@ return {
                     "yamlls",
                 },
             })
-        end
+        end,
     },
 
     {
@@ -264,9 +270,9 @@ return {
         "folke/trouble.nvim",
         config = function()
             require("trouble").setup({
-                icons = false
+                icons = false,
             })
-        end
+        end,
     },
 
     {
@@ -280,7 +286,7 @@ return {
                 silent = false,
                 lookup_parents = false,
             })
-        end
+        end,
     },
 
     {
@@ -324,7 +330,7 @@ return {
             require("luasnip.loaders.from_lua").lazy_load({
                 paths = { "~/.config/nvim/lua/snippets" }
             })
-        end
+        end,
     },
     { "saadparwaiz1/cmp_luasnip" },
     {
@@ -555,7 +561,7 @@ return {
                     lspconfig[lsp].setup(options)
                 end
             end
-        end
+        end,
     },
 
     {
@@ -577,7 +583,7 @@ return {
                     },
                 },
             }
-        end
+        end,
     },
 
 
@@ -610,14 +616,14 @@ return {
                     lualine_z = { "location" },
                 }
             })
-        end
+        end,
     },
 
     {
         "gcmt/taboo.vim",
         init = function()
             vim.g.taboo_tab_format = " %N [%f%m] "
-        end
+        end,
     },
 
     {
@@ -633,7 +639,7 @@ return {
                 },
             })
             require("onedark").load()
-        end
+        end,
     },
 
     -- Languages
@@ -680,7 +686,7 @@ return {
                 set foldmethod=expr
                 set foldexpr=nvim_treesitter#foldexpr()
             ]])
-        end
+        end,
     },
 
     { "mboughaba/i3config.vim" },
