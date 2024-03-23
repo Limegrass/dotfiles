@@ -1,16 +1,3 @@
-local packer_install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
-if vim.fn.empty(vim.fn.glob(packer_install_path)) > 0 then
-    PACKER_BOOTSTRAP = vim.fn.system({
-        "git",
-        "clone",
-        "--depth",
-        "1",
-        "https://github.com/wbthomason/packer.nvim",
-        packer_install_path
-    })
-end
-
 function FORMAT_FILTER(client)
     local null_ls = require("null-ls")
     local null_ls_formatting_sources = null_ls.get_source({
@@ -84,11 +71,9 @@ function ON_ATTACH_DEFAULT(client, bufnr)
     ON_ATTACH_ENABLE_FORMAT_ON_WRITE(client, bufnr)
 end
 
-return require("packer").startup(function(use)
-    use({ "wbthomason/packer.nvim" })
-
-    use({ "tpope/vim-fugitive" })
-    use({
+return {
+    { "tpope/vim-fugitive" },
+    {
         "lewis6991/gitsigns.nvim",
         config = function()
             require("gitsigns").setup({
@@ -98,35 +83,36 @@ return require("packer").startup(function(use)
                 },
             })
         end
-    })
-    use({ "rhysd/git-messenger.vim" })
-    use({ "tpope/vim-surround" })
-    use({ "tpope/vim-abolish" })
-    use({ "tpope/vim-repeat" })
-    use({ "tpope/vim-unimpaired" })
-    use({ "tpope/vim-scriptease" })
-    use({ "wellle/targets.vim" })
-    use({ "kana/vim-textobj-user" })
-    use({
+    },
+    { "rhysd/git-messenger.vim" },
+    { "tpope/vim-surround" },
+    { "tpope/vim-abolish" },
+    { "tpope/vim-repeat" },
+    { "tpope/vim-unimpaired" },
+    { "tpope/vim-scriptease" },
+    { "wellle/targets.vim" },
+    { "kana/vim-textobj-user" },
+    {
         "Julian/vim-textobj-variable-segment",
-        branch = "main"
-    })
-    use({
+        branch = "main",
+        dependencies = { "kana/vim-textobj-user" },
+    },
+    {
         "andymass/vim-matchup",
         event = "VimEnter",
-    })
-    use({ "michaeljsmith/vim-indent-object" })
-    use({ "godlygeek/tabular" })
+    },
+    { "michaeljsmith/vim-indent-object" },
+    { "godlygeek/tabular" },
 
-    use({
+    {
         "sjl/gundo.vim",
         cmd = { "GundoToggle", "GundoShow" },
         config = function()
             vim.g.gundo_prefer_python3 = 1
         end
-    })
+    },
 
-    use({
+    {
         "moll/vim-bbye",
         config = function()
             vim.cmd([[
@@ -134,9 +120,9 @@ return require("packer").startup(function(use)
                 nnoremap <silent> ZD :Bdelete<CR>
             ]])
         end
-    })
+    },
 
-    use({
+    {
         "tpope/vim-commentary",
         config = function()
             vim.cmd([[
@@ -149,19 +135,19 @@ return require("packer").startup(function(use)
                 xnoremap <silent> <space><Tab> :Commentary<CR>
             ]])
         end
-    })
+    },
 
-    use({
+    {
         "tpope/vim-dispatch",
-        opt = true,
+        lazy = true,
         cmd = { "Dispatch", "Make", "Focus", "Start" },
-    })
+    },
 
-    use({ "roxma/vim-tmux-clipboard" })
-    use({
+    { "roxma/vim-tmux-clipboard" },
+    {
         "voldikss/vim-floaterm",
         cmd = { "FloatermToggle" },
-        setup = function()
+        init = function()
             vim.cmd([[
                 nnoremap <silent> <space>t :FloatermToggle<CR>
                 nnoremap <silent> <space>rs :FloatermSend<CR>
@@ -173,14 +159,14 @@ return require("packer").startup(function(use)
                 augroup END
             ]])
         end,
-    })
+    },
 
-    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-    use({ "nvim-telescope/telescope-symbols.nvim" })
-    use({
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    { "nvim-telescope/telescope-symbols.nvim" },
+    {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
-        requires = { { "nvim-lua/plenary.nvim" } },
+        dependencies = { { "nvim-lua/plenary.nvim" } },
         config = function()
             local telescope = require("telescope")
             local builtin = require("telescope.builtin")
@@ -213,20 +199,19 @@ return require("packer").startup(function(use)
             })
             require("telescope").load_extension("fzf")
         end
-    })
+    },
 
-    use({
+    {
         "williamboman/mason.nvim",
-        requires = { "neovim/nvim-lspconfig" },
+        dependencies = { "neovim/nvim-lspconfig" },
         config = function()
             require("mason").setup()
         end
-    })
+    },
 
-    use({
+    {
         "williamboman/mason-lspconfig.nvim",
-        requires = { "williamboman/mason.nvim" },
-        after = { "mason.nvim" },
+        dependencies = { "williamboman/mason.nvim", "mason.nvim" },
         config = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
@@ -246,9 +231,9 @@ return require("packer").startup(function(use)
                 },
             })
         end
-    })
+    },
 
-    use({
+    {
         "nvimtools/none-ls.nvim",
         config = function()
             local null_ls = require("null-ls")
@@ -267,24 +252,24 @@ return require("packer").startup(function(use)
             require("null-ls").register(require("none-ls-shellcheck.diagnostics"))
             require("null-ls").register(require("none-ls-shellcheck.code_actions"))
         end,
-        requires = {
+        dependencies = {
             "nvim-lua/plenary.nvim",
             "gbprod/none-ls-shellcheck.nvim",
         },
-    })
+    },
 
-    use({ "neovim/nvim-lspconfig" })
+    { "neovim/nvim-lspconfig" },
 
-    use({
+    {
         "folke/trouble.nvim",
         config = function()
             require("trouble").setup({
                 icons = false
             })
         end
-    })
+    },
 
-    use({
+    {
         "klen/nvim-config-local",
         config = function()
             require("config-local").setup({
@@ -296,9 +281,9 @@ return require("packer").startup(function(use)
                 lookup_parents = false,
             })
         end
-    })
+    },
 
-    use({
+    {
         "folke/neodev.nvim",
         config = function()
             require("neodev").setup({
@@ -312,12 +297,12 @@ return require("packer").startup(function(use)
                 end,
             })
         end,
-    })
-    use({ "hrsh7th/cmp-nvim-lsp" })
-    use({ "hrsh7th/cmp-buffer" })
-    use({ "hrsh7th/cmp-path" })
-    use({ "hrsh7th/cmp-cmdline" })
-    use({
+    },
+    { "hrsh7th/cmp-nvim-lsp" },
+    { "hrsh7th/cmp-buffer" },
+    { "hrsh7th/cmp-path" },
+    { "hrsh7th/cmp-cmdline" },
+    {
         "L3MON4D3/LuaSnip",
         config = function()
             local luasnip = require("luasnip")
@@ -340,27 +325,27 @@ return require("packer").startup(function(use)
                 paths = { "~/.config/nvim/lua/snippets" }
             })
         end
-    })
-    use({ "saadparwaiz1/cmp_luasnip" })
-    use({
+    },
+    { "saadparwaiz1/cmp_luasnip" },
+    {
         "David-Kunz/cmp-npm",
-        requires = { "nvim-lua/plenary.nvim" },
+        dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
             require("cmp-npm").setup({})
         end
-    })
-    use({
+    },
+    {
         "saecki/crates.nvim",
         event = { "BufRead Cargo.toml" },
-        requires = { { "nvim-lua/plenary.nvim" } },
+        dependencies = { { "nvim-lua/plenary.nvim" } },
         config = function()
             require("crates").setup({})
         end,
-    })
+    },
 
-    use({
+    {
         "hrsh7th/nvim-cmp",
-        requires = { "onsails/lspkind.nvim" },
+        dependencies = { "onsails/lspkind.nvim" },
         config = function()
             local cmp = require("cmp")
             local lspconfig = require("lspconfig")
@@ -571,9 +556,9 @@ return require("packer").startup(function(use)
                 end
             end
         end
-    })
+    },
 
-    use({
+    {
         "mrcjkb/rustaceanvim",
         ft = { 'rust' },
         config = function()
@@ -593,22 +578,22 @@ return require("packer").startup(function(use)
                 },
             }
         end
-    })
+    },
 
 
-    use({
+    {
         "lambdalisue/suda.vim",
-        setup = function()
+        init = function()
             vim.cmd([[
                 command! -nargs=0 Sw w suda://%
             ]])
         end,
-    })
+    },
 
     -- Appearances
-    use({
+    {
         "nvim-lualine/lualine.nvim",
-        requires = { "kyazdani42/nvim-web-devicons", opt = true },
+        dependencies = { "kyazdani42/nvim-web-devicons", lazy = true },
         config = function()
             local lualine = require("lualine")
             lualine.setup({
@@ -626,16 +611,16 @@ return require("packer").startup(function(use)
                 }
             })
         end
-    })
+    },
 
-    use({
+    {
         "gcmt/taboo.vim",
-        setup = function()
+        init = function()
             vim.g.taboo_tab_format = " %N [%f%m] "
         end
-    })
+    },
 
-    use({
+    {
         "navarasu/onedark.nvim",
         config = function()
             require("onedark").setup({
@@ -649,13 +634,13 @@ return require("packer").startup(function(use)
             })
             require("onedark").load()
         end
-    })
+    },
 
     -- Languages
-    use({ "nvim-treesitter/nvim-treesitter-textobjects" })
-    use({
+    { "nvim-treesitter/nvim-treesitter-textobjects" },
+    {
         "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate",
+        build = ":TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup({
                 auto_install = true,
@@ -696,27 +681,23 @@ return require("packer").startup(function(use)
                 set foldexpr=nvim_treesitter#foldexpr()
             ]])
         end
-    })
+    },
 
-    use({ "mboughaba/i3config.vim" })
-    use({ "ron-rs/ron.vim" })
-    use({ "PProvost/vim-ps1" })
-    use({
+    { "mboughaba/i3config.vim" },
+    { "ron-rs/ron.vim" },
+    { "PProvost/vim-ps1" },
+    {
         "lervag/vimtex",
         ft = { "tex" },
-    })
-    use({
+    },
+    {
         "previm/previm",
-        requires = { "tyru/open-browser.vim" },
+        dependencies = { "tyru/open-browser.vim" },
         ft = { "markdown" },
         cmd = { "PrevimOpen" },
-        setup = function()
+        init = function()
             vim.g.previm_enable_realtime = 0
             vim.g.previm_disable_vimproc = 1
         end,
-    })
-
-    if PACKER_BOOTSTRAP then
-        require("packer").sync()
-    end
-end)
+    },
+}
