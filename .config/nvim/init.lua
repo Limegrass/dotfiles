@@ -17,7 +17,17 @@ if not vim.loop.fs_stat(lazy_path) then
 end
 vim.opt.rtp:prepend(lazy_path)
 
-require("lazy").setup({ { import = "plugins" } })
+local lazy_opts = {
+    change_detection = {
+        enabled = true,
+        notify = false,
+    },
+}
+
+require("lazy").setup(
+    { { import = "plugins" } },
+    lazy_opts
+)
 
 vim.opt.signcolumn = "no"
 vim.opt.cmdheight = 0
