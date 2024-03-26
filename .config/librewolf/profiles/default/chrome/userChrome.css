@@ -10,13 +10,13 @@
 }
 
 /* Auto-hide address bar until focused (Ctrl-L) */
-#navigator-toolbox-background {
+#navigator-toolbox {
   width: 100%;
   position: absolute;
 }
 
-#navigator-toolbox-background:hover,
-#navigator-toolbox-background:focus-within {
+#navigator-toolbox:hover,
+#navigator-toolbox:focus-within {
   z-index: 4173;
 }
 
