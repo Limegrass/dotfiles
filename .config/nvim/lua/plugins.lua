@@ -603,6 +603,7 @@ return {
             local lualine = require("lualine")
             lualine.setup({
                 options = {
+                    icons_enabled = false,
                     theme = "dracula",
                     separator = { left = "", right = "" }
                 },
