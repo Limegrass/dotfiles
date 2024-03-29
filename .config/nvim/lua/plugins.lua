@@ -599,7 +599,6 @@ return {
     -- Appearances
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = { "kyazdani42/nvim-web-devicons", lazy = true },
         config = function()
             local lualine = require("lualine")
             lualine.setup({
