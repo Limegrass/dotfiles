@@ -17,6 +17,7 @@ set nonumber
 set laststatus=3
 set signcolumn=number
 set nowrap
+set nowrapscan
 set incsearch
 set ignorecase smartcase
 set list listchars=tab:▸\ ,trail:·,precedes:←,extends:→,nbsp:·
