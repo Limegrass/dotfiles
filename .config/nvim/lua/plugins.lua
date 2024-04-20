@@ -185,6 +185,7 @@ return {
             vim.keymap.set("n", "t<c-space>", builtin.tags, {})
             vim.keymap.set("n", "z<c-space>", builtin.oldfiles, {})
             vim.keymap.set("n", "\"<c-space>", builtin.registers, {})
+            vim.keymap.set("n", "/<c-space>", builtin.search_history, {})
             vim.keymap.set("n", "g<c-space>", builtin.git_files, {})
             vim.keymap.set("n", "c<c-space>", builtin.git_bcommits, {})
             telescope.setup({
