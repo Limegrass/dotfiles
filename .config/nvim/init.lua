@@ -30,6 +30,5 @@ require("lazy").setup(
 )
 
 vim.opt.signcolumn = "no"
-vim.opt.cmdheight = 0
 
 vim.env.NVIMINIT = vim.fn.expand("<sfile>:p")
