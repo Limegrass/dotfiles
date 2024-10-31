@@ -232,7 +232,7 @@ return {
                     "lua_ls",
                     "omnisharp",
                     "pyright",
-                    "tsserver",
+                    "ts_ls",
                     "vimls",
                     "yamlls",
                 },
@@ -540,7 +540,7 @@ return {
                         },
                     },
                 },
-                tsserver = {},
+                ts_ls = {},
                 vimls = {},
                 yamlls = {
                     settings = {
