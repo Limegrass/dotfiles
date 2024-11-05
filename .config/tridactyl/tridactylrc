@@ -13,3 +13,4 @@ unbind --mode=ex <s-Tab>
 
 autocmd DocStart youtube.com mode ignore
 seturl console.aws.amazon.com/cloudwatch superignore true
+seturl google.com/maps superignore true
