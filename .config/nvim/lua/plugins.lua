@@ -229,6 +229,7 @@ return {
                     "jdtls",
                     "jsonls",
                     "kotlin_language_server",
+                    "marksman",
                     "lua_ls",
                     "omnisharp",
                     "pyright",
@@ -517,6 +518,7 @@ return {
                     }
                 },
                 kotlin_language_server = {},
+                marksman = {},
                 omnisharp = {
                     cmd = { "omnisharp" }
                 },
