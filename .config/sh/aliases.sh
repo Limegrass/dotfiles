@@ -9,4 +9,8 @@ alias tmux='tmux -2'
 # shellcheck disable=2139
 alias tree="$( ([ "$(command -v exa)" ] && echo "$(command -v exa)" --tree) || command -v tree )"
 alias g="git"
+[ -f /usr/share/bash-completion/completions/git ] \
+    && . /usr/share/bash-completion/completions/git \
+    && ___git_complete g __git_main \
+    && ___git_complete dotfiles __git_main
 alias cdgroot='cd $(git rev-parse --show-toplevel)'
