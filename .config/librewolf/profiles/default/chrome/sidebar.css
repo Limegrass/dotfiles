@@ -12,7 +12,7 @@
   min-width: var(--uc-sidebar-width) !important;
   width: var(--uc-sidebar-width) !important;
   /* Show on top of address bar by default */
-  z-index: 1;
+  z-index: 4173;
 }
 
 #sidebar-splitter {
