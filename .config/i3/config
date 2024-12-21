@@ -163,3 +163,6 @@ exec --no-startup-id picom -b
 exec nm-applet
 exec pasystray
 exec flameshot
+
+# exec uim-xim
+# exec uim-toolbar-gtk3-systray
