@@ -146,10 +146,9 @@ bar {
 }
 bindsym $mod+a bar mode toggle
 
-bindsym Ctrl+Shift+2 exec sharenix -m="fs" -n -o
-bindsym Ctrl+Shift+3 exec ksnip -a
-bindsym Ctrl+Shift+4 exec ksnip -r
-bindsym Ctrl+Shift+5 exec sharenix -m="c" -n
+bindsym Ctrl+Shift+2 exec flameshot full
+bindsym Ctrl+Shift+3 exec flameshot screen
+bindsym Ctrl+Shift+4 exec flameshot gui
 
 # float certain windows
 for_window [class="Pcmanfm"] floating enable
@@ -163,3 +162,4 @@ for_window [class="ksnip"] floating enable
 exec --no-startup-id picom -b
 exec nm-applet
 exec pasystray
+exec flameshot
