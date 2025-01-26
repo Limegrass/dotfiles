@@ -1,0 +1,76 @@
+{
+  "layer": "top",
+  "mode": "hide",
+  "modules-left": ["custom/launcher", "river/tags", "river/mode"],
+  "modules-center": ["river/window"],
+  "modules-right": [
+    "mpd",
+    "tray",
+    "network",
+    "cpu",
+    "memory",
+    "pulseaudio",
+    "clock"
+  ],
+
+  "battery": {
+    "states": { "good": 95, "warning": 30, "critical": 20 },
+    "format": "{icon}  {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "clock": {
+    "interval": 60,
+    "format": "{:%H:%M - [%Y/%m/%d] - %A}"
+  },
+  "cpu": { "interval": 15, "format": " {}%", "max-length": 10 },
+  "memory": { "interval": 30, "format": " {}%", "max-length": 10 },
+  "mpd": {
+    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+    "format-disconnected": "Disconnected ",
+    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+    "interval": 10,
+    "consume-icons": {
+      "on": " "
+    },
+    "random-icons": {
+      "on": " "
+    },
+    "repeat-icons": {
+      "on": " "
+    },
+    "single-icons": {
+      "on": "1 "
+    },
+    "state-icons": {
+      "paused": "",
+      "playing": ""
+    },
+    "tooltip-format": "MPD (connected)",
+    "tooltip-format-disconnected": "MPD (disconnected)"
+  },
+  "network": {
+    "tooltip": false,
+    "format-wifi": "  {essid}",
+    "tooltip-format-ethernet": "{ifname} "
+  },
+  "pulseaudio": {
+    "tooltip": false,
+    "scroll-step": 5,
+    "format": "{icon} {volume}%",
+    "format-muted": "{icon} {volume}%",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "format-icons": { "default": ["", "", ""] }
+  },
+  "river/tags": {},
+  "river/window": {},
+  "tray": { "icon-size": 18, "spacing": 10 },
+
+  "custom/launcher": {
+    "format": "⭐",
+    "on-click": "rofi -show-icons -combi-modi window,drun,ssh,run -modi combi -show combi",
+    "on-click-right": "killall rofi"
+  }
+}

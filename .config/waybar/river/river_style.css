@@ -1,0 +1,64 @@
+box.module,
+label.module {
+  font-size: 1em;
+  color: white;
+  opacity: 0.75;
+  background: black;
+  padding: 0px 1em;
+}
+
+window#waybar {
+  background: transparent;
+}
+
+#tags {
+  padding: 0px;
+}
+#tags button {
+  padding: 0.5em 1em;
+}
+#tags * {
+  background: black;
+}
+#tags button:not(.occupied):not(.focused) {
+  font-size: 0;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+}
+#tags button.occupied {
+  color: #f28fad;
+}
+#tags button.focused {
+  color: #abe9b3;
+}
+#tags button:hover {
+  border-color: #417563;
+}
+
+#battery {
+  color: #161320;
+  background: #b5e8e0;
+}
+#battery.charging,
+#battery.plugged {
+  color: #161320;
+  background-color: #b5e8e0;
+}
+#battery.critical:not(.charging) {
+  background-color: #b5e8e0;
+  color: #161320;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blink {
+  to {
+    background-color: #bf616a;
+    color: #b5e8e0;
+  }
+}
