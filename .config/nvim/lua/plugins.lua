@@ -364,41 +364,49 @@ return {
                 formatting = {
                     expandable_indicator = true,
                     fields = { 'abbr', 'kind', 'menu' },
-                    format = lspkind.cmp_format({
-                        mode = "symbol",
-                        menu = ({
-                            buffer = "[Buf]",
-                            nvim_lsp = "[LSP]",
-                            luasnip = "[Snip]",
-                        }),
-                        symbol_map = ({
-                            Text = "文",
-                            Method = "技",
-                            Function = "関",
-                            Constructor = "作",
-                            Field = "有",
-                            Variable = "変",
-                            Class = "ｸﾗｽ",
-                            Interface = "引",
-                            Module = "組",
-                            Property = "質",
-                            Unit = "単",
-                            Value = "値",
-                            Enum = "列挙",
-                            Keyword = "予",
-                            Snippet = "切",
-                            Color = "色",
-                            File = "ﾌｧｪﾙ",
-                            Reference = "指",
-                            Folder = "結",
-                            EnumMember = "列挙類",
-                            Constant = "定",
-                            Struct = "構造",
-                            Event = "行",
-                            Operator = "演算子",
-                            TypeParameter = "型",
-                        }),
-                    }),
+                    format = function(entry, item)
+                        local color_item = require("nvim-highlight-colors").format(entry, { kind = item.kind })
+                        item = lspkind.cmp_format({
+                            mode = "symbol",
+                            menu = ({
+                                buffer = "[Buf]",
+                                nvim_lsp = "[LSP]",
+                                luasnip = "[Snip]",
+                            }),
+                            symbol_map = ({
+                                Text = "文",
+                                Method = "技",
+                                Function = "関",
+                                Constructor = "作",
+                                Field = "有",
+                                Variable = "変",
+                                Class = "ｸﾗｽ",
+                                Interface = "引",
+                                Module = "組",
+                                Property = "質",
+                                Unit = "単",
+                                Value = "値",
+                                Enum = "列挙",
+                                Keyword = "予",
+                                Snippet = "切",
+                                Color = "色",
+                                File = "ﾌｧｪﾙ",
+                                Reference = "指",
+                                Folder = "結",
+                                EnumMember = "列挙類",
+                                Constant = "定",
+                                Struct = "構造",
+                                Event = "行",
+                                Operator = "演算子",
+                                TypeParameter = "型",
+                            }),
+                        })(entry, item)
+                        if color_item.abbr_hl_group then
+                            item.kind_hl_group = color_item.abbr_hl_group
+                            item.kind = color_item.abbr
+                        end
+                        return item
+                    end,
                 },
                 snippet = {
                     expand = function(args)
@@ -642,6 +650,14 @@ return {
                 },
             })
             require("onedark").load()
+        end,
+    },
+    {
+        "brenoprata10/nvim-highlight-colors",
+        config = function()
+            require("nvim-highlight-colors").setup({
+                render = "background",
+            })
         end,
     },
 
