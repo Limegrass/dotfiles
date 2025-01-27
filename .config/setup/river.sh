@@ -5,6 +5,7 @@ doas pacman -S --no-confirm \
     mako                    \
     river                   \
     rofi-wayland            \
+    swaylock                \
     waybar                  \
     wl-clipboard            \
     xdg-desktop-portal      \
