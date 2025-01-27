@@ -11,6 +11,7 @@ riverctl map normal Super+Shift Escape exit # exits river
 riverctl map normal Super+Shift R spawn ". ~/.config/river/config.sh"
 
 riverctl map normal Super A spawn "killall waybar || waybar -c ~/.config/waybar/river/config.json -s ~/.config/waybar/river/river_style.css"
+riverctl map normal Super N spawn "makoctl dismiss"
 
 riverctl map normal Super H focus-view left
 riverctl map normal Super J focus-view down
