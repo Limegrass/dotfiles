@@ -114,3 +114,19 @@ do
     riverctl map $mode None XF86MonBrightnessUp   spawn 'brightnessctl set +5%'
     riverctl map $mode None XF86MonBrightnessDown spawn 'brightnessctl set 5%-'
 done
+
+riverctl declare-mode gromit-mpx
+riverctl map normal Super G spawn "gromit-mpx --active"
+riverctl map -release normal Super G enter-mode gromit-mpx
+riverctl map gromit-mpx Super G spawn "gromit-mpx --quit"
+riverctl map -release gromit-mpx Super G enter-mode normal
+
+riverctl map gromit-mpx Super T spawn "gromit-mpx --toggle"
+riverctl map gromit-mpx Super+Control T spawn "gromit-mpx --visibility"
+riverctl map gromit-mpx Control Z spawn "gromit-mpx --undo"
+riverctl map gromit-mpx Control+Shift Z spawn "gromit-mpx --redo"
+
+riverctl map normal Control+Shift 4 spawn "slurp | grim -g - - | wl-copy"
+riverctl map gromit-mpx Control+Shift 4 spawn "slurp | grim -g - - | wl-copy"
+riverctl map normal Control+Shift 1 spawn "grim - | wl-copy"
+riverctl map gromit-mpx Control+Shift 1 spawn "grim - | wl-copy"

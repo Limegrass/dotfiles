@@ -2,9 +2,11 @@
 
 doas pacman -S --no-confirm \
     foot                    \
+    grim                    \
     mako                    \
     river                   \
     rofi-wayland            \
+    slurp                   \
     swaylock                \
     waybar                  \
     wl-clipboard            \
@@ -13,6 +15,7 @@ doas pacman -S --no-confirm \
 ;
 
 paru -S                     \
+    gromit-mpx              \
     lswt                    \
     wideriver               \
 ;
