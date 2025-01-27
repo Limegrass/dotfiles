@@ -1,0 +1,50 @@
+#! /bin/sh
+
+. "$HOME/.config/river/config.sh"
+
+export WAYLAND_DISPLAY=wayland-1 # at the very least, fixes some items not showing in tray
+export XDG_CURRENT_DESKTOP=river
+
+# Set the default layout generator to be rivertile and start it.
+# River will send the process group of the init executable SIGTERM on exit.
+riverctl default-layout wideriver
+wideriver \
+    --layout                       left         \
+    --layout-alt                   monocle      \
+    --stack                        dwindle      \
+    --count-master                 1            \
+    --ratio-master                 0.60         \
+    --count-wide-left              0            \
+    --ratio-wide                   0.35         \
+    --smart-gaps                                \
+    --inner-gaps                   0            \
+    --outer-gaps                   0            \
+    --border-width                 2            \
+    --border-width-monocle         0            \
+    --border-width-smart-gaps      0            \
+    --border-color-focused         "0x417563"   \
+    --border-color-focused-monocle "0x417563"   \
+    --border-color-unfocused       "0x00000000" \
+    --log-threshold                info         \
+    > "/tmp/wideriver.${XDG_VTNR}.${USER}.log" 2>&1 &
+
+# https://codeberg.org/river/wiki/src/branch/master/pages/Recommended-Software.md
+# TODO: tag all steam/games related windows
+# TODO: tag all messenger related windows
+# TODO: quick way to open vimpc
+# TODO: figure out how to send rofi selection to window -> add current tag to app id?
+#       Probably rofi script mode, -window-command isn't working in wayland: https://github.com/lbonn/rofi/issues/114
+#       Needs the tags of the view to be able to do a logical bitwise OR, otherwise can't keep previous tags
+# TODO: also add one to move to workspace with app id
+#       Needs the tags of the view to change focused-tags
+#       01:19 <Guest63> Hey, sorry if this is a common question. I've done (what I think is) a bunch of searching through the web and river issues/`man` pages, but I couldn't figure out whether river exposes a command to fetch the tags currently assigned to a view. Is there anything available for that? riverctl doesn't seem to have an command for it and lswt is of course
+#       01:19 <Guest63> generic across wayland, so it wouldn't have tag information
+#       01:21 <Guest63> There are some existing issues that are similar to my use case of window switching, but I'd like to be able to fetch tags to both switch focused-tags to whatever is assigned to that view and to bitwise OR the existing tags of that view with my currently focused tags
+#       01:35 <leon-p> Guest63: no, unfortunately there is no way to get the tags of a window
+#       01:35 <leon-p> you can get the currently focused tags, and all occupied tags, but you can't map those occupied tags back to windows
+#       01:36 <leon-p> see PR 1100 as to what will replace the tag system which in turn will make your usecase possible in the future
+#       01:38 <Guest63> Ahh, thanks for the quick response! I'll take a look and keep an eye out for when/if that PR is merged. 
+# TODO: screen sharing
+# TODO: screen capturing
+# TODO: notification daemon
+# TODO: yambar
