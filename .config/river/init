@@ -31,7 +31,6 @@ wideriver \
 # https://codeberg.org/river/wiki/src/branch/master/pages/Recommended-Software.md
 # TODO: tag all steam/games related windows
 # TODO: tag all messenger related windows
-# TODO: quick way to open vimpc
 # TODO: figure out how to send rofi selection to window -> add current tag to app id?
 #       Probably rofi script mode, -window-command isn't working in wayland: https://github.com/lbonn/rofi/issues/114
 #       Needs the tags of the view to be able to do a logical bitwise OR, otherwise can't keep previous tags
