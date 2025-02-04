@@ -8,4 +8,6 @@ riverctl rule-add -title "Picture-in-Picture" tags $all_tags
 
 riverctl rule-add -app-id "steam_app_*" csd # csd steam games
 
+riverctl rule-add -title "vimpc" csd
 riverctl rule-add -title "vimpc" float
+riverctl rule-add -title "vimpc" dimensions 1280 720
