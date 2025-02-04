@@ -13,7 +13,7 @@ riverctl map normal Super+Shift R spawn ". ~/.config/river/config.sh"
 riverctl map normal Super A spawn "killall waybar || waybar -c ~/.config/waybar/river/config.json -s ~/.config/waybar/river/river_style.css"
 riverctl map normal Super N spawn "makoctl dismiss"
 riverctl map normal Super+Control+Shift L spawn "swaylock -f --color 417563"
-riverctl map normal Super M spawn "foot --title vimpc vimpc"
+riverctl map normal Super M spawn "killall vimpc || foot --title vimpc vimpc"
 
 riverctl map normal Super H focus-view left
 riverctl map normal Super J focus-view down
