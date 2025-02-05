@@ -10,3 +10,9 @@ done
 #     sleep 1s
 #     startx
 # fi
+
+if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+    echo "Starting river in 1 seconds"
+    sleep 1s
+    dbus-run-session river
+fi
