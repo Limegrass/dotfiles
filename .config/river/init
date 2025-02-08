@@ -7,6 +7,7 @@ export XDG_CURRENT_DESKTOP=river
 
 # ensure loaded for xdg-desktop-portal
 systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
 # Set the default layout generator to be rivertile and start it.
 # River will send the process group of the init executable SIGTERM on exit.
