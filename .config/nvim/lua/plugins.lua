@@ -173,21 +173,21 @@ return {
         config = function()
             local telescope = require("telescope")
             local builtin = require("telescope.builtin")
-            vim.keymap.set("n", "<c-space>", function()
+            vim.keymap.set("n", "<c-space><c-space>", function()
                 local is_rg_available = vim.fn.executable("rg") == 1
                 local find_files_options = is_rg_available
                     and { find_command = { "rg", "--files", "--hidden", "--glob", "!.git" } }
                     or {}
                 builtin.find_files(find_files_options)
             end, {})
-            vim.keymap.set("n", "r<c-space>", builtin.live_grep, {})
-            vim.keymap.set("n", "f<c-space>", builtin.buffers, {})
-            vim.keymap.set("n", "t<c-space>", builtin.tags, {})
-            vim.keymap.set("n", "z<c-space>", builtin.oldfiles, {})
-            vim.keymap.set("n", "\"<c-space>", builtin.registers, {})
-            vim.keymap.set("n", "/<c-space>", builtin.search_history, {})
-            vim.keymap.set("n", "g<c-space>", builtin.git_files, {})
-            vim.keymap.set("n", "c<c-space>", builtin.git_bcommits, {})
+            vim.keymap.set("n", "<c-space>r", builtin.live_grep, {})
+            vim.keymap.set("n", "<c-space>f", builtin.buffers, {})
+            vim.keymap.set("n", "<c-space>t", builtin.tags, {})
+            vim.keymap.set("n", "<c-space>z", builtin.oldfiles, {})
+            vim.keymap.set("n", "<c-space>\"", builtin.registers, {})
+            vim.keymap.set("n", "<c-space>/", builtin.search_history, {})
+            vim.keymap.set("n", "<c-space>g", builtin.git_files, {})
+            vim.keymap.set("n", "<c-space>c", builtin.git_bcommits, {})
             telescope.setup({
                 defaults = {
                     layout_strategy = "vertical",
