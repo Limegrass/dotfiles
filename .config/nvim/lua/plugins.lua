@@ -169,7 +169,10 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
-        dependencies = { { "nvim-lua/plenary.nvim" } },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope-symbols.nvim"
+        },
         config = function()
             local telescope = require("telescope")
             local builtin = require("telescope.builtin")
@@ -188,6 +191,12 @@ return {
             vim.keymap.set("n", "<c-space>/", builtin.search_history, {})
             vim.keymap.set("n", "<c-space>g", builtin.git_files, {})
             vim.keymap.set("n", "<c-space>c", builtin.git_bcommits, {})
+            vim.keymap.set(
+                { "n" },
+                "<c-space>s",
+                function() require("telescope.builtin").symbols({ sources = { "emoji", "kaomoji" } }) end,
+                { silent = true }
+            )
             telescope.setup({
                 defaults = {
                     layout_strategy = "vertical",
