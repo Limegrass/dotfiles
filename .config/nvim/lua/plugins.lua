@@ -535,6 +535,7 @@ return {
             local languageServers = {
                 bashls = {},
                 dotls = {},
+                smithy_ls = {},
                 cssls = {},
                 eslint = {},
                 gopls = {},
