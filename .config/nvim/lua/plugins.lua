@@ -534,6 +534,7 @@ return {
             -- condition sets whether the server is setup for the local server
             local languageServers = {
                 bashls = {},
+                dotls = {},
                 cssls = {},
                 eslint = {},
                 gopls = {},
