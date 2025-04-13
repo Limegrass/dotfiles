@@ -12,6 +12,7 @@ doas pacman -S --no-confirm \
     wl-clipboard            \
     xdg-desktop-portal      \
     xdg-desktop-portal-wlr  \
+    qt6-wayland             \
 ;
 
 paru -S                     \
