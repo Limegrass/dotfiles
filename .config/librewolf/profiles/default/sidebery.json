@@ -119,7 +119,7 @@
     "animations": false,
     "animationSpeed": "fast",
     "theme": "proton",
-    "density": "loose",
+    "density": "compact",
     "colorScheme": "ff",
     "sidebarCSS": true,
     "groupCSS": false,
