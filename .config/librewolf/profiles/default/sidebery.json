@@ -182,7 +182,7 @@
     "syncSaveKeybindings": false,
     "selectActiveTabFirst": true
   },
-  "sidebarCSS": "#root:not(:hover) {\n    --tabs-indent: 0;\n}\n\n#root:hover .Tab {\n    transition-delay: 420ms;\n}\n\n.Tab .close {\n    display: none;\n}\n\n#root:hover .Tab .exp {\n    transition: opacity var(--d-fast), transform var(--d-fast), z-index step-end;\n    transition-delay: 420ms;\n}\n\n.NavigationBar .main-items,\n#root[data-pinned-tabs-position=\"panel\"] .PinnedTabsBar {\n    flex-wrap: nowrap;\n}",
+  "sidebarCSS": ".Tab .close {\n    display: none;\n}",
   "ver": "5.0.0",
   "keybindings": {
     "_execute_sidebar_action": "F2",
