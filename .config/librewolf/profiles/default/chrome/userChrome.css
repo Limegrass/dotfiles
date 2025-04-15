@@ -9,19 +9,6 @@
   visibility: collapse;
 }
 
-/* Auto-hide address bar until focused (Ctrl-L) */
-#navigator-toolbox {
-  width: 100%;
-  position: absolute !important;
-  top: -100%;
-}
-
-#navigator-toolbox:hover,
-#navigator-toolbox:focus-within {
-  top: 0px;
-  z-index: 4173 !important;
-}
-
 /* Hide buttons in address bar */
 #urlbar-go-button,
 #reload-button {
