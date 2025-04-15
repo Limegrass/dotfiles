@@ -11,6 +11,13 @@
   z-index: 563;
 }
 
+/* combined with the :before element taking up space to shift the position of the bar regardless */
+@media all and (display-mode: fullscreen) {
+  #sidebar-box {
+    top: 0px;
+  }
+}
+
 /* splitter used to control size of sidebar, to use appear on top */
 #sidebar-splitter {
   display: none;
