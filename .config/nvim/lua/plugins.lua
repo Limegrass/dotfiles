@@ -190,7 +190,7 @@ return {
             vim.keymap.set("n", "<c-space>\"", builtin.registers, {})
             vim.keymap.set("n", "<c-space>/", builtin.search_history, {})
             vim.keymap.set("n", "<c-space>g", builtin.git_files, {})
-            vim.keymap.set("n", "<c-space>c", builtin.git_bcommits, {})
+            vim.keymap.set("n", "<c-space>b", builtin.git_bcommits, {})
             vim.keymap.set("n", "<c-space>c", builtin.quickfix, {})
             vim.keymap.set("n", "<c-space>l", builtin.loclist, {})
             vim.keymap.set(
