@@ -192,6 +192,18 @@ return {
             vim.keymap.set("n", "<c-space>g", builtin.git_files, {})
             vim.keymap.set("n", "<c-space>b", builtin.git_bcommits, {})
             vim.keymap.set("n", "<c-space>c", builtin.quickfix, {})
+            vim.keymap.set("n", "<c-space>d", function()
+                builtin.find_files({
+                    find_command = {
+                        "git", -- equivalent to the `dotfiles` alias
+                        "--git-dir",
+                        vim.env.HOME .. "/.dotfiles",
+                        "--work-tree",
+                        vim.env.HOME,
+                        "ls-files",
+                    },
+                })
+            end)
             vim.keymap.set("n", "<c-space>l", builtin.loclist, {})
             vim.keymap.set(
                 { "n" },
