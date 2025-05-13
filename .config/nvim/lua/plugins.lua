@@ -598,7 +598,8 @@ return {
                             schemas = require("ls.yamlls.schemas"),
                         }
                     }
-                }
+                },
+                zls = {},
             }
 
             for lsp, options in pairs(languageServers) do
