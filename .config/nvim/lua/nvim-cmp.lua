@@ -1,0 +1,265 @@
+return {
+    {
+        "hrsh7th/nvim-cmp",
+        dependencies = {
+            "onsails/lspkind.nvim",
+            "neovim/nvim-lspconfig",
+            "L3MON4D3/LuaSnip",
+            "brenoprata10/nvim-highlight-colors",
+            "saecki/crates.nvim",
+            "David-Kunz/cmp-npm",
+            "saadparwaiz1/cmp_luasnip",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
+        },
+        config = function()
+            local cmp = require("cmp")
+            local lspconfig = require("lspconfig")
+            local luasnip = require("luasnip")
+            local lspkind = require("lspkind")
+
+            cmp.setup({
+                formatting = {
+                    expandable_indicator = true,
+                    fields = { 'abbr', 'kind', 'menu' },
+                    format = function(entry, item)
+                        local color_item = require("nvim-highlight-colors").format(entry, { kind = item.kind })
+                        item = lspkind.cmp_format({
+                            mode = "symbol",
+                            menu = ({
+                                buffer = "[Buf]",
+                                nvim_lsp = "[LSP]",
+                                luasnip = "[Snip]",
+                            }),
+                            symbol_map = ({
+                                Text = "文",
+                                Method = "技",
+                                Function = "関",
+                                Constructor = "作",
+                                Field = "有",
+                                Variable = "変",
+                                Class = "ｸﾗｽ",
+                                Interface = "引",
+                                Module = "組",
+                                Property = "質",
+                                Unit = "単",
+                                Value = "値",
+                                Enum = "列挙",
+                                Keyword = "予",
+                                Snippet = "切",
+                                Color = "色",
+                                File = "ﾌｧｪﾙ",
+                                Reference = "指",
+                                Folder = "結",
+                                EnumMember = "列挙類",
+                                Constant = "定",
+                                Struct = "構造",
+                                Event = "行",
+                                Operator = "演算子",
+                                TypeParameter = "型",
+                            }),
+                        })(entry, item)
+                        if color_item.abbr_hl_group then
+                            item.kind_hl_group = color_item.abbr_hl_group
+                            item.kind = color_item.abbr
+                        end
+                        return item
+                    end,
+                },
+                snippet = {
+                    expand = function(args)
+                        require("luasnip").lsp_expand(args.body)
+                    end,
+                },
+                mapping = cmp.mapping.preset.insert({
+                    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+                    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+                    ["<C-Space>"] = cmp.mapping.complete({}),
+                    ["<C-e>"] = cmp.mapping.abort(),
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.confirm({ select = true })
+                        else
+                            fallback() -- fallback sends existing mapping
+                        end
+                    end, { "i", "s" }),
+                    ["<C-j>"] = cmp.mapping(function(fallback)
+                        if luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
+                        else
+                            fallback() -- fallback sends existing mapping
+                        end
+                    end, { "i", "s" }),
+                    ["<C-k>"] = cmp.mapping(function(fallback)
+                        if luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
+                    ["<C-l>"] = cmp.mapping(function(fallback)
+                        if luasnip.choice_active() then
+                            luasnip.change_choice(1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
+                }),
+                sources = cmp.config.sources({
+                    { name = "nvim_lsp" },
+                    { name = "luasnip" },
+                    { name = "crates",  keyword_length = 4 },
+                    { name = "npm",     keyword_length = 4 },
+                }, {
+                    { name = "path" },
+                    {
+                        name = 'buffer',
+                        option = {
+                            get_bufnrs = function()
+                                local bufs = {}
+                                for _, win in ipairs(vim.api.nvim_list_wins()) do
+                                    bufs[vim.api.nvim_win_get_buf(win)] = true
+                                end
+                                return vim.tbl_keys(bufs)
+                            end
+                        }
+                    }
+                })
+            })
+
+            local cmdlineMapping = cmp.mapping.preset.cmdline({
+                ["<Tab>"] = cmp.mapping(function(fallback)
+                    if vim.fn.pumvisible() == 1 then
+                        local next_key = vim.api.nvim_replace_termcodes("<C-n>", true, false, true)
+                        vim.api.nvim_feedkeys(next_key, "c", false)
+                    elseif cmp.visible() then
+                        cmp.select_next_item()
+                    else
+                        cmp.complete()
+                        fallback()
+                    end
+                end, { "c" }),
+                ["<C-y>"] = {
+                    c = function(fallback)
+                        if vim.fn.pumvisible() == 1 or not cmp.visible() then
+                            fallback()
+                        else
+                            cmp.confirm({ select = true })
+                        end
+                    end,
+                },
+            })
+
+            -- Use buffer source for `/` and `?`
+            cmp.setup.cmdline({ "/", "?" }, {
+                mapping = cmdlineMapping,
+                sources = {
+                    { name = "buffer" }
+                }
+            })
+
+            -- Use cmdline & path source for ":"
+            cmp.setup.cmdline(":", {
+                mapping = cmdlineMapping,
+                sources = cmp.config.sources({
+                    { name = "path" }
+                }, {
+                    { name = "cmdline", option = { ignore_cmds = { "Man", "!", "edit", "write", } } }
+                })
+            })
+
+            local opts = { noremap = true, silent = true }
+            vim.keymap.set("n", "[k", vim.diagnostic.goto_prev, opts)
+            vim.keymap.set("n", "]k", vim.diagnostic.goto_next, opts)
+            vim.keymap.set("n", "<space>k", vim.diagnostic.open_float, opts)
+            vim.keymap.set("n", "<space>K", vim.diagnostic.setloclist, opts)
+
+            local capabilities = require("cmp_nvim_lsp").default_capabilities(
+                vim.lsp.protocol.make_client_capabilities()
+            )
+
+            -- condition sets whether the server is setup for the local server
+            local languageServers = {
+                bashls = {},
+                dotls = {},
+                smithy_ls = {},
+                cssls = {},
+                eslint = {},
+                gopls = {},
+                html = {},
+                jdtls = {},
+                jsonls = {
+                    filetypes = { "json", "jsonc" },
+                    settings = {
+                        json = {
+                            schemas = require("ls.jsonls.schemas"),
+                        }
+                    }
+                },
+                kotlin_language_server = {},
+                marksman = {},
+                omnisharp = {
+                    cmd = { "omnisharp" }
+                },
+                powershell_es = {
+                    condition = vim.fn.executable("pwsh") == 1
+                },
+                pyright = {},
+                lua_ls = {
+                    settings = {
+                        Lua = {
+                            diagnostics = {
+                                globals = { "vim" }
+                            },
+                            workspace = {
+                                checkThirdParty = false,
+                                library = {
+                                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                                    [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
+                                }
+                            },
+                        },
+                    },
+                },
+                ts_ls = {},
+                vimls = {},
+                yamlls = {
+                    settings = {
+                        yaml = {
+                            schemaStore = {
+                                enable = true,
+                                url = "file://" .. require("schema_store").path
+                            },
+                            schemas = require("ls.yamlls.schemas"),
+                        }
+                    }
+                },
+                zls = {},
+            }
+
+            local on_attach = require("lsp-on-attach").on_attach_default
+            for lsp, options in pairs(languageServers) do
+                if options.condition == nil or options.condition then
+                    options.capabilities = options.capabilities or capabilities
+                    options.on_attach = options.on_attach or on_attach
+                    lspconfig[lsp].setup(options)
+                end
+            end
+        end,
+    },
+
+    {
+        "David-Kunz/cmp-npm",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("cmp-npm").setup({})
+        end
+    },
+    { "saadparwaiz1/cmp_luasnip" },
+    { "hrsh7th/cmp-nvim-lsp" },
+    { "hrsh7th/cmp-buffer" },
+    { "hrsh7th/cmp-path" },
+    { "hrsh7th/cmp-cmdline" },
+}

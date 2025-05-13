@@ -25,7 +25,10 @@ local lazy_opts = {
 }
 
 require("lazy").setup(
-    { { import = "plugins" } },
+    {
+        { import = "plugins" },
+        { import = "nvim-cmp" },
+    },
     lazy_opts
 )
 
