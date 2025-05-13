@@ -242,19 +242,15 @@ return {
     },
 
     {
-        "folke/neodev.nvim",
-        config = function()
-            require("neodev").setup({
-                nvim_cfg = true, -- index local nvim cfg
-                override = function(root_dir, library)
-                    local pathSeparator = package.config:sub(1, 1)
-                    if string.find(root_dir, "nvim" .. pathSeparator .. "lua") then
-                        library.enabled = true
-                        library.plugins = true
-                    end
-                end,
-            })
-        end,
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        opts = {
+            library = {
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
     },
     {
         "L3MON4D3/LuaSnip",
