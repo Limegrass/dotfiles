@@ -121,6 +121,7 @@ return {
             vim.keymap.set("n", "<c-space>c", builtin.quickfix, {})
             vim.keymap.set("n", "<c-space>d", function()
                 builtin.find_files({
+                    cwd = vim.env.HOME,
                     find_command = {
                         "git", -- equivalent to the `dotfiles` alias
                         "--git-dir",
