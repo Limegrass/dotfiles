@@ -119,6 +119,7 @@ return {
             vim.keymap.set("n", "<c-space>g", builtin.git_files, {})
             vim.keymap.set("n", "<c-space>b", builtin.git_bcommits, {})
             vim.keymap.set("n", "<c-space>c", builtin.quickfix, {})
+            vim.keymap.set("n", "<c-space><BS>", builtin.resume, {})
             vim.keymap.set("n", "<c-space>d", function()
                 builtin.find_files({
                     cwd = vim.env.HOME,
