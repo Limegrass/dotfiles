@@ -27,7 +27,7 @@ local lazy_opts = {
 require("lazy").setup(
     {
         { import = "plugins" },
-        { import = "nvim-cmp" },
+        { import = "blink-cmp" },
     },
     lazy_opts
 )
