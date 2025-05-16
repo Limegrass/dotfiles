@@ -1,4 +1,5 @@
 return {
+    { "NMAC427/guess-indent.nvim" }, -- automatic tabstop/shiftwidth
     { "tpope/vim-fugitive" },
     {
         "lewis6991/gitsigns.nvim",
