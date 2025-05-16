@@ -10,7 +10,6 @@ runtime macros/matchit.vim
 let g:omni_sql_no_default_maps = 1
 
 set title
-set lazyredraw
 set ruler
 set cursorline
 set nonumber

@@ -351,6 +351,17 @@ return {
     },
 
     {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        opts = {
+        },
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        }
+    },
+
+    {
         "navarasu/onedark.nvim",
         config = function()
             require("onedark").setup({
