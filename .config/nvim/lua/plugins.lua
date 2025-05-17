@@ -360,13 +360,13 @@ return {
                 view = "cmdline_popup",
                 opts = {},
                 format = {
-                    cmdline = { pattern = "^:", icon = "", lang = "vim" },
-                    search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
-                    search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
+                    cmdline = { pattern = "^:", icon = ">", lang = "vim" },
+                    search_down = { kind = "search", pattern = "^/", icon = "🔍⌄", lang = "regex" },
+                    search_up = { kind = "search", pattern = "^%?", icon = "🔍⌃", lang = "regex" },
                     filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
-                    lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
-                    help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
-                    input = { view = "cmdline_input", icon = "󰥻 " },
+                    lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "☾", lang = "lua" },
+                    help = { pattern = "^:%s*he?l?p?%s+", icon = "?" },
+                    input = { view = "cmdline_input", icon = "i>" },
                 },
             },
             messages = {
@@ -504,7 +504,22 @@ return {
             views = {},
             routes = {},
             status = {},
-            format = {},
+            format = {
+                level = {
+                    icons = {
+                        error = "✖",
+                        warn = "▼",
+                        info = "●",
+                    },
+                },
+            },
+            inc_rename = {
+                cmdline = {
+                    format = {
+                        IncRename = { icon = "⟳" },
+                    },
+                },
+            },
         },
         dependencies = {
             "MunifTanjim/nui.nvim",
