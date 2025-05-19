@@ -65,6 +65,7 @@ return {
                                         buffer = "[Buf]",
                                         lsp = "[LSP]",
                                         snippets = "[Snip]",
+                                        cmdline = "[>_]",
                                     }
                                     return source_name_map[ctx.source_id] or ctx.source_name
                                 end,
