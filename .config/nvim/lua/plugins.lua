@@ -356,7 +356,7 @@ return {
         event = "VeryLazy",
         opts = {
             cmdline = {
-                enabled = true,
+                enabled = false,
                 view = "cmdline",
                 opts = {},
                 format = {
@@ -370,7 +370,7 @@ return {
                 },
             },
             messages = {
-                enabled = true,
+                enabled = false,
                 view = "notify",
                 view_error = "notify",
                 view_warn = "notify",
