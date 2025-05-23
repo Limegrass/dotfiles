@@ -357,7 +357,7 @@ return {
         opts = {
             cmdline = {
                 enabled = true,
-                view = "cmdline_popup",
+                view = "cmdline",
                 opts = {},
                 format = {
                     cmdline = { pattern = "^:", icon = ">", lang = "vim" },
