@@ -427,7 +427,7 @@ return {
                 },
             },
             notify = {
-                enabled = true,
+                enabled = false,
                 view = "notify",
             },
             lsp = {
