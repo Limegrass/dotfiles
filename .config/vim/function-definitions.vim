@@ -284,3 +284,62 @@ function! AddAsDecimal(addend, number, base)
     let l:formatters = { 2: '%b', 8: '%o', 16: '%x'}
     return printf(get(l:formatters, a:base), l:decimal)
 endfunction
+
+function! s:UpdateBuffer(old_path, new_path)
+  let l:bufnr = bufnr(a:old_path)
+  if l:bufnr != -1 && buflisted(l:bufnr)
+    let l:current_buf = bufnr('%')
+    let l:current_pos = getpos('.')
+
+    execute 'buffer ' . l:bufnr
+    execute 'file ' . fnameescape(a:new_path)
+    execute 'edit'
+
+    execute 'buffer ' . l:current_buf
+    call setpos('.', l:current_pos)
+  endif
+endfunction
+
+function! MoveFile(force, ...)
+  if a:0 == 0 || a:0 > 2
+    echoerr 'Usage: MoveFile destination | MoveFile source destination'
+    return
+  endif
+
+  if a:0 == 1
+    let l:source = expand('%:p')
+    if empty(l:source)
+      echoerr 'No file in current buffer'
+      return
+    endif
+    let l:destination = fnamemodify(a:1, ':p')
+  else
+    let l:source = fnamemodify(a:1, ':p')
+    let l:destination = fnamemodify(a:2, ':p')
+  endif
+
+  if !filereadable(l:source)
+    echoerr 'Source file does not exist: ' . l:source
+    return
+  endif
+
+  if filereadable(l:destination) && !a:force
+    echoerr 'Destination exists (use ! to overwrite): ' . l:destination
+    return
+  endif
+
+  let l:dest_dir = fnamemodify(l:destination, ':h')
+  if !isdirectory(l:dest_dir)
+    call mkdir(l:dest_dir, 'p')
+  endif
+
+  let l:result = system('mv ' . shellescape(l:source) . ' ' . shellescape(l:destination))
+  if v:shell_error != 0
+    echoerr 'Failed to move file: ' . trim(l:result)
+    return
+  endif
+
+  call s:UpdateBuffer(l:source, l:destination)
+
+  echo 'Moved: ' . fnamemodify(l:source, ':~') . ' -> ' . fnamemodify(l:destination, ':~')
+endfunction

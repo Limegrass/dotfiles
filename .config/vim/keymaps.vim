@@ -246,6 +246,8 @@ endif
 
 command! -nargs=1 -complete=dir Mkdir call mkdir(<q-args>, "p")
 
+command! -nargs=+ -complete=dir -bang Mv call MoveFile(<bang>0, <f-args>)
+
 " =============================== ABBREVIATIONS ================================
 " Force vertical splits for help files and expand gui window for help
 call CommandAbbreviations('vh', 'vert help')
