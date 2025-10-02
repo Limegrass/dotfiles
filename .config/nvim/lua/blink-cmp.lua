@@ -156,16 +156,12 @@ return {
 
             for lsp, options in pairs(language_servers) do
                 if options.condition == nil or options.condition then
+                    options.capabilities = options.capabilities or default_capabilities
+                    options.on_attach = options.on_attach or on_attach
                     if vim.fn.has("nvim-0.11") then
-                        vim.lsp.config(lsp,
-                            {
-                                capabilities = blink.get_lsp_capabilities(),
-                                on_attach = options.on_attach or on_attach,
-                            })
+                        vim.lsp.config(lsp, options)
                         vim.lsp.enable(lsp)
                     else
-                        options.capabilities = options.capabilities or default_capabilities
-                        options.on_attach = options.on_attach or on_attach
                         lspconfig[lsp].setup(options)
                     end
                 end
