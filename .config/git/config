@@ -64,12 +64,12 @@
 [gc]
     writeCommitGraph = true
 [merge]
-    tool = nvimmerge
+    tool = nvimdiff
 [mergetool]
     prompt = false
     keepBackup = false
-[mergetool "nvimmerge"]
-    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c '$wincmd J'
+[mergetool "vimdiff"]
+    layout = (LOCAL/REMOTE),MERGED
 [pull]
     rebase = true
 [rebase]
