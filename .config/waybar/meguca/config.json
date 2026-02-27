@@ -1,0 +1,99 @@
+{
+  "layer": "top",
+  "mode": "hide",
+  "modules-left": ["custom/tags"],
+  "modules-right": [
+    "mpd",
+    "tray",
+    "network",
+    "cpu",
+    "memory",
+    "battery",
+    "pulseaudio",
+    "clock"
+  ],
+
+  "battery": {
+    "states": { "good": 95, "warning": 30, "critical": 20 },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", ""]
+  },
+
+  "clock": {
+    "interval": 60,
+    "format": "{:%H:%M - [%Y/%m/%d] - %A}"
+  },
+
+  "cpu": {
+    "interval": 15,
+    "format": "{}% ",
+    "max-length": 10
+  },
+
+  "memory": {
+    "states": { "good": 0, "warning": 10, "critical": 80 },
+    "interval": 30,
+    "format": "{}% ",
+    "max-length": 10
+  },
+
+  "mpd": {
+    "format": "{artist} - {album} - {title} {elapsedTime:%M:%S}/{totalTime:%M:%S}",
+    "format-stopped": "",
+    "format-disconnected": "",
+    "interval": 10,
+
+    "consume-icons": {
+      "on": " "
+    },
+    "random-icons": {
+      "on": " "
+    },
+    "repeat-icons": {
+      "on": " "
+    },
+    "single-icons": {
+      "on": "1 "
+    },
+    "state-icons": {
+      "paused": "",
+      "playing": ""
+    },
+    "tooltip-format": "MPD {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}",
+  },
+
+  "network": {
+    "tooltip": false,
+    "format-wifi": "{essid} ",
+    "tooltip-format-ethernet": "{ifname} "
+  },
+
+  "pulseaudio": {
+    "tooltip": false,
+    "scroll-step": 5,
+    "format": "{volume}% {icon}",
+    "format-muted": "{volume}% {icon}",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "format-icons": { "default": ["", "", ""] }
+  },
+
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  },
+
+  "custom/tags": {
+    "exec": "~/.config/waybar/meguca/meguca-tags.py",
+    "return-type": "json",
+    "format": "{}"
+  },
+
+  "custom/launcher": {
+    "format": "⭐",
+    "on-click": "rofi -show-icons -combi-modi window,drun,ssh,run -modi combi -show combi",
+    "on-click-right": "killall rofi"
+  }
+}
