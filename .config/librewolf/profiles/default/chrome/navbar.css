@@ -1,0 +1,33 @@
+/* reorder navbar to after browser */
+#browser {
+  -moz-box-ordinal-group: 0 !important;
+  order: 0 !important;
+}
+
+#navigator-toolbox {
+  -moz-box-ordinal-group: 1 !important;
+  order: 1 !important;
+}
+
+#urlbar[open] {
+  /* make search suggestions display upwards */
+  display: flex !important;
+  flex-direction: column-reverse !important;
+  bottom: 1px !important; /* makes search not shift selector icon */
+  top: auto !important;
+}
+
+.searchmode-switcher {
+  position: unset !important; /* make it not float mid screen */
+}
+
+/* hide navbar in fullscreen unless focused like normal */
+*|*:root[inFullscreen] #navigator-toolbox:focus-within {
+  max-height: unset !important;
+  overflow: visible !important;
+}
+
+*|*:root[inFullscreen] #navigator-toolbox {
+  max-height: 0 !important;
+  overflow: hidden !important;
+}

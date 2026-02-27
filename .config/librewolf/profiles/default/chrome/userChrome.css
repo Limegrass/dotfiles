@@ -1,5 +1,6 @@
 @import "colors.css";
 @import "sidebar.css";
+@import "navbar.css";
 
 #TabsToolbar {
   visibility: collapse;
