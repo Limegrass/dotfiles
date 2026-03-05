@@ -1,7 +1,7 @@
 #! /bin/sh
 
 export XDG_CONFIG_HOME=$HOME/.config # default
-export PATH="$HOME/bin:$HOME/.cargo/bin:$PATH:$XDG_CONFIG_HOME/bin"
+export PATH="$HOME/bin:$HOME/.cargo/bin:$PATH:$XDG_CONFIG_HOME/bin:$HOME/.local/bin"
 EDITOR=$(command -v nvim || command -v vim)
 export EDITOR
 export VISUAL="$EDITOR"
