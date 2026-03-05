@@ -17,6 +17,10 @@
   top: auto !important;
 }
 
+#notification-popup {
+  margin-top: -200px !important; /* make permission requests display upwards */
+}
+
 .searchmode-switcher {
   position: unset !important; /* make it not float mid screen */
 }
