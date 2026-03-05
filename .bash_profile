@@ -14,5 +14,5 @@ done
 if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
     echo "Starting river in 1 seconds"
     sleep 1s
-    exec river
+    river -c "$HOME/.config/river/init-meguca"
 fi
