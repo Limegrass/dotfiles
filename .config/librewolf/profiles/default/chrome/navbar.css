@@ -18,7 +18,7 @@
 }
 
 #notification-popup {
-  margin-top: -200px !important; /* make permission requests display upwards */
+  margin-top: -100vh !important; /* permissions request at top */
 }
 
 .searchmode-switcher {
