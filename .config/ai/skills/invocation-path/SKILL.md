@@ -60,12 +60,12 @@ Skips: empty payload
 
 ### Conventions
 
-- **Stage header**: `### Stage N: Name (purpose)` + `Entry:` line. Group by logical boundary.
-- **Bullet format**: method signature -> source link -> explanation (optional for simple delegation).
-- **Annotations**: append `-- TYPE: detail` on method line. Chain: `-- TYPE: x; TYPE: y`
-- **Annotation types**: `SIDE EFFECT`, `BRANCH`, `KEY`, `SKIP`, `CATCH`
-- **Source links**: `[File.java L50-L60](<url>#L50-L60)`. Pin to commit for investigations.
-- **Stage summary**: `Trigger` / `Effects` / `Skips` block at end of each stage.
+- `Stage header`: `### Stage N: Name (purpose)` + `Entry:` line. Group by logical boundary.
+- `Bullet format`: method signature -> source link -> explanation (optional for simple delegation).
+- `Annotations`: append `-- TYPE: detail` on method line. Chain: `-- TYPE: x; TYPE: y`
+- `Annotation types`: `SIDE EFFECT`, `BRANCH`, `KEY`, `SKIP`, `CATCH`
+- `Source links`: `[File.java L50-L60](<url>#L50-L60)`. Pin to commit for investigations.
+- `Stage summary`: `Trigger` / `Effects` / `Skips` block at end of each stage.
 
 ## Rules
 

@@ -15,15 +15,15 @@ Analysis and recommendations only. No modifications.
 Non-exhaustive. Explore beyond these when context warrants.
 For each affected component, identify:
 
-1. **Boundary conditions** -- empty, null, max, negative, concurrent inputs.
+1. `Boundary conditions`: empty, null, max, negative, concurrent inputs.
    Cite specific fields/params by name.
-2. **Error propagation** -- trace each failure path. Does caller see it?
+2. `Error propagation`: trace each failure path. Does caller see it?
    Distinguish recoverable vs fatal.
-3. **Type tightness** -- can invalid states compile? Narrow types prevent bugs
+3. `Type tightness`: can invalid states compile? Narrow types prevent bugs
    cheaper than runtime checks.
-4. **Invariant preservation** -- pre/post conditions. State transitions that
+4. `Invariant preservation`: pre/post conditions. State transitions that
    must be atomic.
-5. **Trust boundaries** -- user input, network responses, file I/O, cross-service calls.
+5. `Trust boundaries`: user input, network responses, file I/O, cross-service calls.
    Validate at boundary, trust internally.
 
 ## Red Flags
