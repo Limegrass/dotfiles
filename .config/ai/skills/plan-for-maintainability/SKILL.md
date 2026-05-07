@@ -15,17 +15,17 @@ Analysis and recommendations only. No modifications.
 Non-exhaustive. Explore beyond these when context warrants.
 For each affected component, evaluate:
 
-1. **Readability** -- can a new reader understand intent without explanation?
+1. `Readability`: can a new reader understand intent without explanation?
    If not, abstraction is wrong or naming is weak.
-2. **Responsibility isolation** -- does each unit do one thing?
+2. `Responsibility isolation`: does each unit do one thing?
    Mixed concerns signal a split point.
-3. **Abstraction depth** -- indirection without reuse is cost without payoff.
+3. `Abstraction depth`: indirection without reuse is cost without payoff.
    Prefer flat over deep when call sites are few.
-4. **Coupling** -- changes here force changes elsewhere?
+4. `Coupling`: changes here force changes elsewhere?
    Measure: "what breaks if I rename/move this?"
-5. **Codebase consistency** -- follow existing patterns unless actively migrating.
+5. `Codebase consistency`: follow existing patterns unless actively migrating.
    Inconsistency taxes every future reader.
-6. **Simplest solution** -- can this be done with less? Fewer files, types,
+6. `Simplest solution`: can this be done with less? Fewer files, types,
    indirections? Complexity must earn its keep.
 
 ## Red Flags

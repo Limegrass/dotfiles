@@ -15,17 +15,17 @@ Analysis and recommendations only. No modifications.
 Non-exhaustive. Explore beyond these when context warrants.
 For each affected component, evaluate:
 
-1. **Algorithmic complexity** -- time and space on hot path.
+1. `Algorithmic complexity`: time and space on hot path.
    State O() explicitly. Identify input that determines N.
-2. **Allocation patterns** -- objects created per request/iteration?
+2. `Allocation patterns`: objects created per request/iteration?
    Reuse, pool, or pre-allocate where lifetime allows.
-3. **I/O amplification** -- calls in loops, repeated serialization,
+3. `I/O amplification`: calls in loops, repeated serialization,
    unbatched network/disk access. Each I/O call has latency floor.
-4. **Caching opportunity** -- same computation repeated with same inputs?
+4. `Caching opportunity`: same computation repeated with same inputs?
    Cache if: computation expensive AND invalidation tractable.
-5. **Data structure fit** -- chosen for actual access pattern?
+5. `Data structure fit`: chosen for actual access pattern?
    List vs Set vs Map vs sorted structure. Wrong choice = hidden O(n).
-6. **Scaling behavior** -- 10x input growth: linear degradation or cliff?
+6. `Scaling behavior`: 10x input growth: linear degradation or cliff?
    Identify non-linear scaling points.
 
 ## Red Flags

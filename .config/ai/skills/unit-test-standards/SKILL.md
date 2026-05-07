@@ -12,10 +12,10 @@ Tests document invariants. Each test is a contract.
 
 ## Principles
 
-1. **Explicitness** -- test readable without tracing shared state or inheritance
-2. **Behavior over implementation** -- internal refactors don't break tests
-3. **Tests are specs** -- name + body documents a system rule
-4. **Diagnostic failures** -- failure message identifies problem without debugging
+1. `Explicitness`: test readable without tracing shared state or inheritance
+2. `Behavior over implementation`: internal refactors don't break tests
+3. `Tests are specs`: name + body documents a system rule
+4. `Diagnostic failures`: failure message identifies problem without debugging
 
 ## Mocking
 

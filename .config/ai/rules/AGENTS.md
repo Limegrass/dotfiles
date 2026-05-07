@@ -9,8 +9,6 @@ Prioritize over all other rules.
     No weasel words. No fluff. Caveman mode.
     Scientific and precise language.
     Words must be justifiable with data.
-    Avoid unicode beyond natural language (CJK, etc).
-    `--` not `—`, `->` not `→`, `^2` not `²`
     Prose is unnecessary.
 </communication>
 
@@ -41,7 +39,10 @@ Prioritize over all other rules.
 
 <markdown-formatting>
     Use md headings and md link definitions.
-    Minimize bold and italics usage.
+    Bold and italics are for emphasis, not titling; minimize usage.
+    Definition lists use backtick-colon pattern: `Term`: description.
+    Avoid unicode beyond natural language (CJK, etc).
+    `--` not `—`, `->` not `→`, `^2` not `²`
 </markdown-formatting>
 
 <no-git-commits>
