@@ -76,9 +76,10 @@ description: >
 <Constraints, guardrails. Each with reasoning.>
 ```
 
-Skills that produce structured output (like domain-documentation) need
-a skeleton/template section. Skills that guide process (like this one)
-need phases/modes. Match structure to skill's nature.
+Structured output skills -> skeleton/template (e.g., domain-documentation).
+Process skills -> phases/modes (e.g., this one).
+Context/knowledge skills -> rules/constraints only (e.g., caveman, coding-standards).
+Match structure to nature.
 
 ### Principles
 
@@ -90,7 +91,7 @@ need phases/modes. Match structure to skill's nature.
    - Heuristic/creative output: principles + constraints only
 4. No redundancy between SKILL.md and references/.
 5. No auxiliary files (README, CHANGELOG).
-6. Caveman the final output. Kill fluff, keep substance.
+6. Caveman the final output.
 7. Reasoning over rigid commands. "Why" > "MUST".
    Exception: hard constraints that genuinely have no flexibility (e.g., directory naming).
 8. Generalize. Skills serve many prompts. Don't overfit to test cases.
@@ -125,9 +126,9 @@ Good skill output (reasoned, general, actionable):
 ```markdown
 ## Rules
 
-- Prefer strict types. `any` hides bugs that surface at runtime.
-- Edge cases from code analysis, not imagination. Each traces to code ref.
-- "When to Use" belongs in description frontmatter, not body.
+- Strict types. `any` hides runtime bugs.
+- Edge cases from code analysis, not imagination. Trace to code ref.
+- "When to Use" -> description frontmatter, not body.
 ```
 
 ### Quality Check
@@ -148,12 +149,10 @@ Mandatory loop before presenting output:
 3. Principles check. Fix violations.
 4. Repeat until stable.
 
-Never present draft without completing this loop.
-
 ## Iterate
 
 Entry points: usage feedback, false triggers, missed triggers, bad output.
-Not sequential phases -- enter at the relevant concern.
+Not sequential -- enter at relevant concern.
 
 ### Signal -> Fix
 
@@ -185,10 +184,10 @@ Not sequential phases -- enter at the relevant concern.
 | Comments on obvious                  | Remove                          |
 | Multiple responsibilities            | Split into separate skills      |
 | Script logic in prose                | Move to scripts/                |
-| ALWAYS/NEVER/MUST overuse            | Explain reasoning instead       |
-| Narrow to test examples              | Generalize the principle        |
+| ALWAYS/NEVER/MUST overuse            | Add reasoning                   |
+| Narrow to test examples              | Generalize                      |
 | Fixed skeleton for heuristic skill   | Use principles, not rigid steps |
-| Redundant statements across sections | Consolidate to one location     |
+| Redundant statements across sections | Consolidate                     |
 
 ## When to Script
 
