@@ -139,6 +139,17 @@ Good skill output (reasoned, general, actionable):
 - [ ] Rules have reasoning, not bare imperatives
 - [ ] Structure matches skill nature (template-producing vs process-guiding)
 
+## Finalize
+
+Mandatory loop before presenting output:
+
+1. Quality Check. Fix failures.
+2. Caveman pass. Strip fluff.
+3. Principles check. Fix violations.
+4. Repeat until stable.
+
+Never present draft without completing this loop.
+
 ## Iterate
 
 Entry points: usage feedback, false triggers, missed triggers, bad output.
