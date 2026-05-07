@@ -48,9 +48,11 @@ Prioritize over all other rules.
     No git operation execution. Suggested commands OK.
 </no-git-commits>
 
-<rg-over-grep>
-    Use `rg -C ${line_count}` to find matches.
-</rg-over-grep>
+<search-file-content>
+    Use `rg -C ${surrounding_context_line_count}` to find matches.
+    Only get partial content if full content is undesirable.
+    Prefer `rg` over `grep`, `sed`, `head`, `tail` to view partial content.
+</search-file-content>
 
 <python-scripts>
     Script in Python over shell for structured data and analysis.
