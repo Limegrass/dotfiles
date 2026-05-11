@@ -39,6 +39,7 @@ Prioritize over all other rules.
 
 <markdown-formatting>
     Use md headings and md link definitions.
+    Md definitions don't render; comments not headings for link definitions categorization.
     Bold and italics are for emphasis, not titling; minimize usage.
     Definition lists use backtick-colon pattern: `Term`: description.
     Avoid unicode beyond natural language (CJK, etc).
