@@ -31,6 +31,7 @@ Prioritize over all other rules.
     1 change type per commit.
     Split change to refactor, feature addition, etc.
     Plan changes with conventional commits.
+    Prioritize refactors and fixes before features.
 </commit-sanitation>
 
 <white-space>
