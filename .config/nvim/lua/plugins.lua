@@ -96,7 +96,7 @@ return {
     { "nvim-telescope/telescope-symbols.nvim" },
     {
         "nvim-telescope/telescope.nvim",
-        branch = "0.1.x",
+        branch = "master",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope-symbols.nvim"
@@ -554,49 +554,44 @@ return {
     },
 
     -- Languages
-    { "nvim-treesitter/nvim-treesitter-textobjects" },
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         config = function()
-            require("nvim-treesitter.configs").setup({
-                auto_install = true,
-                ignore_install = {},
-                ensure_installed = { "c", "lua", "vim", "vimdoc" },
-                highlight = {
-                    enable = true, -- false will disable the whole extension
-                },
-                indent = {
-                    enable = true,
-                },
-                modules = {},
-                sync_install = false,
-                textobjects = {
-                    select = {
-                        enable = true,
-                        include_surrounding_whitespace = true,
-                        keymaps = {
-                            ["ia"] = { query = "@parameter.inner" },
-                            ["aa"] = { query = "@parameter.outer" },
-                            ["if"] = { query = "@function.inner" },
-                            ["af"] = { query = "@function.outer" },
-                            ["ic"] = { query = "@class.inner" },
-                            ["ac"] = { query = "@class.outer" },
-                        },
-                        lookahead = true,
-                        selection_modes = {
-                            ["@parameter.outer"] = "v",
-                            ["@function.outer"] = "v",
-                            ["@class.outer"] = "v",
-                        },
+            vim.opt.foldmethod = "expr"
+            vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        end,
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        config = function()
+            require("nvim-treesitter-textobjects").setup({
+                select = {
+                    include_surrounding_whitespace = true,
+                    lookahead = true,
+                    selection_modes = {
+                        ["@parameter.outer"] = "v",
+                        ["@function.outer"] = "v",
+                        ["@class.outer"] = "v",
                     },
-                }
+                },
             })
 
-            vim.cmd([[
-                set foldmethod=expr
-                set foldexpr=nvim_treesitter#foldexpr()
-            ]])
+            local textobject_keymaps = {
+                ["ia"] = "@parameter.inner",
+                ["aa"] = "@parameter.outer",
+                ["if"] = "@function.inner",
+                ["af"] = "@function.outer",
+                ["ic"] = "@class.inner",
+                ["ac"] = "@class.outer",
+            }
+
+            for keymap, query in pairs(textobject_keymaps) do
+                vim.keymap.set({ "x", "o" }, keymap, function()
+                    require("nvim-treesitter-textobjects.select").select_textobject(query)
+                end)
+            end
         end,
     },
 
