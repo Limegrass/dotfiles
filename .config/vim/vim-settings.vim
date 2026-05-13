@@ -27,7 +27,6 @@ set history=100
 set hidden
 set diffopt+=vertical,iwhite,hiddenoff
 set fileformats=unix,dos
-set fileignorecase
 set virtualedit=all
 set spelllang=en
 set nostartofline
