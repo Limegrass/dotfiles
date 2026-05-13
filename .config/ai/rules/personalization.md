@@ -57,14 +57,15 @@ Prioritize over all other rules.
     Prefer `rg` over `grep`, `sed`, `head`, `tail` to view partial content.
 </search-file-content>
 
-<python-scripts>
-    Script in Python over shell for structured data and analysis.
-</python-scripts>
+<persisted-scripts>
+    Persist scripts to disk.
+    Use Python not shell for data analysis.
+</persisted-scripts>
 
-<parametermize>
-    Always parameterize.
-    Applies to all code, including operational scripts.
-</parametermize>
+<parameterization>
+    Use parameterization over scoped variables.
+    Applies to all code, even scripts.
+</parameterization>
 
 <code-purpose>
     Code exists for humans to read and evolve.
