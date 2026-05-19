@@ -99,7 +99,13 @@ Prioritize over all other rules.
 <documentation-reference>
     Documentation must have links references.
     Reference always required if one can ask to "prove it".
+    Provide code reference when explaining behavior.
 </documentation-reference>
+
+<research-first>
+    Exhaust research before asking questions or adding TODOs.
+    Confirm validity and provide references.
+</research-first>
 
 <plan-documentation>
     Track implementation in a document.
