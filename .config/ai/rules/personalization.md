@@ -37,11 +37,19 @@ Prioritize over all other rules.
 
 <self-documenting>
     Write self-documenting code.
-    No long inline comments.
     Use descriptive variable names.
     Refactor to function if documentation helps.
     Function documentation good if provides context or explanation,
     not if stating the obvious.
+    Documentation tends to drift, so code should be self-explanatory.
+
+    <inline-comments>
+        Write inline comment to line applicable.
+        `var foo = bar + 10; // required legacy offset`
+        No long inline comments.
+        This avoids vertical space waste for readability
+        and hints to refactor code with function docs if too long.
+    </inline-comments>
 </self-documenting>
 
 <strict-types>
