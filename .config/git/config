@@ -11,6 +11,7 @@
     diff-staged = diff --cached
     dir = rev-parse --git-dir
     drop = "!drop_commit() { git rebase --onto \"$1~\" \"$1\"; }; drop_commit"
+    dotfiles = "!git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
     ds = diff --cached
     dt = difftool
     fix = commit --fixup
