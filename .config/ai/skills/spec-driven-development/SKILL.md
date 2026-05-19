@@ -1,178 +1,115 @@
 ---
 name: spec-driven-development
 description: >
-  Produces a spec document before implementing code changes. Documents current
-  state (code refs, types, example data), desired state (before/after delta),
-  affected components, and edge cases. Scales depth to change complexity.
-  Invoke when asked to: write a spec, spec out a change, plan a feature, define
-  requirements, design an approach, or before implementing any feature/fix/refactor.
+  Produces spec documents before implementation. Invoke when asked to: write a
+  spec, spec out a change, plan a feature, define requirements, design an
+  approach, or before implementing any feature/fix/refactor.
 ---
 
 # Spec-Driven Development
 
-Spec before code. Implementation follows spec as source of truth.
-Spec depth scales to change complexity -- not every change needs full template.
-
 ## Process
 
-1. Gauge complexity. Pick spec depth (see Scaling below).
-2. Understand types/schemas involved. Read definitions, search codebase.
-   If types unavailable, AskUser before proceeding.
-3. Research current state: read code, trace paths, query data if accessible.
-4. Write spec to file immediately. TODOs acceptable -- draft > blocking.
-5. Mark unknowns `[TODO: user to provide]`. AskUser for critical values.
-6. Present spec for review. Proceed once confirmed, or immediately if user
-   requested both spec + implementation in same prompt.
+1. Resolve types/schemas involved. Read definitions, search codebase.
+   If types unavailable: AskUser.
+2. Research current state:
+   - Trace invocation paths (`invocation-path` skill). Read source.
+   - Query APIs/data if accessible. Capture actual output as evidence.
+   - Find existing tests covering the area.
+3. If research reveals undocumented system invariants/flows:
+   invoke `domain-documentation` for current-state knowledge.
+   Spec references resulting doc; plans stay in spec.
+4. Identify at least one rejected alternative.
+5. Write spec to file. TODOs acceptable -- draft > blocking.
+6. Resolve unknowns: search, query, infer. Research first; only mark
+   `[TODO: user to provide]` after exhausting available tools.
+7. Present for review.
 
-## Scaling
+## Rules
 
-Not all changes deserve full spec. Match depth to risk:
-
-| Complexity | Signal                                           | Spec Depth                                                |
-| ---------- | ------------------------------------------------ | --------------------------------------------------------- |
-| Trivial    | Single file, obvious transform, no edge cases    | Inline in plan doc (3-5 lines: what, why, where)          |
-| Low        | Few files, clear delta, <3 edge cases            | Light spec (Problem + Delta + Affected Components)        |
-| Medium     | Cross-component, state changes, new validation   | Standard spec (full template minus inapplicable sections) |
-| High       | New subsystem, multi-entity, API contract change | Full spec + type definitions + data examples              |
-
-When uncertain, start with standard. Trim after.
-
-Trivial example (inline in plan doc):
-
-> What: Rename `getUserName` -> `getDisplayName` in `utils/format.ts`
-> Why: Aligns with naming convention from <ticket>
-> Where: Single call site in `components/Header.tsx` L42
-
-Low example (light spec):
-
-> ## Problem Statement
->
-> Event handler silently drops messages when payload exceeds 256KB.
->
-> ## Delta
->
-> | Aspect            | Before           | After                    | Why                                    |
-> | ----------------- | ---------------- | ------------------------ | -------------------------------------- |
-> | Oversized payload | Dropped silently | Routed to DLQ with alarm | Data loss unacceptable for audit trail |
->
-> ## Affected Components
->
-> | Component      | Change Type | Risk | Reference                          |
-> | -------------- | ----------- | ---- | ---------------------------------- |
-> | EventProcessor | modify      | med  | [event_processor.ts L80-L95](link) |
-> | DLQ config     | new         | low  | N/A                                |
+- Spec is declarative artifact. No iterative language.
+  "Per feedback, changed X" -> just state X. History lives in git.
+- Feedback: edit in-place. Add `[Revised: date]` only if substantial change.
+- Rejected approach in feedback: archive as `spec-{name}-v1-rejected.md`, start fresh.
+- Unresolved disagreement: document both positions, mark `[DECISION NEEDED]`.
+- Never delete specs. Superseded specs retain historical context.
+- Post-approval in unrestricted mode: delegate `plan-for-correctness`,
+  `plan-for-maintainability`, `plan-for-performance` against spec.
+  Findings feed back as advisory; spec remains source of truth.
 
 ## Output
 
 File: `spec-{ticket-id}.md` or `spec-{feature-slug}.md`
-Location: user's preferred docs location, or alongside plan documents.
 
-## Template
+Template: [`spec-template.md`][spec-template]. Adapt sections.
 
-Sections are menu. Omit inapplicable. Mark conditional sections with `[if: ...]`.
+Post-spec: `unit-test-development` against Acceptance Criteria (TDD -- tests before code).
 
-```markdown
-# Spec: <title>
+## Calibration
 
-Ticket: <link or N/A>
-Date: <ISO date>
+### Bad (vague, unanchored):
 
-## Problem Statement
+> ## Problem
+>
+> "The API is slow and needs to be faster."
+>
+> ## Delta
+>
+> "Improve performance."
+>
+> ## Edge Cases
+>
+> "Handle edge cases properly."
 
-What needs to change. Why. One paragraph.
+Why bad: no code refs, no measurements, no specific behavior change, no evidence.
 
-## Types & Schema [if: change involves typed data]
+### Good (anchored, testable):
 
-Key types governing this change. Include definition or permalink.
+> ## Problem
+>
+> `POST /api/orders` returns 500 when `items` array is empty. 43 occurrences in
+> last 7 days per CloudWatch Logs Insights query. Clients retry, amplifying load.
+>
+> ## Acceptance Criteria
+>
+> - [ ] Empty items array returns 400 with `{"error": "items required", "code": "EMPTY_ITEMS"}`
+> - [ ] Existing test suite passes without modification
+> - [ ] CloudWatch alarm for 500s on /api/orders drops to 0 within 24h of deploy
+>
+> ## Current State
+>
+> Code: [`OrderService.java L44-52`][ref-order-handler] -- iterates `items`
+> without empty check. L47 calls `items.get(0)` unconditionally.
+>
+> ## Delta
+>
+> | Aspect      | Before             | After                | Why                |
+> | :---------- | :----------------- | :------------------- | :----------------- |
+> | Empty items | 500 NPE            | 400 structured error | Client-correctable |
+> | Retry storm | Clients retry 500s | 400 stops retries    | Reduces load 3x    |
+>
+> ## Alternatives
+>
+> Return 200 with empty order -- rejected. Violates domain invariant
+> (order must have items). Downstream systems assume non-empty.
 
-| Type       | Definition                | Role in Change      |
-| ---------- | ------------------------- | ------------------- |
-| <TypeName> | [<File> L#-L#](permalink) | <how it's affected> |
+## Quality
 
-## Current State
+- [ ] Problem has measurable impact (numbers, not adjectives)
+- [ ] Every Acceptance Criterion testable by automation or observation
+- [ ] Observability defines specific metric/query (not "add monitoring")
+- [ ] Risks separate likelihood from impact
+- [ ] Rollback strategy concrete (revert commit, feature flag, etc.)
 
-### Behavior
+## Traps
 
-How system works today. Invocation path if complex.
-Focus on WHY current behavior exists, not just WHAT it does.
+- Inventing code references. Never fabricate file:line links. Exhaust search before marking `[TODO: locate]`.
+- Skipping Alternatives. "Only one way" almost never true. Push past first solution.
+- Vague Acceptance Criteria. "Should work correctly" not testable. State specific observable behavior.
+- Evidence from imagination. Can't query system? Say so. Don't invent JSON responses.
+- Copying template prose. Replace ALL placeholder text. `<description>` in output = failure.
+- Iterative language in spec. Declarative artifact, not conversation transcript.
+- Missing code refs. Every claim about current behavior needs permalink evidence.
 
-### Code References
-
-| Component | File                      | Role                      |
-| --------- | ------------------------- | ------------------------- |
-| <name>    | [<File> L#-L#](permalink) | <purpose in current flow> |
-
-### Evidence [if: observable data exists]
-
-Actual data showing current behavior. Format matches domain
-(JSON, SQL result, CLI output, rendered UI, log line, etc.)
-```
-
-<actual system output>
-```
-
-## Desired State
-
-### Behavior
-
-How system should work after change. What invariant it establishes.
-
-### Delta
-
-| Aspect                          | Before    | After     | Why                 |
-| ------------------------------- | --------- | --------- | ------------------- |
-| <field, behavior, or structure> | <current> | <desired> | <reason for change> |
-
-### Evidence (After) [if: transformation has concrete output]
-
-Same shape as current, showing result.
-
-```
-<expected output>
-```
-
-## Affected Components
-
-| Component | Change Type              | Risk           | Reference           |
-| --------- | ------------------------ | -------------- | ------------------- |
-| <name>    | <new/modify/remove/test> | <low/med/high> | [<File>](permalink) |
-
-## Edge Cases
-
-Discovered through: code path analysis, input boundaries, failure modes.
-Each traces to conditional branch, boundary, or failure in existing code.
-
-### <description>
-
-Source: [<File> L#](permalink) -- <why this edge exists>
-
-Options:
-
-- A: <behavior>
-- B: <behavior>
-
-Chosen: [TODO: user to specify]
-
-## Out of Scope
-
-What this change explicitly does NOT do. Prevents scope creep.
-
-## Risks & Rollback [if: production-facing change]
-
-| Risk                  | Likelihood     | Mitigation      |
-| --------------------- | -------------- | --------------- |
-| <what could go wrong> | <low/med/high> | <how to handle> |
-
-Rollback: <revert strategy or "standard deploy rollback">
-
-```
-
-## Rules
-
-- Under types/schemas before proposing changes.
-- Current State from source code. Real permalinks, not invented refs.
-- Evidence from actual system output -- query APIs, read tests, ask user.
-- Edge cases from code analysis, not imagination. Each traces to code ref.
-- Delta table: include WHY column. Transformation without reason is incomplete.
-- After approval, spec = source of truth for implementation.
-```
+[spec-template]: assets/spec-template.md
+[ref-order-handler]: permalink
