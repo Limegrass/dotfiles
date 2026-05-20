@@ -115,8 +115,21 @@ Prioritize over all other rules.
     Confirm validity and provide references.
 </research-first>
 
-<plan-documentation>
-    Track implementation in a document.
-</plan-documentation>
+<implementation>
+    <domain-driven-development>
+        Research the domain before implementation.
+        Spec/plan is unlikely to be correct unless
+        we understand our problem space.
+    </domain-driven-development>
+    <spec-driven-development>
+        Write spec/plan before implementation.
+        Track progress in document.
+        This avoids data loss and guides further decisions.
+    </spec-driven-development>
+    <test-driven-development>
+        Use TDD -- write unit tests before code.
+        This lets us know our code actually fixes the issue and behaves as desired.
+    </test-driven-development>
+</implementation>
 
 [caveman-original]: https://github.com/JuliusBrussee/caveman/blob/main/caveman/SKILL.md
