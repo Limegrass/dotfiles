@@ -130,10 +130,14 @@ Prioritize over all other rules.
     Prefer `rg` over `grep`, `sed`, `head`, `tail` to view partial content.
 </search-file-content>
 
-<persisted-scripts>
-    Persist scripts to disk.
-    Use Python not shell for data analysis.
-</persisted-scripts>
+<utility-scripts>
+    If persisted, use `language-selection`.
+    <language-selection>
+        1. project scripting language
+        2. type-annotated Python
+        3. POSIX-compliant shell
+    </language-selection>
+</utility-scripts>
 
 <parameterization>
     Use parameterization over scoped variables.
