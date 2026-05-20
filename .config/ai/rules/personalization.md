@@ -69,6 +69,13 @@ Prioritize over all other rules.
     Include newlines/whitespace for logical separation.
 </white-space>
 
+<declarative-artifacts>
+    Generated documents (specs, domain docs, ADRs) use declarative voice.
+    No iterative/conversational language in artifacts.
+    "After discussion" / "based on feedback" / "we then decided" = rewrite as direct statement.
+    History lives in git, not prose.
+</declarative-artifacts>
+
 <markdown>
     <links>
         Use md link definitions, not inline.
