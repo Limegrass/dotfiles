@@ -69,14 +69,56 @@ Prioritize over all other rules.
     Include newlines/whitespace for logical separation.
 </white-space>
 
-<markdown-formatting>
-    Use md headings and md link definitions.
-    Md definitions don't render; comments not headings for link definitions categorization.
-    Bold and italics are for emphasis, not titling; minimize usage.
-    Definition lists use backtick-colon pattern: `Term`: description.
-    Avoid unicode beyond natural language (CJK, etc).
-    `--` not `—`, `->` not `→`, `^2` not `²`
-</markdown-formatting>
+<markdown>
+    <links>
+        Use md link definitions, not inline.
+        Md definitions don't display when rendered.
+        Only if unused link exists, add `Links` at appropriate heading depth to display.
+        Prefix links and section to groups.
+        <good>
+            ### Links
+            - [Foobar2000 Media Player][foobar2k]
+
+            [google-home]: https://google.com
+            [google-maps]: https://maps.google.com
+            [foobar2k-home]: https://foobar2000.com
+        </good>
+        <bad>
+            ### References
+
+            <!-- Google -->
+            [homepage]: https://google.com
+            [maps]: https://maps.google.com
+
+            <!-- Foobar -->
+            [foobar2k]: https://foobar2000.com
+        </bad>
+    </links>
+
+    <bold-italics>
+        Bold or italics only as emphasis; emphasis only for critical/unrecoverables; minimize usage.
+        No bold or italics as mock title/heading.
+        Bold/italics clutters readability of raw markdown.
+        Use md headings for titles/headings.
+    </bold-italics>
+
+    <tables>
+        Tables for tabular data.
+        Potentially long cell entry implies sectioning by md headers would be easier to read.
+        Long table rows makes raw markdown difficult to read.
+        Define alignment explicitly with `:---`, `:---:`, `---:`
+    </tables>
+
+    <key-value-pairs>
+        Key value pairs use colon without backticks - key: value
+        Definition lists use backtick-colon pattern - `Term`: description
+    </key-value-pairs>
+
+    <unicode>
+        Avoid unicode beyond natural language (CJK, etc).
+        `--` not `—`, `->` not `→`, `^2` not `²`
+    </unicode>
+</markdown>
 
 <no-git-commits>
     No git operation execution. Suggested commands OK.
