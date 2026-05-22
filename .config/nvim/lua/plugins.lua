@@ -99,11 +99,13 @@ return {
         branch = "master",
         dependencies = {
             "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope-symbols.nvim"
+            "nvim-telescope/telescope-symbols.nvim",
+            "nvim-telescope/telescope-live-grep-args.nvim"
         },
         config = function()
             local telescope = require("telescope")
             local builtin = require("telescope.builtin")
+            local live_grep_args = require("telescope").extensions.live_grep_args.live_grep_args
             vim.keymap.set("n", "<c-space><c-space>", function()
                 local is_rg_available = vim.fn.executable("rg") == 1
                 local find_files_options = is_rg_available
@@ -111,7 +113,7 @@ return {
                     or {}
                 builtin.find_files(find_files_options)
             end, {})
-            vim.keymap.set("n", "<c-space>r", builtin.live_grep, {})
+            vim.keymap.set("n", "<c-space>r", live_grep_args, {})
             vim.keymap.set("n", "<c-space>f", builtin.buffers, {})
             vim.keymap.set("n", "<c-space>t", builtin.tags, {})
             vim.keymap.set("n", "<c-space>z", builtin.oldfiles, {})
@@ -141,6 +143,22 @@ return {
                 function() require("telescope.builtin").symbols({ sources = { "emoji", "kaomoji" } }) end,
                 { silent = true }
             )
+            vim.keymap.set("n", "<c-space>R", function()
+                live_grep_args({
+                    additional_args = { "--glob", "!*test*", "--glob", "!*Test*", "--glob", "!*spec*" },
+                    prompt_title = "Grep (no tests)",
+                })
+            end, {})
+            vim.keymap.set("n", "<c-space><c-r>", function()
+                vim.ui.input({ prompt = "Search path: ", completion = "file" }, function(dir)
+                    if dir then
+                        live_grep_args({
+                            search_dirs = { dir },
+                            prompt_title = string.format("Grep [%s]", dir),
+                        })
+                    end
+                end)
+            end, {})
             telescope.setup({
                 defaults = {
                     layout_strategy = "vertical",
@@ -155,6 +173,7 @@ return {
                 },
             })
             require("telescope").load_extension("fzf")
+            require("telescope").load_extension("live_grep_args")
         end,
     },
 
