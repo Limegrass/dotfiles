@@ -1,18 +1,17 @@
 ---
 name: plan-for-performance
 description: >
-  Guides implementation planning from a performance perspective.
-  Invoke when delegated to plan changes focusing on efficiency,
-  algorithmic complexity, and resource usage.
+  Plan implementation focusing on performance: algorithmic complexity,
+  resource usage, I/O efficiency, scaling behavior. Invoke when
+  delegated to analyze changes from performance perspective.
 ---
 
 # Planning for Performance
 
-Analysis and recommendations only. No modifications.
+Produce findings and recommendations, not implementations.
 
 ## Analysis
 
-Non-exhaustive. Explore beyond these when context warrants.
 For each affected component, evaluate:
 
 1. `Algorithmic complexity`: time and space on hot path.
@@ -27,23 +26,25 @@ For each affected component, evaluate:
    List vs Set vs Map vs sorted structure. Wrong choice = hidden O(n).
 6. `Scaling behavior`: 10x input growth: linear degradation or cliff?
    Identify non-linear scaling points.
+7. `Resource lifecycle`: connections, streams, handles opened but not closed
+   or held longer than needed. Leak under load = eventual OOM/exhaustion.
+8. `Serialization cost`: object<->wire conversion on hot path.
+   Repeated serialization of same object, oversized payloads, unused fields in response.
 
-## Red Flags
+## Traps
 
-- O(n^2) hidden in nested iterations (especially with DB/API calls)
-- Repeated parsing/serialization of same data
-- Allocating in tight loops (GC pressure, fragmentation)
-- Synchronous I/O blocking concurrent path
-- Unbounded collections growing with request volume
-- String concatenation in loops (use builder/buffer)
+- Measure first. Optimizing without profiling is superstition.
+- Async moves latency, doesn't remove it. Total work unchanged.
+- Cache invalidation bugs worse than cache misses.
+- "Constant factor" matters when N always small -- O(1) with huge constant loses to O(n) with n<50.
+- O(n^2) hides in nested iterations (especially with DB/API calls inside loops).
+- Unbounded collections growing with request volume = memory leak with extra steps.
+- String concatenation in loops: O(n^2) in many runtimes without builder. Use StringBuilder/join.
+- Connection pool too small under load: threads block waiting, throughput collapses despite available CPU.
 
-## Scope Boundaries
+## Scope
 
-Deprioritize:
-
-- Cold paths (startup, config loading, error formatting)
-- Code called <100 times with small N (optimize if profiler says so)
-- Readability-destroying micro-optimizations without measured bottleneck
+Deprioritize: cold paths (startup, config, error formatting), code called <100 times with small N, micro-optimizations without measured bottleneck.
 
 Prioritize: request hot path, loop bodies, high-QPS endpoints, data-proportional operations.
 
@@ -53,31 +54,24 @@ Prioritize: request hot path, loop bodies, high-QPS endpoints, data-proportional
 ### Performance Analysis
 
 #### Findings
-
 <What's slow/wasteful, where (file:line), complexity, estimated impact>
 
 #### Proposed Changes
-
-<File + code-level changes. Complexity before/after.
-Each explains WHY it improves efficiency at scale.>
+<File + code-level changes. Complexity before/after.>
 
 #### Benchmarking Suggestions
-
 <How to validate gains. Specific inputs, expected improvement range.>
 
 #### Trade-offs
-
-<Cost to readability or added complexity. Be specific.>
+<Cost to readability or added complexity.>
 ```
 
 ## Calibration
 
-Bad (premature, unmeasured):
-
+Bad:
 > "Use a HashMap instead of a List for better performance."
 
-Good (specific, complexity-aware):
-
+Good:
 > "`findUser(userId)` at UserService.java:62 iterates `allUsers` list (O(n), n=active users).
 > Called per-request at ~500 QPS. With 50K users = 25M comparisons/sec.
 > Fix: index users in `Map<UserId, User>` at load time. Lookup becomes O(1).
