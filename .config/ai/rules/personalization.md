@@ -157,6 +157,14 @@ Prioritize over all other rules.
     Report implementation trade-offs.
 </code-purpose>
 
+<solutioning>
+    Never solve immediate symptom. Solve the general class.
+    "X breaks" -> why? -> what pattern causes this? -> fix the pattern.
+    Specific fix = future regression. General fix = durable system.
+    Ask: "What other cases share this root cause?"
+    Applies to code, architecture, process, documentation.
+</solutioning>
+
 <documentation-reference>
     Documentation must have links references.
     Reference always required if one can ask to "prove it".
