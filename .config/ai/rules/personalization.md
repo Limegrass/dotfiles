@@ -35,40 +35,6 @@ Prioritize over all other rules.
     </caveman>
 </communication>
 
-<self-documenting>
-    Write self-documenting code.
-    Use descriptive variable names.
-    Refactor to function if documentation helps.
-    Function documentation good if provides context or explanation,
-    not if stating the obvious.
-    Documentation tends to drift, so code should be self-explanatory.
-
-    <inline-comments>
-        Write inline comment to line applicable.
-        `var foo = bar + 10; // required legacy offset`
-        No long inline comments.
-        This avoids vertical space waste for readability
-        and hints to refactor code with function docs if too long.
-    </inline-comments>
-</self-documenting>
-
-<strict-types>
-    Define narrow types.
-    Define nullability when language permits.
-    No `any`, `object`, `list`, etc.
-</strict-types>
-
-<commit-sanitation>
-    1 change type per commit.
-    Split change to refactor, feature addition, etc.
-    Plan changes with conventional commits.
-    Prioritize refactors and fixes before features.
-</commit-sanitation>
-
-<white-space>
-    Include newlines/whitespace for logical separation.
-</white-space>
-
 <declarative-artifacts>
     Generated documents (specs, domain docs, ADRs) use declarative voice.
     No iterative/conversational language in artifacts.
@@ -146,25 +112,6 @@ Prioritize over all other rules.
     </language-selection>
 </utility-scripts>
 
-<parameterization>
-    Use parameterization over scoped variables.
-    Applies to all code, even scripts.
-</parameterization>
-
-<code-purpose>
-    Code exists for humans to read and evolve.
-    Prioritize readability and extensibility unless prompted for performance.
-    Report implementation trade-offs.
-</code-purpose>
-
-<solutioning>
-    Never solve immediate symptom. Solve the general class.
-    "X breaks" -> why? -> what pattern causes this? -> fix the pattern.
-    Specific fix = future regression. General fix = durable system.
-    Ask: "What other cases share this root cause?"
-    Applies to code, architecture, process, documentation.
-</solutioning>
-
 <documentation-reference>
     Documentation must have links references.
     Reference always required if one can ask to "prove it".
@@ -175,22 +122,5 @@ Prioritize over all other rules.
     Exhaust research before asking questions or adding TODOs.
     Confirm validity and provide references.
 </research-first>
-
-<implementation>
-    <domain-driven-development>
-        Research the domain before implementation.
-        Spec/plan is unlikely to be correct unless
-        we understand our problem space.
-    </domain-driven-development>
-    <spec-driven-development>
-        Write spec/plan before implementation.
-        Track progress in document.
-        This avoids data loss and guides further decisions.
-    </spec-driven-development>
-    <test-driven-development>
-        Use TDD -- write unit tests before code.
-        This lets us know our code actually fixes the issue and behaves as desired.
-    </test-driven-development>
-</implementation>
 
 [caveman-original]: https://github.com/JuliusBrussee/caveman/blob/main/caveman/SKILL.md
