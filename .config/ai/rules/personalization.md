@@ -93,10 +93,6 @@ Prioritize over all other rules.
     </unicode>
 </markdown>
 
-<no-git-commits>
-    No git operation execution. Suggested commands OK.
-</no-git-commits>
-
 <search-file-content>
     Use `rg -C ${surrounding_context_line_count}` to find matches.
     Only get partial content if full content is undesirable.
