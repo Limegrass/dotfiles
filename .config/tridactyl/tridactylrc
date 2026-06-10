@@ -14,3 +14,7 @@ unbind --mode=ex <s-Tab>
 autocmd DocStart youtube.com mode ignore
 seturl console.aws.amazon.com/cloudwatch superignore true
 seturl google.com/maps superignore true
+
+command killall jsb -p browser.tabs.query({url: `*://*.${JS_ARG}/*`}).then(tabs => tabs.forEach(tab => browser.tabs.remove(tab.id)))
+command killalltitle jsb -p browser.tabs.query({}).then(tabs => tabs.filter(tab => tab.title.toLowerCase().includes(JS_ARG.toLowerCase())).forEach(tab => browser.tabs.remove(tab.id)))
+command dedup jsb browser.tabs.query({}).then(tabs => { const seenUrls = new Set(); browser.tabs.remove(tabs.filter(tab => seenUrls.has(tab.url) || (seenUrls.add(tab.url), false)).map(tab => tab.id)); })
