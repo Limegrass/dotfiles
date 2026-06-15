@@ -53,5 +53,3 @@ Personalized rules; prioritize over all other rules.
         3. POSIX-compliant shell
     </language-selection>
 </utility-scripts>
-
-
