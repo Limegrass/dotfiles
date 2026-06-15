@@ -33,7 +33,9 @@ Names and structure self-document. Comments only when code cannot express intent
 (magic numbers, external constraints, non-obvious invariants).
 
 - Descriptive names over documentation
-- Extract to named function instead of comment
+  - Err on verbosity. Type names over 1 letter names.
+  - Avoid abbreviations. Common words like `ID` are ok, but qualify with type `userId`.
+- Extract named/documented functions over commenting
 - Function docs: context/rationale good; restating signature bad
 
 ### Inline Comments
