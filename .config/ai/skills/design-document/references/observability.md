@@ -55,3 +55,8 @@ green infrastructure dashboard hides silent product regressions. Mark N/A with r
 - Metric dimensions/tags: bound cardinality; high-cardinality labels explode cost and storage.
 - Telemetry volume vs value; sampling and aggregation trade-offs.
 - Emit at the source; backend-neutral naming so the telemetry store can change.
+
+## Traps
+
+- Observability afterthought / infrastructure-only metrics. Processor graphs can't detect a silent
+  product regression or prove value. Instrument business outcomes and define indicators and objectives up front.

@@ -27,3 +27,8 @@ Estimate against a load model; "fast enough" is not a number. State assumptions 
 
 - Hard ceilings and quotas; hot keys/partitions; thundering herd.
 - Behavior beyond capacity: shed load, queue, or fail -- and how that surfaces.
+
+## Traps
+
+- Performance hand-waving. "Scales fine" without a load model. State expected/peak load,
+  latency budget, and the resource that saturates first.

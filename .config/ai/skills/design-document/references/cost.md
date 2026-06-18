@@ -28,3 +28,8 @@ estimate. Compare total cost across approaches, then model the chosen design.
 - Budgets and cost alarms; anomaly detection on spend.
 - Levers: autoscaling, right-sizing, time-to-live expiry, tiering, archival, idle shutdown, caching, batching.
 - Ownership: who watches spend and acts on it.
+
+## Traps
+
+- Cost hand-waving. "Cheap enough" without numbers. Estimate build + run + at-scale;
+  the cheapest prototype can be the costliest fleet.

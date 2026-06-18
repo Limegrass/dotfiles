@@ -1,8 +1,5 @@
 # Design: <title>
 
-Core design doc. Companion reviews (separate, required before build/launch):
-design-<name>-readiness.md (operational readiness), design-<name>-security-privacy.md (security & privacy).
-
 ## Problem Space
 
 <what problem we're solving. scope boundaries. what's NOT in scope.>
@@ -33,6 +30,8 @@ Trade-offs:
 
 Evidence: <benchmark/prototype numbers, prior art, similar system -- cite source>
 
+Simplicity: <moving parts, failure surface, cognitive load; ease of change>
+
 Lifecycle:
 - Build: <effort, risk, unknowns -- low/med/high>
 - Operate: <failure modes -- how it breaks/degrades>
@@ -56,6 +55,8 @@ Trade-offs:
 
 Evidence: <benchmark/prototype numbers, prior art, similar system -- cite source>
 
+Simplicity: <moving parts, failure surface, cognitive load; ease of change>
+
 Lifecycle:
 - Build: <effort, risk, unknowns -- low/med/high>
 - Operate: <failure modes -- how it breaks/degrades>
@@ -71,7 +72,7 @@ Security & privacy: <attack surface, sensitivity of data handled, residency/comp
 
 ## Evaluation Criteria
 
-Criteria span the lifecycle plus cross-cutting axes -- include recoverability, maintainability,
+Criteria span the lifecycle plus cross-cutting axes -- include recoverability, simplicity, maintainability,
 performance, security, privacy, and cost, not only build effort.
 
 | Criterion       | Weight | Approach A | Approach B |
@@ -127,7 +128,7 @@ Detection: <service-level breach + failure-mode alarms (see Observability); heal
 Blast radius: <worst-case scope; isolation/containment (cell, tenant, circuit breaker)>
 
 Recovery:
-- Bad deploy: <rollback strategy -- see Operational Readiness for the full rollout/migration plan>
+- Bad deploy: <rollback strategy -- canary/blue-green, feature flags, migration rollback-safety>
 - Reprocessing: <retry/backoff, idempotency, dead-letter queue, redrive/replay after fix>
 - State divergence: <anti-entropy/reconciliation, drift detection, backfill from log/snapshot>
 - Data loss: <backups, point-in-time recovery, tested restore>
@@ -156,12 +157,6 @@ For the recommended design. Estimate with numbers. See references/cost.md for th
 - Operational cost: <on-call load, toil, recurring infrastructure/licensing>
 - Deprecation: <how this is retired or replaced when superseded>
 
-## Extended Reviews
-
-Separate companion artifacts; required before build/launch:
-- Operational Readiness: design-<name>-readiness.md -- rollout & migration, accessibility/internationalization
-- Security & Privacy Review: design-<name>-security-privacy.md -- threat model, privacy assessment, compliance
-
 ## Open Questions
 
-- <unresolved item>: <what's needed to resolve, who owns it>
+- <question needing a user design decision to clarify direction -- not researchable; what it blocks>
