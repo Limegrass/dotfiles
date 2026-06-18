@@ -17,6 +17,7 @@ Language supplements: `references/`
 - Types encode constraints—push validation to compile time; runtime validation at external data boundaries
 - Atomic single-purpose commits
 - Readability and extensibility default; performance on request with trade-off disclosure
+- Declarative artifacts -- code standalone without context of conversation
 
 ## Strict Types
 
@@ -31,6 +32,8 @@ If unavoidable, justify with inline comment.
 
 Names and structure self-document. Comments only when code cannot express intent
 (magic numbers, external constraints, non-obvious invariants).
+Document "why". e.g. why it was chosen, why it works, why it exists,
+never about "what" it is as code should be self-descriptive.
 
 - Descriptive names over documentation
   - Err on verbosity. Type names over 1 letter names.
@@ -40,11 +43,18 @@ Names and structure self-document. Comments only when code cannot express intent
 
 ### Inline Comments
 
-Write inline comment on applicable line. No long inline comments -- refactor to
-function with docs if explanation requires vertical space.
+Only short (1-5 words) inline comments allowed and written on applicable line.
+All other comments should be in the docstring for the variable/function/etc,
+or refactored out to have a docstring as needed.
 
 ```rust
 let offset = raw + 10; // legacy protocol header padding
+```
+
+```rust
+/// * 10 bytes offset is required for the protocol-related bit flags.
+/// The flags are...
+let offset = raw + 10;
 ```
 
 ## Error Handling
