@@ -73,3 +73,10 @@ or mark N/A with a reason. An unanswered prompt is an unowned outage.
 - Are mitigations self-service/automated, or do they require a specific expert?
 - On-call signal quality: actionable alarms only; no alert fatigue.
 - Ongoing burden: toil, recurring upkeep, dependency/version churn over the system's life.
+
+## Traps
+
+- Happy-path-only design. Failure modes listed, recovery omitted. Ask: how do we get back to healthy?
+  Bad deploy, poison message, divergent state, dead dependency each need an answer -- for every approach.
+- Untested recovery. Rollback/redrive/restore that was never exercised fails when first needed.
+  Plan a game-day or drill.
