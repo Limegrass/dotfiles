@@ -28,6 +28,12 @@ No type casting. Refactor to type guards, pattern matching, or redesign.
 Casts bypass compiler guarantees; treat as code smell.
 If unavoidable, justify with inline comment.
 
+## Explicit Interfaces
+
+Make misuse hard, not merely avoidable -- encode constraints in types (newtypes, branded types, enums over booleans).
+Be explicit at the boundary: bound expensive/unbounded operations (pagination, caps);
+declare weak guarantees (eventual consistency, partial results) and failure modes (typed errors, error enums), never implicit.
+
 ## Self-Documenting Code
 
 Names and structure self-document. Comments only when code cannot express intent
