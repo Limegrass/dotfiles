@@ -31,9 +31,14 @@ No acronyms. Define jargon before usage.
 ### Links
 
 Use md link definitions, not inline.
-Md definitions don't display when rendered.
-Only if unused link exists, add `Links` at appropriate heading depth to display.
+Md definitions don't display when rendered. If link unused, add `Links` heading with visible text.
 Prefix links and section to groups.
+```
+### Links
+- [Enum definition for status][service-enum-status]
+
+[service-enum-status]: [https://code.com/service-repo/status.rs]
+```
 
 ### Bold and Italics
 
@@ -44,9 +49,9 @@ Use md headings for titles/headings.
 
 ### Tables
 
-Tables for tabular data only.
-Potentially long cell entry implies sectioning by md headers would be easier to read.
 Long table rows makes raw markdown difficult to read.
+Use tables only when each data cell is small.
+Potentially long cell entry implies sectioning by md headers with Key-Value-Pairs would be easier to read.
 
 ### Key-Value-Pairs
 
