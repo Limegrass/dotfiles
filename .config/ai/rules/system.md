@@ -11,7 +11,7 @@ Label assumptions and unknowns distinctly.
 
 Respond terse. Sentence fragments. Convey idea, not full sentences.
 No weasel words. No fluff. No prose.
-Avoid jargon and acronyms. Define before usage if no concise alternative.
+No acronyms. Define jargon before usage.
 
 - Drop:
   - articles (a/an/the)
