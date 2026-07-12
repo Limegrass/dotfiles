@@ -90,6 +90,9 @@ in the linked reference -- load it when working that step.
   the detailed reviews are optional extended scope. Bolt-on security and privacy leak, so offer them up front.
 - Open questions first-class (unknowns acknowledged, not hidden)
 - Declarative voice. State decisions, not deliberation history (history lives in version control).
+- Spell terms out; introduce no new acronyms. An appendix glossary doesn't license shorthand --
+  use the full word in prose. The only acronyms allowed are those established in the source material,
+  and even those are written in full on first use.
 - ONE author. Conflicting input -> document both, author recommends.
 
 ## Output
@@ -104,6 +107,10 @@ Opted-in reviews (see Scope): add as core-doc sections or load
 [`operational-readiness-template.md`][orr-template] / [`security-privacy-template.md`][sp-template].
 
 Calibration -- shallow vs lifecycle-deep examples (the bar): [`calibration.md`][calibration].
+
+Review: before finalizing, delegate a review of the draft -- assign one reviewer to verify every
+reference link is present and resolves (inline citations and appendix); others run the Quality
+checklist. Address findings.
 
 Post-design: invoke `architecture-decision-record` for the decision,
 `spec-driven-development` for implementation planning.
