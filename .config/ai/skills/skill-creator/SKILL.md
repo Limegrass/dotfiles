@@ -193,6 +193,7 @@ Use patterns that fit skill's nature:
 - [ ] Rules have reasoning, not bare imperatives
 - [ ] Defaults chosen, alternatives mentioned briefly (not equal menus)
 - [ ] Structure matches skill nature (template-producing vs process-guiding)
+- [ ] Deterministic processes extracted to scripts/, not prose (one-liners stay inline)
 
 ## Finalize
 
@@ -221,8 +222,16 @@ See [eval guide][skill-eval] if systematic eval-driven iteration needed.
 
 ## When to Script
 
-If same code rewritten >2 times across invocations, move to scripts/.
-Scripts: token-efficient, deterministic, execute without loading into context.
+Script deterministic processes -- multi-step, fixed input -> fixed output.
+Reason is constant: offload the logic from context so it executes instead of
+loading; reusable, testable. Spot it at authoring (process skills) or after
+repeated reinvention -- repetition confirms, it isn't a separate trigger.
+
+One-liners and single commands stay inline; script overhead isn't worth it.
+Validation/review checks are processes too -- deterministic verification -> script.
+
+Division of labor: model selects parameters and interprets results; script owns
+deterministic logic. Model reads script internals only when needed.
 
 See [script design guide][skill-scripts] for agentic script patterns.
 
