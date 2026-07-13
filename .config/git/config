@@ -44,6 +44,12 @@
     stash-unstaged = stash --keep-index
     sw = switch
     u = reset HEAD --
+    wt = worktree
+    wt-path = "!worktree_name() { echo \"$(basename \"$(git worktree list --porcelain | sed -n 's/^worktree //p' | head -1)\")-$1\"; }; worktree_name"
+    wt-new = "!worktree_new() { git worktree add --track -b \"$1\" \"../$(git wt-path \"$1\")\" ${2:+\"$2\"}; }; worktree_new"
+    wt-add = "!worktree_add() { git worktree add \"../$(git wt-path \"$1\")\" \"$1\"; }; worktree_add"
+    wt-rm = "!worktree_rm() { git worktree remove \"../$(git wt-path \"$1\")\"; }; worktree_rm"
+    wt-clean = "!worktree_clean() { git worktree remove \"../$(git wt-path \"$1\")\" && git branch -d \"$1\"; }; worktree_clean"
     unstage = reset HEAD --
 [core]
     autocrlf = input
