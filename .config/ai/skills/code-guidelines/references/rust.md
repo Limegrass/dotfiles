@@ -39,6 +39,8 @@
 - Type-state for compile-time protocol enforcement
 - `From`/`Into` infallible; `TryFrom`/`TryInto` fallible
 - Iterator chains over explicit loops when intent clearer
+- `..Default::default()` inherits upstream default shifts; list behavioral fields when pinning matters
+- Builder options left unset are library defaults; set explicitly unless inheriting them is intended
 
 ## Testing
 

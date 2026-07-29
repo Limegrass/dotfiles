@@ -114,6 +114,31 @@ No magic constants buried in logic. Functions accept arguments; scripts accept
 flags/env vars. If a value could change across environments or use cases,
 parameterize it.
 
+## Explicit Arguments
+
+Specify optional parameters. Unspecified = "whatever dependency decides next release":
+upstream default change becomes silent behavior change, no diff to review, no test to fail.
+Explicit values pin behavior to tested version and make intent auditable.
+
+Covers every implicit default: optional args, builder/constructor options, config keys,
+infrastructure resource properties, CLI flags, API request fields.
+
+Omit only when inheriting future change is the intent -- hardened-defaults libraries where
+tightened defaults should apply on upgrade. Document omission and what governs it;
+undocumented omission reads as oversight.
+
+```rust
+// Bad: silent behavior change when library default shifts
+let client = Client::builder().build();
+
+// Good: pinned
+let client = Client::builder().timeout(SECONDS_5).max_retries(3).build();
+
+// Good: deliberate inheritance
+// Cipher suites unset -- inherit hardened defaults as library tightens them.
+let client = Client::builder().timeout(SECONDS_5).max_retries(3).build();
+```
+
 ## White Space
 
 Newlines and whitespace for logical separation between blocks.

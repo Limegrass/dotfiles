@@ -53,6 +53,7 @@
 - Comprehensions over `map`/`filter` when readable; loops when complex
 - `async/await` for I/O-bound concurrency; `asyncio.gather` for concurrent ops
 - No mixing sync and async I/O; `asyncio.to_thread` to bridge
+- Pass optional params as explicit keywords; omission inherits library default changes on upgrade
 
 ## Testing
 

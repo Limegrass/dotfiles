@@ -44,6 +44,7 @@
 - `satisfies` for type checking without widening
 - Exhaustive switch via `never` in default
 - Zod/io-ts at boundaries for runtime validation matching static types
+- Options objects: set every behavioral field; omitted props track library defaults across upgrades
 
 ## Testing
 
