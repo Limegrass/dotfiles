@@ -87,6 +87,29 @@ Specific fix = future regression. General fix = durable system.
 # good: two commits—fix(auth): null check | feat(auth): session timeout
 ```
 
+## Information Placement
+
+One fact, one home. Route by the question it answers.
+
+`Code`: what happens. Names and structure carry it; no prose needed.
+`Doc comment`: why this shape -- invariants, external constraints, caller obligations,
+alternatives that must stay rejected. Readable without diff, history, or review tool.
+`Commit message`: why this delta -- problem, chosen approach, scope, migration and rollback,
+ticket reference. Readable during blame and bisect, years after the review closes.
+`Code review description`: how to review -- verification performed, risk, blast radius,
+spots wanting scrutiny, links to spec, design, and ticket. Link the metric graphs, dashboards,
+and log queries that evidence the change working, plus those a reviewer would watch if it fails --
+reviewers cannot reconstruct query syntax or dashboard names from a diff.
+
+Routing test: needed while reading current code -> doc comment. Needed while bisecting -> commit
+message. Useless after merge -> code review description.
+
+Durable rationale never lives only in a code review description; review tools are unreachable from
+editor and their links rot.
+Single-commit change: commit body is source of truth, code review description adds review-only
+material instead of restating it.
+No conversation history in any of them -- state conclusions, not the path taken.
+
 ## Universal Style
 
 - Test names: `action_condition_expected`. Mock at I/O boundaries only. Property tests for pure functions.
