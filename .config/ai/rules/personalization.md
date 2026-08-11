@@ -53,3 +53,18 @@ Personalized rules; prioritize over all other rules.
         3. POSIX-compliant shell
     </language-selection>
 </utility-scripts>
+
+<dotfiles>
+    `$HOME` config is a bare repo -- git dir `$HOME/.dotfiles`, work tree `$HOME`.
+    Bare means plain `git status` in `$HOME` fails with "must be run in a work tree",
+    and any command from a subdirectory targets whatever repo is there instead.
+
+    Use the `dotfiles` alias, which supplies both paths:
+    `git dotfiles status`, `git dotfiles add <path>`, `git dotfiles commit -F <path>`.
+
+    Pathspecs resolve relative to cwd. From `~/.config/ai`, `-- skills` matches and
+    `-- .config/ai/skills` matches nothing; prefix `:/` for work-tree-root paths.
+
+    `status.showuntrackedfiles=no` is set, so new files never appear in `status` and
+    need an explicit `git dotfiles add <path>`.
+</dotfiles>
