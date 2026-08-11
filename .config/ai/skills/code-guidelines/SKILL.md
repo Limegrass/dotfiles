@@ -87,6 +87,24 @@ Specific fix = future regression. General fix = durable system.
 # good: two commits—fix(auth): null check | feat(auth): session timeout
 ```
 
+## Draft Before Code
+
+Every non-code artifact drafts before the work: commit message per commit, review description for
+the set. `## Information Placement` routes content; drafting fixes when.
+
+Draft bounds scope -- anything it does not describe belongs to a later commit, and the draft never
+grows to absorb what the work picked up. Subject needing "and" = two commits. Body you cannot
+write = motivation not found yet; find it before coding.
+
+Review description draft names its evidence: verification to run, metric graphs, dashboards, log
+queries that will show the change working, spots wanting scrutiny. Named query or dashboard that
+does not exist yet = missing instrumentation, cheaper to add now than to explain at review.
+Spec'd change assembles from spec Acceptance Criteria, Observability, and Risks & Rollback instead
+of restating them.
+
+Reconcile drafts against `git diff --cached` before committing; diff outside the draft splits out.
+Measured values land at review time -- draft supplies names and questions, the run supplies numbers.
+
 ## Information Placement
 
 One fact, one home. Route by the question it answers.
@@ -109,6 +127,8 @@ editor and their links rot.
 Single-commit change: commit body is source of truth, code review description adds review-only
 material instead of restating it.
 No conversation history in any of them -- state conclusions, not the path taken.
+Change narration belongs to the message, never to code -- `// now handles empty input` restates
+what the diff shows and reads as noise once that diff is history.
 
 ## Universal Style
 
