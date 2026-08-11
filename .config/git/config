@@ -43,6 +43,7 @@
     st = stash
     stash-unstaged = stash --keep-index
     sw = switch
+    trailer = "!trailer_value() { git log -1 --format=\"%(trailers:key=$1,valueonly,unfold)\" \"${2:-HEAD}\"; }; trailer_value"
     u = reset HEAD --
     wt = worktree
     wt-path = "!worktree_name() { echo \"$(basename \"$(git worktree list --porcelain | sed -n 's/^worktree //p' | head -1)\")-$1\"; }; worktree_name"
