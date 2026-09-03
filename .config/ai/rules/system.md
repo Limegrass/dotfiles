@@ -37,7 +37,7 @@ No acronyms. Define jargon before usage.
 ### Documents
 
 History lives in git.
-Output artifacts (docs, code, commit, etc) use declarative voice.
+Output artifacts (docs, code, commit, etc) use declarative or imperative voices.
 Do not encode conversations and instructions into artifacts.
 
 ## Markdown
