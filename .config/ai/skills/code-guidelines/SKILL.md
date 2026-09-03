@@ -89,43 +89,35 @@ Specific fix = future regression. General fix = durable system.
 
 ## Draft Before Code
 
-Every non-code artifact drafts before the work: commit message per commit, review description for
-the set. `## Information Placement` routes content; drafting fixes when.
+Commit message per commit and review description for the set, both drafted before the work. The
+draft bounds scope: work it does not describe belongs to a later commit, and the draft never grows
+to absorb what the work picked up.
 
-Draft bounds scope -- anything it does not describe belongs to a later commit, and the draft never
-grows to absorb what the work picked up. Subject needing "and" = two commits. Body you cannot
-write = motivation not found yet; find it before coding.
-
-Review description draft names its evidence: verification to run, metric graphs, dashboards, log
-queries that will show the change working, spots wanting scrutiny. Named query or dashboard that
-does not exist yet = missing instrumentation, cheaper to add now than to explain at review.
-Spec'd change assembles from spec Acceptance Criteria, Observability, and Risks & Rollback instead
-of restating them.
-
-Reconcile drafts against `git diff --cached` before committing; diff outside the draft splits out.
-Measured values land at review time -- draft supplies names and questions, the run supplies numbers.
+Formats: `commit-message` and `review-description` skills.
 
 ## Information Placement
 
-One fact, one home. Route by the question it answers.
+One fact, one home. Route by the question it answers. This file governs what code and its comments
+carry; each other artifact is governed by its own skill.
 
 `Code`: what happens. Names and structure carry it; no prose needed.
 `Doc comment`: why this shape -- invariants, external constraints, caller obligations,
 alternatives that must stay rejected. Readable without diff, history, or review tool.
-`Commit message`: why this delta -- problem, chosen approach, scope, migration and rollback,
-ticket reference. Readable during blame and bisect, years after the review closes.
-`Code review description`: how to review -- verification performed, risk, blast radius,
-spots wanting scrutiny, links to spec, design, and ticket. Link the metric graphs, dashboards,
-and log queries that evidence the change working, plus those a reviewer would watch if it fails --
-reviewers cannot reconstruct query syntax or dashboard names from a diff.
+`Commit message`: why this delta. `commit-message` skill.
+`Code review description`: how to review. `review-description` skill.
+`Code review comment`: what helps a reviewer understand what the change introduces at these lines
+-- the decision behind it, a question about it, where to look first. Sits where the reviewer meets
+the code, so they read it against what it describes rather than hunting for it. Ends at merge.
 
-Routing test: needed while reading current code -> doc comment. Needed while bisecting -> commit
-message. Useless after merge -> code review description.
+Routing test:
 
-Durable rationale never lives only in a code review description; review tools are unreachable from
-editor and their links rot.
-Single-commit change: commit body is source of truth, code review description adds review-only
-material instead of restating it.
+needed while reading current code -> `Doc comment`
+needed while bisecting -> `Commit message`
+useless after merge, attachable to file:line -> `Code review comment`
+useless after merge, spanning change -> `Code review description`
+
+`review-description` routes comment versus description; both review homes end at merge.
+
 No conversation history in any of them -- state conclusions, not the path taken.
 Change narration belongs to the message, never to code -- `// now handles empty input` restates
 what the diff shows and reads as noise once that diff is history.
