@@ -176,7 +176,9 @@ Use patterns that fit skill's nature:
 - `Traps section`: concrete corrections to mistakes agent will make without being told
 - `Output templates`: more reliable than describing format in prose
 - `Checklists`: multi-step workflows with progress tracking
-- `Validation loops`: do work -> run validator -> fix -> repeat until pass
+- `Validation loops`: do work -> run validator -> fix -> repeat until pass. Invoke
+  `agentic-loop-design` before writing one -- roles, termination, guards, and state are settled
+  there rather than per skill
 - `Plan-validate-execute`: create plan -> validate against source of truth -> execute
 
 ### Quality Check

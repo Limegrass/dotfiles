@@ -64,25 +64,18 @@ Fix violations found. No new criteria here -- standards skill is source of truth
 
 ## Phase 5: Iterate
 
-```
-validate -> violations? --yes--> fix -> re-validate
-                |
-                no
-                |
-                v
-          run tests -> pass? --no--> fix -> re-run
-                |
-                yes
-                |
-                v
-              DONE
-```
+`agentic-loop-design` governs the loop shape -- observable termination, guards, and why a
+judgemental gate and a mechanical one are both needed.
 
-Termination criteria:
+Here `unit-test-standards` is the judgemental gate and the suite run is the mechanical one.
+A standards pass over red tests proves nothing, and green tests say nothing about coverage,
+so neither substitutes for the other.
 
-- All applicable categories have tests
-- No standard violations remain
-- Tests pass
+Test-specific termination:
+
+- Every applicable category has a test, N/A marked explicitly
+- No standards violation remains
+- Suite green
 
 ## Rules
 

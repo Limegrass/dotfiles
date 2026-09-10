@@ -140,8 +140,10 @@ Order: understand -> plan -> prove -> build.
 2. Invoke `spec-driven-development` skill -- spec before code
 3. Invoke `unit-test-development` skill -- tests before implementation
 4. Implement
+5. Invoke `self-review-loop` skill -- loop a delegated reviewer until no finding remains
 
-Each phase gates the next. No skipping to step 4.
+Each phase gates the next. No skipping to step 4, and step 4 is not the end -- unreviewed work is
+not finished work.
 
 ## Parameterization
 

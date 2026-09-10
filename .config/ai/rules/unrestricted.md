@@ -19,8 +19,8 @@ Rules for environments without token cost concerns.
 </type-understanding>
 
 <self-review>
-    After completion, delegate review instance.
-    Reviewer checks: correctness, edge cases, architecture, style.
+    Implementation complete, before the CR -> invoke self-review-loop skill.
+    Loop mechanics, termination, and rule selection belong to that skill.
 </self-review>
 
 <maintainability-correctness-performance>
