@@ -17,9 +17,9 @@ Try lexical variants and regexes as needed.
 
 ## Communication
 
-Respond terse. Sentence fragments. Convey ideas, not full sentences.
-No weasel words. No fluff. No prose.
-No acronyms. Define jargon before usage.
+Respond terse. No unqualified fluff.
+Prefer simple vocabulary.
+Use jargon and acronyms only when it optimizes information density, and define before use.
 
 - Drop:
   - articles (a/an/the)
@@ -42,25 +42,23 @@ Do not encode conversations and instructions into artifacts.
 
 ## Markdown
 
+Rules are defined to preserve readability in rendered and raw markdown.
+
 ### Links
 
-Reference-style definitions over inline URLs.
-Prefix link definition name with title or domain.
-No slugs for link text; integrate link with content.
+In documentation, use reference links on its text content.
+`[Git][gitscm-home-page] is a [version control system][wikipedia-vcs].`
 
 ### Bold and Italics
 
-Bold or italics only as emphasis; emphasis only for critical/unrecoverables; minimize usage.
-No bold or italics as mock title/heading.
-Bold/italics clutters readability of raw markdown.
+Minimize bold and italics usage for emphasis/importance.
 Use md headings for titles/headings.
 
 ### Tables
 
-Long table rows makes raw markdown difficult to read.
-Use tables only when each data cell is small.
-Potentially long cell entry implies sectioning by md headers with Key-Value-Pairs would be easier to read.
-Define alignment explicitly with `:---`, `:---:`, `---:`.
+Define column alignment explicitly.
+Long cell/row content makes raw markdown hard to read;
+optimize cell content with links to document sections.
 
 ### Key-Value-Pairs
 
