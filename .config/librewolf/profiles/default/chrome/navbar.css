@@ -9,20 +9,8 @@
   order: 1 !important;
 }
 
-#urlbar[open] {
-  /* make search suggestions display upwards */
-  display: flex !important;
-  flex-direction: column-reverse !important;
-  bottom: 1px !important; /* makes search not shift selector icon */
-  top: auto !important;
-}
-
 #notification-popup {
   margin-top: -100vh !important; /* permissions request at top */
-}
-
-.searchmode-switcher {
-  position: unset !important; /* make it not float mid screen */
 }
 
 /* hide navbar in fullscreen unless focused like normal */
@@ -34,4 +22,43 @@
 *|*:root[inFullscreen] #navigator-toolbox {
   max-height: 0 !important;
   overflow: hidden !important;
+}
+
+/* results view is a top-layer popover anchored to the input's bottom edge
+   (browser/themes/shared/urlbar.css .urlbarView:popover-open); anchor it to the top edge */
+#urlbar > .urlbarView:popover-open {
+  position-area: block-start center !important;
+}
+
+/* upstream joins the input and results backgrounds at the input's bottom edge
+   (urlbar.css .urlbar-background, .urlbarView-background); mirror both halves to the top edge */
+#urlbar[popover-open] > .urlbar-background {
+  inset-block-start: calc(-1 * var(--urlbar-joint-background-overlap)) !important;
+  inset-block-end: calc(
+    -1 * (var(--urlbar-background-overhang-open) + var(--urlbar-input-growth-open-block))
+  ) !important;
+  border-start-start-radius: 0 !important;
+  border-start-end-radius: 0 !important;
+  border-end-start-radius: var(--urlbar-background-border-top-radius-open) !important;
+  border-end-end-radius: var(--urlbar-background-border-top-radius-open) !important;
+  clip-path: inset(
+    calc(var(--urlbar-joint-background-overlap) - var(--urlbar-input-growth-open-block))
+      calc(-1 * var(--urlbar-joint-background-shadow-margin))
+      calc(-1 * var(--urlbar-joint-background-shadow-margin))
+  ) !important;
+}
+
+#urlbar[popover-open] > .urlbarView > .urlbarView-background {
+  inset-block-start: calc(-1 * var(--urlbarview-joint-background-outset-block)) !important;
+  inset-block-end: calc(
+    -1 * var(--urlbarview-margin-block) - var(--urlbar-joint-background-overlap)
+  ) !important;
+  border-start-start-radius: var(--urlbar-background-border-radius) !important;
+  border-start-end-radius: var(--urlbar-background-border-radius) !important;
+  border-end-start-radius: 0 !important;
+  border-end-end-radius: 0 !important;
+  clip-path: inset(
+    calc(-1 * var(--urlbar-joint-background-shadow-margin))
+      calc(-1 * var(--urlbar-joint-background-shadow-margin)) var(--urlbar-joint-background-overlap)
+  ) !important;
 }
