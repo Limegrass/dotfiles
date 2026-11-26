@@ -11,7 +11,7 @@ Agentic script design for skills. Load when bundling scripts into scripts/.
 
 ## Self-Contained Dependencies
 
-Scripts declare own deps inline. No separate install step needed.
+Scripts declare own deps inline.
 
 ### Python (PEP 723 + uv)
 
@@ -54,9 +54,9 @@ Run: `ruby scripts/extract.rb`
 
 ### Hard Requirements
 
-- **No interactive prompts**. Agents operate non-interactive shells.
+- `No interactive prompts`: agents operate non-interactive shells.
   Accept input via flags, env vars, or stdin. Blocking on TTY = hang forever.
-- **Pin versions**. `npx eslint@9.0.0`, not `npx eslint`.
+- `Pin versions`: `npx eslint@9.0.0`, not `npx eslint`.
 
 ### Interface Discovery
 
@@ -103,18 +103,18 @@ Error: --format must be one of: json, csv, table.
 
 ### Safety Properties
 
-- **Idempotent**: "create if not exists" over "create and fail on duplicate"
-- **Input validation**: reject ambiguous input with clear error. Use enums/closed sets.
-- **Dry-run**: `--dry-run` flag for destructive/stateful operations
-- **Meaningful exit codes**: distinct codes for different failure types, documented in --help
-- **Safe defaults**: destructive ops require `--confirm`/`--force`
+- `Idempotent`: "create if not exists" over "create and fail on duplicate"
+- `Input validation`: reject ambiguous input with clear error. Use enums/closed sets.
+- `Dry-run`: `--dry-run` flag for destructive/stateful operations
+- `Meaningful exit codes`: distinct codes for different failure types, documented in --help
+- `Safe defaults`: destructive ops require `--confirm`/`--force`
 
 ## One-Off Commands (No scripts/ Needed)
 
 When existing packages do the job, reference directly:
 
 | Runtime | Tool | Example                                   |
-| ------- | ---- | ----------------------------------------- |
+| :------ | :--- | :---------------------------------------- |
 | Python  | uvx  | `uvx ruff@0.8.0 check .`                  |
 | Python  | pipx | `pipx run 'black==24.10.0' .`             |
 | Node    | npx  | `npx eslint@9 --fix .`                    |

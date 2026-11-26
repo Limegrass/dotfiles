@@ -1,10 +1,11 @@
 ---
 name: skill-creator
 description: >
-  Create, update, review, or iterate on agent skills from feedback.
-  Invoke when asked to: create a skill, improve a skill, review skill
-  quality, fix a skill that isn't triggering, or write a SKILL.md.
-  Covers authoring, bundling resources, and feedback-driven iteration.
+  Creates, revises, reviews, and evaluates agent skills -- SKILL.md plus scripts, references, and
+  assets. Use when asked to write or change a skill, diagnose a skill that triggers wrongly or
+  misbehaves, audit a skill for outdated prompting patterns, or test a skill against a baseline.
+  Distinct from domain-documentation, which documents a codebase for readers, and
+  design-document, which compares approaches for a change.
 ---
 
 # Skill Creator
@@ -14,14 +15,21 @@ Create, write, iterate on skills.
 ## Gather Requirements
 
 | Question                         | Drives                                     |
-| -------------------------------- | ------------------------------------------ |
+| :------------------------------- | :----------------------------------------- |
 | What task automated?             | Scope                                      |
 | When should it trigger?          | `description` field (sole trigger source)  |
 | What does agent lack today?      | Prevents redundancy (check current skills) |
+| Rule file already covers it?     | Cut rule to trigger + skill name           |
 | Global or project-specific?      | File path                                  |
 | Needs scripts/references/assets? | Directory structure                        |
 
 Ask the user for unknowns. Never guess scope.
+
+### Baseline
+
+Before writing, run 2-3 realistic prompts in a clean context without the skill (delegate). The
+failures are the acceptance criteria; Finalize re-runs the prompts with the skill. No observable
+failure -> ask whether the skill is needed. Skip when the user dictates the procedure verbatim.
 
 ### Placement
 
@@ -36,10 +44,11 @@ Directory name must match frontmatter `name` exactly.
 
 ```
 {skill-name}/
-├── SKILL.md         (required)
-├── scripts/         (optional: executables)
-├── references/      (optional: on-demand docs)
-└── assets/          (optional: templates, resources)
+  SKILL.md         (required)
+  scripts/         (optional: executables)
+  references/      (optional: on-demand docs)
+  assets/          (optional: templates, resources)
+  ...              (optional: any other files or directories)
 ```
 
 ### Progressive Disclosure
@@ -52,7 +61,12 @@ Skills load in 3 phases. Design for this:
 
 Implications:
 
+- Body loads only after the description triggers, so "when to use" text belongs in the
+  description.
 - Body contains every-activation content. Move conditional/reference content to separate files.
+- Body loads once and is not re-read on later turns: phrase guidance to hold for the whole task
+  ("after every edit"), not as one-time steps.
+- Highest-value content first: harnesses often keep only the start of a skill.
 - Split files by retrieval purpose. If agent needs A without B, separate files.
 - File references one level deep from SKILL.md. No nested reference chains.
 - Use relative paths from skill root: `references/REFERENCE.md`, `scripts/extract.py`
@@ -65,15 +79,24 @@ Not rigid template -- starting point.
 
 ```markdown
 ---
-name: <skill-name>
+name: [skill-name]
 description: >
-  <What it produces. 1-2 sentences.>
-  <Trigger phrases. When to invoke.>
+  [What it does and its main use case, in the first sentence.]
+  [When to use: intent categories. Distinct from adjacent skills.]
 ---
 
 # <Title>
 
 <One-line purpose.>
+
+## Rules [if: hard constraints]
+
+<Constraints, guardrails. Reasons only where judgment applies.>
+
+## Traps [if: domain has non-obvious pitfalls]
+
+<Environment-specific facts that defy reasonable assumptions.
+Not generic advice. Concrete corrections to mistakes agent will make.>
 
 ## Process
 
@@ -83,25 +106,20 @@ description: >
 
 <Structure produced. Placeholders. Conditional sections marked [if: ...]>
 
-## Traps [if: domain has non-obvious pitfalls]
-
-<Environment-specific facts that defy reasonable assumptions.
-Not generic advice. Concrete corrections to mistakes agent will make.>
-
 ## Variants [if: multiple output formats]
 
 <Format-specific structure.>
-
-## Rules
-
-<Constraints, guardrails. Each with reasoning.>
 ```
 
 Structure matches nature:
 
 - Structured output skills -> skeleton/template (e.g., domain-documentation)
 - Process skills -> phases/modes (e.g., this one)
-- Context/knowledge skills -> rules/constraints only (e.g., coding-standards)
+- Context/knowledge skills -> rules/constraints only (e.g., code-guidelines)
+
+Process skills load knowledge skills by name at the step that uses them: "Load
+`unit-test-standards` first; Phases 2 and 4 use it." Delegates may start without the caller's
+skills or rule files, so a delegate prompt names the skill to load or carries its rules.
 
 ### Frontmatter Fields
 
@@ -117,57 +135,53 @@ Optional:
 - `metadata`: string key-value map for additional properties (author, version, etc.)
 - `allowed-tools`: space-separated pre-approved tools (experimental)
 
-No other fields.
+No other fields: strict validators and skill uploads reject unknown fields, and harness-specific
+fields do not carry across harnesses.
 
 ### Description Optimization
 
 Description carries entire triggering burden. Optimize for:
 
-1. **Imperative phrasing**: "Use when..." not "This skill does..."
-2. **User intent over implementation**: describe what user wants, not internal mechanics
-3. **Be pushy**: explicitly list contexts, including where user doesn't name domain directly
-4. **Distinguish from adjacent**: what separates this skill from similar capabilities?
-5. **Concise**: few sentences to short paragraph. Hard limit 1024 chars.
+- `Use case first`: the first sentence states what the skill does and its main use case. Many
+  skills share one listing budget; harnesses truncate or drop descriptions when it overflows.
+- `Voice`: "Does X. Use when Y." -- no I or you.
+- `User intent`: describe what the user wants, not internal mechanics.
+- `Pushy by category`: name the intent categories that apply, including requests that never
+  name the domain. A missed query is evidence about a category, not wording to copy: widen the
+  category it belongs to. A few representative phrases are fine; one appended per miss overfits.
+- `Boundary`: a "Distinct from" clause naming the adjacent skill, where one competes.
+- `Plain text`: no angle brackets or markup.
+- `Length`: a few sentences to a short paragraph; hard limit 1024 chars.
 
 Bad: `description: Helps with PDFs.`
-Good:
+Good (illustrative):
 
 ```yaml
 description: >
-  Analyze CSV and tabular data files -- compute summary statistics,
-  add derived columns, generate charts, and clean messy data. Use when
-  user has CSV, TSV, or Excel file and wants to explore, transform, or
-  visualize data, even without explicitly mentioning "CSV" or "analysis."
+  Analyzes CSV and tabular data files -- computes summary statistics, adds
+  derived columns, generates charts, and cleans messy data. Use when user has
+  a CSV, TSV, or Excel file and wants to explore, transform, or visualize it,
+  even without mentioning "CSV" or "analysis".
 ```
 
 ### Principles
 
-1. Description = sole trigger source. Front-load trigger phrases.
-   Body loads only after trigger fires. No "when to use" in body.
-2. Progressive disclosure drives structure. Body = concise instructions.
-   Detailed docs, examples, lookup tables -> references/. Executable logic -> scripts/.
-3. Body = content needed every activation. Conditional content -> references/.
-   Gate: "Would agent get this wrong without this instruction?" If no, cut or move to references/.
-4. Add what agent lacks, omit what it knows. No explaining PDFs, HTTP, etc.
-   Ask: "Would agent get this wrong without this instruction?" If no, cut it.
-5. Examples over explanations. Show good/bad output when possible.
-6. Freedom matches fragility:
-   - Fragile/sequential output: prescriptive steps + skeleton
-   - Heuristic/creative output: principles + constraints only
-7. Provide defaults, not menus. Menus paralyze agent decision-making.
-   Pick one approach; mention alternatives briefly.
-8. Favor procedures over declarations. Teach how to approach problem classes,
-   not what to produce for specific instance.
-9. Traps = highest-value content. Environment-specific facts that defy assumptions.
-   Keep in SKILL.md where agent reads them before encountering situation.
-10. No redundancy between SKILL.md and references/.
-11. No auxiliary files (README, CHANGELOG).
-12. Caveman the final output.
-13. Reasoning over rigid commands. "Why" > "MUST".
-    Exception: hard constraints with no flexibility (e.g., directory naming).
-14. Generalize. Skills serve many prompts. Don't overfit to test cases.
-15. Sections are menu when producing templates. Mark conditional with `[if: ...]`.
-16. File references one level deep. Relative paths from skill root.
+1. Every line earns its place: would the agent get this wrong without it? No -> cut. Omit what
+   the agent already knows (PDFs, HTTP), drop filler (hedges, pleasantries, restated context),
+   and say each thing once -- no repeats between SKILL.md and references/, no auxiliary files
+   (README, CHANGELOG). A concern another skill owns gets a pointer naming that skill and stating
+   only what differs here. Give a reason only where a rule needs judgment -- it tells the agent
+   where the rule stops. Exact rules and obvious benefits need none.
+2. Examples over explanations. Behavioral guidance gets 2-3 varied examples labeled
+   illustrative -- a single example gets copied in length, tone, and structure. Templates use
+   placeholders and mark optional sections `[if: ...]`.
+3. Be strict only where it matters. One right order or format -> exact steps and a template;
+   many good answers -> principles and constraints.
+4. Defaults, not menus. Pick one approach and mention alternatives briefly.
+5. Teach the problem class, not the instance. Skills serve many prompts: favor procedures over
+   declarations, and don't overfit to test cases.
+6. Plain words: state the condition and the action, not a slogan; one term per concept. An agent
+   rebuilds a slogan differently each time.
 
 ### Effective Patterns
 
@@ -183,54 +197,67 @@ Use patterns that fit skill's nature:
 
 ### Quality Check
 
-- [ ] Directory name = `name` field
-- [ ] `name` field: lowercase, alphanumeric + hyphens only, no start/end/double hyphens
-- [ ] Description: imperative phrasing, user intent, distinguishes from similar skills
+- [ ] Validator passes: `uvx --from 'git+https://github.com/agentskills/agentskills@83021e2#subdirectory=skills-ref' skills-ref validate <skill-dir>`
+- [ ] Description: use case first, user intent, boundary vs adjacent skills, plain text
 - [ ] No "when to use" in body (that's description's job)
-- [ ] Body = every-activation content only. Each line passes "would agent get wrong without this?"
-- [ ] No explaining what agent already knows
+- [ ] Each line earns its place: needed, said once, no filler, reasons only on rules that need
+      judgment
+- [ ] Concerns another skill owns: pointer by name, not restated
 - [ ] Reference files split by retrieval purpose (not arbitrary size)
 - [ ] File references one level deep, relative paths, with conditional triggers
-- [ ] Placeholders, not domain examples
-- [ ] Rules have reasoning, not bare imperatives
+- [ ] Templates use placeholders; behavioral examples varied and labeled illustrative
 - [ ] Defaults chosen, alternatives mentioned briefly (not equal menus)
+- [ ] Teaches the problem class; nothing overfit to one prompt or test case
+- [ ] Plain words: conditions and actions, not slogans; one term per concept
+- [ ] Names capabilities (delegate a reviewer, ask the user), not tool names -- tool names differ
+      between harnesses
 - [ ] Structure matches skill nature (template-producing vs process-guiding)
 - [ ] Deterministic processes extracted to scripts/, not prose (one-liners stay inline)
 
 ## Finalize
 
-Mandatory loop before presenting output:
+Loop before presenting output. `agentic-loop-design` owns roles, termination, dismissal, guards,
+and the ledger; this section states only what is specific to skills.
 
-1. Quality Check. Fix failures.
-2. Caveman pass. Strip fluff.
-3. Principles check. Fix violations.
-4. Repeat until stable.
+1. Gate: run the validator (Quality Check). Failures are never dismissable. Validator unavailable
+   (offline, no uv) -> report the gate blocked and check name and description by hand; never
+   report it passed.
+2. Judge: delegate a read-only reviewer the skill directory, Quality Check, and Principles -- plus
+   [audit patterns][skill-audit] when revising an existing skill. Findings cite file:line and the
+   item violated. No delegation available -> run the checks in place and report them self-judged.
+3. Fix or dismiss each finding.
+4. Judge clean -> re-run the Baseline prompts once with the skill. A prompt that still fails is a
+   finding.
+5. Done when the gate passes and zero findings remain actionable.
 
 ## Iterate
 
-Entry points: usage feedback, false triggers, missed triggers, bad output.
+Entry points: usage feedback, false or missed triggers, bad output, quality review, model change.
 Not sequential -- enter at relevant concern.
 
-See [iteration guide][skill-iteration] when diagnosing trigger/output issues.
-See [eval guide][skill-eval] if systematic eval-driven iteration needed.
+Read [audit patterns][skill-audit] to review existing skill text: before adding text, on a quality
+review, and after the model running your skills changes.
 
 ### Process
 
-1. Identify gap from signal
-2. Read current SKILL.md
-3. Minimal change addressing one concern
-4. Verify: description still accurate? Redundancy introduced?
-5. Self-review. Repeat 3-4 until stable.
+1. Identify the gap from the signal.
+2. Read the current SKILL.md and the references the gap touches.
+3. Before adding text, ask whether it would help most prompts or only the one that surfaced it.
+   Prefer generalizing or removing an instruction over appending one.
+4. Make the minimal change that addresses one concern. Confirm a trigger fix by rerunning
+   should-trigger and near-miss prompts, judged on prompts held out from tuning. Small counts prove
+   little -- 4 of 5 passing fits a true rate far below 80% -- and new prompts tell more than reruns
+   of the same one.
+5. Finalize.
 
 ## When to Script
 
 Script deterministic processes -- multi-step, fixed input -> fixed output.
-Reason is constant: offload the logic from context so it executes instead of
-loading; reusable, testable. Spot it at authoring (process skills) or after
-repeated reinvention -- repetition confirms, it isn't a separate trigger.
+Spot it at authoring (process skills), not only after repeated reinvention.
 
-One-liners and single commands stay inline; script overhead isn't worth it.
+One-liners and single commands stay inline.
 Validation/review checks are processes too -- deterministic verification -> script.
+A rule that must hold every time belongs in a script, validator, or harness hook.
 
 Division of labor: model selects parameters and interprets results; script owns
 deterministic logic. Model reads script internals only when needed.
@@ -240,7 +267,7 @@ See [script design guide][skill-scripts] for agentic script patterns.
 Key rules for agentic scripts:
 
 - No interactive prompts (agents can't respond to TTY)
-- `--help` with flags + examples (primary interface discovery)
+- `--help` with flags + examples
 - Helpful errors: what went wrong, what expected, what to try
 - Structured output (JSON/CSV to stdout, diagnostics to stderr)
 - Self-contained deps (PEP 723 for Python, npm: specifiers for Deno)
@@ -252,8 +279,7 @@ Key rules for agentic scripts:
 - [Best Practices][agentskills-practices]
 - [Optimizing Descriptions][agentskills-descriptions]
 
-[skill-iteration]: references/iteration-guide.md
-[skill-eval]: references/eval-guide.md
+[skill-audit]: references/audit-patterns.md
 [skill-scripts]: references/script-patterns.md
 [agentskills-spec]: https://agentskills.io/specification
 [agentskills-practices]: https://agentskills.io/skill-creation/best-practices.md
