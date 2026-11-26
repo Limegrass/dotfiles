@@ -70,14 +70,15 @@ Definition lists use backtick-colon pattern - `Term`: description
 Avoid unicode beyond natural language (CJK, etc).
 `--` not `—`, `->` not `→`, `^2` not `²`
 
-## Tooling
-
-### Scripts
-
-Invoke non-`$PATH` CLIs with absolute paths.
+## Tools
 
 ### Skills
 
-Agent skills provide additional functionality, information, and guidance.
-Err to overtriggering; relevance can be evaluated after.
-`code-guidelines` skill required for all code.
+Agent skills provide functionality, information, and guidance.
+Overtrigger to avoid missing instructions.
+
+### CLIs
+
+Invoke non-`$PATH` CLIs with absolute paths.
+Prefer `rg -C` for search with context.
+For persisted scripts, prefer project scripting language over type-annotated Python over POSIX-compliant shell.
