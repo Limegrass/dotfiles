@@ -4,6 +4,10 @@ Rules for environments without token cost concerns.
 
 ## Rules
 
+Determine acceptance criteria first,
+then design validation loops that verifies satisfying those
+conditions before implementation.
+
 <spec-driven-development>
     Before implementing, invoke spec-driven-development skill.
     Spec contains: current state (code refs + example data),
